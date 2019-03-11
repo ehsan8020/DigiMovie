@@ -25,6 +25,18 @@ namespace DigiMovie.Controllers
             return View();
         }
 
+        public IActionResult ContactProcess()
+        {
+            var name = Request.Query["name"].ToString();
+            var subject = Request.Query["subject"].ToString();
+            var email = Request.Query["email"].ToString();
+            var body = Request.Query["body"].ToString();
+
+
+            //TODO: Send Email With C#
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
