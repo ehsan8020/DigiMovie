@@ -1,0 +1,49 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "نمایش محصولات";
+}
+<br class="my-3" />
+<h2 class="text-right">@ViewData["Title"] </h2>
+<hr />
+<table class="table table-bordered table-hover table-striped table-info text-center">
+    <thead class="table-dark">
+        <tr>
+            <td>شناسه</td>
+            <td>عنوان</td>
+            <td>موجود</td>
+            <td>تعداد موجود</td>
+            <td>قیمت</td>
+            <td>مشخصات</td>
+            <td>جزییات</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+        <tr>
+            <td>@product.Id</td>
+            <td>@product.Title</td>
+            <td>
+                @if (product.IsExists)
+                {
+                    <text>بلی</text>
+                }
+                else
+                {
+                    <text>خیر</text>
+                }
+            </td>
+            <td>@product.NumberInStock</td>
+            <td>@product.Price</td>
+            <td>@product.Specification</td>
+            <td>
+                <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="nav-link text-info">
+                    <i class="fas fa-info-circle align-middle"></i>
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<br class="my-3" />
+

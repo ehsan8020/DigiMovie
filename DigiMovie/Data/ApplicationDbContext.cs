@@ -14,7 +14,15 @@ namespace DigiMovie.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder
+                .Entity<Product>()
+                .Property(p => p.NumberInStock)
+                .HasDefaultValue(50);
+        }
 
-        //public DbSet<Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

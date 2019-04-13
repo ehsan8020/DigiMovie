@@ -1,0 +1,25 @@
+﻿@model DigiMovie.Models.Product
+
+@{
+    ViewData["Title"] = "نمایش محصول";
+}
+<br class="my-3" />
+<h2 class="text-right">@ViewData["Title"] </h2>
+<hr />
+
+<h4>@Model.Id</h4>
+<h4>@Model.Title</h4>
+
+<h4>
+    @if (Model.IsExists)
+    {
+        <text>بلی</text>
+    }
+    else
+    {
+        <text>خیر</text>
+    }
+</h4>
+<h4>@Model.NumberInStock</h4>
+<h4>@Model.Price</h4>
+<h4>@Model.Specification</h4>

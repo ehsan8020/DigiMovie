@@ -4,14 +4,16 @@ using DigiMovie.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DigiMovie.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190413133008_ChangeProductTable")]
+    partial class ChangeProductTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,11 +29,7 @@ namespace DigiMovie.Data.Migrations
 
                     b.Property<bool>("IsExists");
 
-                    b.Property<short>("NumberInStock")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue((short)50);
-
-                    b.Property<int>("Price");
+                    b.Property<short>("NumberInStock");
 
                     b.Property<string>("Specification")
                         .IsRequired();
