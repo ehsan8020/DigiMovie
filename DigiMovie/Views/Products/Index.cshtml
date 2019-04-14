@@ -5,15 +5,13 @@
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
 <hr />
-<table class="table table-bordered table-hover table-striped table-info text-center">
-    <thead class="table-dark">
+<table class="table table-bordered table-hover table-striped table-info text-center table-sm">
+    <thead class="table-dark text-danger" style="font-size:large">
         <tr>
-            <td>شناسه</td>
             <td>عنوان</td>
             <td>موجود</td>
             <td>تعداد موجود</td>
             <td>قیمت</td>
-            <td>مشخصات</td>
             <td>جزییات</td>
         </tr>
     </thead>
@@ -21,9 +19,8 @@
         @foreach (var product in Model)
         {
         <tr>
-            <td>@product.Id</td>
-            <td>@product.Title</td>
-            <td>
+            <td class="align-middle">@product.Title</td>
+            <td class="align-middle">
                 @if (product.IsExists)
                 {
                     <text>بلی</text>
@@ -33,12 +30,11 @@
                     <text>خیر</text>
                 }
             </td>
-            <td>@product.NumberInStock</td>
-            <td>@product.Price</td>
-            <td>@product.Specification</td>
-            <td>
+            <td class="align-middle">@product.NumberInStock</td>
+            <td class="align-middle">@product.Price</td>
+            <td class="align-middle">
                 <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="nav-link text-info">
-                    <i class="fas fa-info-circle align-middle"></i>
+                    <i class="fas fa-2x fa-info-circle"></i>
                 </a>
             </td>
         </tr>

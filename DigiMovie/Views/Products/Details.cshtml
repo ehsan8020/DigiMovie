@@ -7,19 +7,37 @@
 <h2 class="text-right">@ViewData["Title"] </h2>
 <hr />
 
-<h4>@Model.Id</h4>
-<h4>@Model.Title</h4>
+<table class="table table-bordered table-hover table-striped table-info text-center table-sm">
+    <tbody>
+        <tr>
+            <td>عنوان</td>
+            <td>@Model.Title</td>
+        </tr>
+        <tr>
+            <td>آیا موجود است ؟</td>
+            <td>
+                @if (Model.IsExists)
+                {
+                    <text>بلی</text>
+                }
+                else
+                {
+                    <text>خیر</text>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>تعداد موجود</td>
+            <td>@Model.NumberInStock</td>
+        </tr>
+        <tr>
+            <td>قیمت</td>
+            <td>@Model.Price ریال</td>
+        </tr>
+        <tr>
+            <td>توضیحات</td>
+            <td>@Model.Specification </td>
+        </tr>
 
-<h4>
-    @if (Model.IsExists)
-    {
-        <text>بلی</text>
-    }
-    else
-    {
-        <text>خیر</text>
-    }
-</h4>
-<h4>@Model.NumberInStock</h4>
-<h4>@Model.Price</h4>
-<h4>@Model.Specification</h4>
+    </tbody>
+</table>
