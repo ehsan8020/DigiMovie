@@ -5,41 +5,63 @@
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
 <hr />
-<table class="table table-bordered table-hover table-striped table-info text-center table-sm">
-    <thead class="table-dark text-danger" style="font-size:large">
-        <tr>
-            <td>عنوان</td>
-            <td>موجود</td>
-            <td>تعداد موجود</td>
-            <td>قیمت</td>
-            <td>جزییات</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var product in Model)
-        {
-        <tr>
-            <td class="align-middle">@product.Title</td>
-            <td class="align-middle">
-                @if (product.IsExists)
-                {
-                    <text>بلی</text>
-                }
-                else
-                {
-                    <text>خیر</text>
-                }
-            </td>
-            <td class="align-middle">@product.NumberInStock</td>
-            <td class="align-middle">@product.Price</td>
-            <td class="align-middle">
-                <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="nav-link text-info">
-                    <i class="fas fa-2x fa-info-circle"></i>
-                </a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+<div class="text-right"><a asp-action="Create" class="btn btn-success btn-lg">افزودن محصول جدید</a></div>
+
+<hr />
+@if (!Model.Any())
+{
+    <div class="alert alert-warning text-center">هیچ محصولی در فروشگاه ثبت نشده است.</div>
+}
+else
+{
+    <table class="table table-bordered table-hover table-striped table-info text-center table-sm">
+        <thead class="table-dark text-danger" style="font-size:large">
+            <tr>
+                <td>ردیف</td>
+                <td>عنوان</td>
+                <td>موجود</td>
+                <td>تعداد موجود</td>
+                <td>قیمت</td>
+                <td>جزییات</td>
+                <td>حذف</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var i = 1;}
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td class="align-middle">@i</td>
+                    <td class="align-middle">@product.Title</td>
+                    <td class="align-middle">
+                        @if (product.IsExists)
+                        {
+                            <text>بلی</text>
+                        }
+                        else
+                        {
+                            <text>خیر</text>
+                        }
+                    </td>
+                    <td class="align-middle">@product.NumberInStock</td>
+                    <td class="align-middle">@product.Price</td>
+                    <td class="align-middle">
+                        <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="nav-link text-info">
+                            <i class="fas fa-2x fa-info-circle"></i>
+                        </a>
+                    </td>
+                    <td class="align-middle">
+                        <a asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id" class="nav-link text-danger">
+                            <i class="fas fa-2x fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+
+}
+
 <br class="my-3" />
 

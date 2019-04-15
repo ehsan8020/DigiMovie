@@ -1,0 +1,47 @@
+﻿@*@model DigiMovie.Models.Product*@
+
+@{
+    ViewData["Title"] = "افزودن محصولات";
+}
+<br class="my-3" />
+<h2 class="text-right">@ViewData["Title"] </h2>
+<hr /><hr />
+
+<div class="row">
+    <div class="col-md-4 justify-content-start">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label for="Title" class="form-label">عنوان محصول</label>
+                <input type="text" name="Title" id="Title" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="IsExists" class="form-check-label">کالا موجود است.</label>
+                <input type="checkbox" name="IsExists" value="E" id="IsExists" class="form-check-input" />
+                
+            </div>
+            <div class="form-group">
+                <label for="NumberInStock" class="form-label">تعداد موجود</label>
+                <input type="number" name="NumberInStock"  id="NumberInStock" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="Price" class="form-label">قیمت</label>
+                <input type="number" name="Price" id="Price" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="Specification" class="form-label">مشخصات محصول</label>
+                <textarea type="number" name="Specification" id="Specification" class="form-control" ></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="افزودن محصول" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-right">
+    <a asp-action="Index">بازگشت به صفحه اصلی</a>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@
