@@ -5,43 +5,47 @@
 }
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
-<hr /><hr />
-
-<div class="row">
-    <div class="col-md-4 justify-content-start">
-        <form asp-action="Create">
-            <div class="form-group">
-                <label for="Title" class="form-label">عنوان محصول</label>
-                <input type="text" name="Title" id="Title" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="IsExists" class="form-check-label">کالا موجود است.</label>
-                <input type="checkbox" name="IsExists" value="E" id="IsExists" class="form-check-input" />
-                
-            </div>
-            <div class="form-group">
-                <label for="NumberInStock" class="form-label">تعداد موجود</label>
-                <input type="number" name="NumberInStock"  id="NumberInStock" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="Price" class="form-label">قیمت</label>
-                <input type="number" name="Price" id="Price" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="Specification" class="form-label">مشخصات محصول</label>
-                <textarea type="number" name="Specification" id="Specification" class="form-control" ></textarea>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="افزودن محصول" class="btn btn-success" />
-            </div>
-        </form>
+<hr />
+<form asp-action="Create">
+    <div class="form-group form-row">
+        <div class="col-md-6 text-right">
+            <label for="Title" class="form-label">عنوان محصول :</label>
+            <input type="text" name="Title" id="Title" class="form-control" />
+        </div>
+        <div class="col-md-6 text-right">
+            <label for="Price" class="form-label">قیمت (ریال) : </label>
+            <input type="number" name="Price" id="Price" class="form-control" />
+        </div>
     </div>
-</div>
-
-<div class="text-right">
-    <a asp-action="Index">بازگشت به صفحه اصلی</a>
-</div>
-
+    <div class="form-group form-row">
+        <div class="col-md-6 text-right my-auto">
+            <input type="checkbox" name="IsExists" value="E" id="IsExists" class="form-check-input" />
+            <label for="IsExists" class="form-check-label pr-3">کالا موجود است.</label>
+        </div>
+        <div class="col-md-6 text-right">
+            <label for="NumberInStock" class="form-label">تعداد موجود :</label>
+            <input type="number" name="NumberInStock" id="NumberInStock" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col-md text-right">
+            <label for="Specification" class="form-label">مشخصات محصول :</label>
+            <textarea name="Specification" id="Specification" class="form-control" rows="5"></textarea>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col-md text-right">
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-plus align-middle"></i>
+                افزودن
+            </button>
+            <a asp-action="Index" class="btn btn-outline-dark">
+                <i class="fas fa-share align-middle"></i>
+                بازگشت به لیست محصولات
+            </a>
+        </div>
+    </div>
+</form>
 @*@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}*@
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@

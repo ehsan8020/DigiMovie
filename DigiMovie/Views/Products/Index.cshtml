@@ -5,7 +5,12 @@
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
 <hr />
-<div class="text-right"><a asp-action="Create" class="btn btn-success btn-lg">افزودن محصول جدید</a></div>
+<div class="text-right">
+    <a asp-action="Create" class="btn btn-success btn-lg">
+        <i class="fas fa-plus align-middle"></i>
+        افزودن محصول جدید
+    </a>
+</div>
 
 <hr />
 @if (!Model.Any())
@@ -21,7 +26,7 @@ else
                 <td>عنوان</td>
                 <td>موجود</td>
                 <td>تعداد موجود</td>
-                <td>قیمت</td>
+                <td>قیمت (ریال)</td>
                 <td>جزییات</td>
                 <td>حذف</td>
             </tr>
