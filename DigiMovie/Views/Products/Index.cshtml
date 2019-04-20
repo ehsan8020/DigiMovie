@@ -1,6 +1,10 @@
-﻿@model List<Product>
+﻿@model IEnumerable<Product>
 @{
     ViewData["Title"] = "نمایش محصولات";
+}
+
+@section Head{ 
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 }
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
@@ -28,6 +32,7 @@ else
                 <td>تعداد موجود</td>
                 <td>قیمت (ریال)</td>
                 <td>جزییات</td>
+                <td>ویرایش</td>
                 <td>حذف</td>
             </tr>
         </thead>
@@ -56,6 +61,11 @@ else
                         </a>
                     </td>
                     <td class="align-middle">
+                        <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id" class="nav-link text-warning">
+                            <i class="fas fa-2x fa-edit"></i>
+                        </a>
+                    </td>
+                    <td class="align-middle">
                         <a asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id" class="nav-link text-danger">
                             <i class="fas fa-2x fa-trash"></i>
                         </a>
@@ -70,3 +80,58 @@ else
 
 <br class="my-3" />
 
+
+@section Scripts{
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    @if (TempData["DeleteStatus"] != null)
+    {
+        @if ((bool)TempData["DeleteStatus"] == true)
+        {
+            <script>
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-left",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "10000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+                toastr["success"]("حذف محصول مورد نظر با موفقیت انجام گردید.", "دیجی مووی");
+            </script>
+        }
+        else
+        {
+            <script>
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-left",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "10000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+                toastr["error"]("حذف محصول مورد نظر با موفقیت انجام گردید.", "دیجی مووی");
+            </script>        }
+    }
+
+
+
+}

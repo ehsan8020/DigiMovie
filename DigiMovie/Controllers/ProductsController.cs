@@ -47,12 +47,23 @@ namespace DigiMovie.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteDone(int? id)
+        public IActionResult DeleteDone(int id)
         {
             var product = _context.Products.FirstOrDefault(p => p.Id == id);
 
-            _context.Products.Remove(product);
-            _context.SaveChanges();
+            try
+            {
+                _context.Remove(product);
+                _context.SaveChanges();
+                //Delete Successful
+                TempData["DeleteStatus"] = true;
+            }
+            catch (Exception e)
+            {
+                //Delete Failed
+                TempData["DeleteStatus"] = false;
+            }
+
 
             return RedirectToAction("Index");
         }
@@ -65,27 +76,48 @@ namespace DigiMovie.Controllers
 
 
         [HttpPost]
-        public IActionResult Create(string Title, string IsExists, short NumberInStock, int Price, string Specification)
+        public IActionResult Create(Product product)
         {
-            var product = new Product();
-            product.Title = Title;
-            product.NumberInStock = NumberInStock;
-
-            if(IsExists == "E")
+            try
             {
-                product.IsExists = true;
+                _context.Add(product);
+                _context.SaveChanges();
+                //Create Successful
             }
-            else
+            catch (Exception e)
             {
-                product.IsExists = false;
+                //Create Failed
             }
 
 
-            product.Price = Price;
-            product.Specification = Specification;
+            return RedirectToAction("Index");
+        }
 
-             _context.Products.Add(product);
-            _context.SaveChanges();
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var product = _context.Products.FirstOrDefault(p => p.Id == id);
+            if (product == null)
+                return NotFound();
+
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Product product)
+        {
+            try
+            {
+                _context.Update(product);
+                _context.SaveChanges();
+                //Edit Successful
+            }
+            catch (Exception e)
+            {
+                //Edit Failed
+            }
 
             return RedirectToAction("Index");
         }
