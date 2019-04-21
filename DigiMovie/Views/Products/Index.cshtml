@@ -3,7 +3,7 @@
     ViewData["Title"] = "نمایش محصولات";
 }
 
-@section Head{ 
+@section Head{
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 }
 <br class="my-3" />
@@ -83,55 +83,44 @@ else
 
 @section Scripts{
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    @if (TempData["DeleteStatus"] != null)
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-left",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "10000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    </script>
+    @if (TempData["ProductDeleteStatus"] != null)
     {
-        @if ((bool)TempData["DeleteStatus"] == true)
-        {
-            <script>
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": true,
-                    "positionClass": "toast-top-left",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "10000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                };
-                toastr["success"]("حذف محصول مورد نظر با موفقیت انجام گردید.", "دیجی مووی");
-            </script>
-        }
+        @if ((bool)TempData["ProductDeleteStatus"] == true)
+        {<script>toastr["success"]("حذف محصول مورد نظر با موفقیت انجام گردید.", "دیجی مووی");</script>}
         else
-        {
-            <script>
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": true,
-                    "positionClass": "toast-top-left",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "10000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                };
-                toastr["error"]("حذف محصول مورد نظر با موفقیت انجام گردید.", "دیجی مووی");
-            </script>        }
+        {<script>toastr["error"]("حذف محصول مورد نظر انجام نگردید، لطفاً مجدداً تلاش نمایید.", "دیجی مووی");</script>}
     }
-
-
-
+    @if (TempData["ProductCreateStatus"] != null)
+    {
+        @if ((bool)TempData["ProductCreateStatus"] == true)
+        {<script>toastr["success"]("افزودن محصول مورد نظر با موفقیت انجام گردید.", "دیجی مووی");</script>}
+        else
+        {<script>toastr["error"]("افزودن محصول مورد نظر انجام نگردید، لطفاً مجدداً تلاش نمایید.", "دیجی مووی");</script>}
+    }
+    @if (TempData["ProductEditStatus"] != null)
+    {
+        @if ((bool)TempData["ProductEditStatus"] == true)
+        {<script>toastr["success"]("ویرایش محصول مورد نظر با موفقیت انجام گردید.", "دیجی مووی");</script>}
+        else
+        {<script>toastr["error"]("ویرایش محصول مورد نظر انجام نگردید، لطفاً مجدداً تلاش نمایید.", "دیجی مووی");</script>}
+    }
 }

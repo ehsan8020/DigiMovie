@@ -56,12 +56,12 @@ namespace DigiMovie.Controllers
                 _context.Remove(product);
                 _context.SaveChanges();
                 //Delete Successful
-                TempData["DeleteStatus"] = true;
+                TempData["ProductDeleteStatus"] = true;
             }
             catch (Exception e)
             {
                 //Delete Failed
-                TempData["DeleteStatus"] = false;
+                TempData["ProductDeleteStatus"] = false;
             }
 
 
@@ -83,10 +83,12 @@ namespace DigiMovie.Controllers
                 _context.Add(product);
                 _context.SaveChanges();
                 //Create Successful
+                TempData["ProductCreateStatus"] = true;
             }
             catch (Exception e)
             {
                 //Create Failed
+                TempData["ProductCreateStatus"] = false;
             }
 
 
@@ -113,10 +115,12 @@ namespace DigiMovie.Controllers
                 _context.Update(product);
                 _context.SaveChanges();
                 //Edit Successful
+                TempData["ProductEditStatus"] = true;
             }
             catch (Exception e)
             {
                 //Edit Failed
+                TempData["ProductEditStatus"] = false;
             }
 
             return RedirectToAction("Index");

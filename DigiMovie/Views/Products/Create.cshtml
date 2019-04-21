@@ -1,7 +1,7 @@
 ﻿@model DigiMovie.Models.Product
 
 @{
-    ViewData["Title"] = "افزودن محصولات";
+    ViewData["Title"] = "افزودن محصول";
 }
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
@@ -9,39 +9,28 @@
 <form asp-action="Create">
     <div class="form-group form-row">
         <div class="col-md-6 text-right">
-            @*<label for="Title" class="form-label">عنوان محصول :</label>*@
-            @*<input type="text" name="Title" id="Title" class="form-control" />*@
             <label asp-for="Title" class="form-label">عنوان محصول :</label>
             <input asp-for="Title" class="form-control" />
-            @*@Html.TextBoxFor(p=>p.Title)*@
         </div>
         <div class="col-md-6 text-right">
-            @*<label for="Price" class="form-label">قیمت (ریال) : </label>*@
             <label asp-for="Price" class="form-label">قیمت (ریال) : </label>
-            @*<input type="number" name="Price" id="Price" class="form-control" />*@
             <input asp-for="Price" class="form-control" />
         </div>
     </div>
     <div class="form-group form-row">
         <div class="col-md-6 text-right my-auto">
-            @*<input type="checkbox" name="IsExists" value="true" id="IsExists" class="form-check-input" />*@
             <input asp-for="IsExists" class="form-check-input" />
             <label asp-for="IsExists" class="form-check-label pr-3">کالا موجود است.</label>
-            @*<label for="IsExists" class="form-check-label pr-3">کالا موجود است.</label>*@
         </div>
         <div class="col-md-6 text-right">
-            @*<label for="NumberInStock" class="form-label">تعداد موجود :</label>*@
             <label asp-for="NumberInStock" class="form-label">تعداد موجود : </label>
             <input asp-for="NumberInStock" class="form-control" />
-            @*<input type="number" name="NumberInStock" id="NumberInStock" class="form-control" />*@
         </div>
     </div>
     <div class="form-group form-row">
         <div class="col-md text-right">
-            @*<label for="Specification" class="form-label">مشخصات محصول :</label>*@
             <label asp-for="Specification" class="form-label">مشخصات محصول : </label>
             <textarea asp-for="Specification" class="form-control" rows="5"></textarea>
-            @*<textarea name="Specification" id="Specification" class="form-control" rows="5"></textarea>*@
         </div>
     </div>
     <div class="form-group form-row">
