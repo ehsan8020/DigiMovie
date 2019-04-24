@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DigiMovie.Data;
+﻿using DigiMovie.Data;
 using DigiMovie.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DigiMovie.Controllers
 {
@@ -145,7 +144,7 @@ namespace DigiMovie.Controllers
             return View(product);
         }
         [HttpPost]
-        public IActionResult Edit(int id , Product product)
+        public IActionResult Edit(int id, Product product)
         {
             if (id != product.Id)
                 return NotFound();
@@ -168,13 +167,11 @@ namespace DigiMovie.Controllers
 
         public IEnumerable<Product> Search(string q)
         {
-            var list = _context
+            return _context
                 .Products
-                .Where(p=>p.Title.Contains(q))
+                .Where(p => p.Title.Contains(q))
+                .Take(10)//Maximun records goes here
                 .ToList();
-
-
-            return list;
         }
     }
 }

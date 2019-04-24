@@ -9,8 +9,8 @@
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
 <hr />
-<div class="form-group form-row">
-    <input type="text" id="search" placeholder="جستجوی محصولات..." class="form-control" />
+<div class="search-bar">
+    <input type="text" id="search" placeholder="جستجوی محصولات..." class="form-control" /><div id="suggest"></div>
 </div>
 <hr />
 <div class="text-right">
@@ -81,31 +81,36 @@ else
     </table>
 
 }
-
 <br class="my-3" />
-
-
 @section Scripts{
 
     <script>
         $(document).ready(function () {
-            $('#search').on('keypress', function (e) {
-                $.ajax({
-                    method: 'get',
-                    url: '/Products/Search',
-                    data: { q: $('#search').val() + e.key },
-                    success: function (d) {
-
-                        for (var i in d) {
-                            console.log(d[i].title);
+            $('#search').on({
+                'keyup': function (e) {
+                    //check for minimum required length for search goes here
+                    $.ajax({
+                        method: 'get',
+                        url: '/Products/Search',
+                        data: { q: $(this).val() },
+                        success: function (d) {
+                            $('.search-bar #suggest').css('display', 'block').empty();
+                            var suggestElement = $('.search-bar #suggest');
+                            for (var i in d) {
+                                suggestElement
+                                    .append('<div class="suggest-item"><a href="/Products/Details/' + d[i].id + '">' + d[i].title + '</a></div>');
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                , 'focusout': function () {
+                    $('.search-bar #suggest').slideUp(function () {
+                        $(this).empty();
+                    });
+                }
             });
         });
-
     </script>
-
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
