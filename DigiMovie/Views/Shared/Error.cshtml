@@ -6,13 +6,29 @@
 @section Head{ 
     <meta name="description" content="وب سایت دیجی مووی برترین وب سایت در زمینه فیلم و سریال - @ViewData["Title"]" />
 }
-
-<h1 class="text-danger">صفحه خطا</h1>
-<h2 class="text-danger">با عرض پوزش ، متاسفانه در حین اجرای درخواست شما یک خطایی رخ داده است.</h2>
-
-@if (Model.ShowRequestId)
-{
-    <p>
-        <strong>شناسه درخواست :</strong> <code>@Model.RequestId</code>
-    </p>
-}
+    <div class="row justify-content-center">
+        <div class="md text-right pt-5">
+            <div class="card border border-danger">
+                <div class="card-header bg-warning"><h3 class="text-danger mb-0">صفحه خطا</h3></div>
+                <img src="~/images/Template/error.jpg">
+                <div class="card-body">
+                    <p class="lead">
+                        با عرض پوزش ، متاسفانه در حین اجرای درخواست شما یک خطایی رخ داده است.
+                    </p>
+                    <hr class="my-2">
+                    @if (Model.ShowRequestId)
+                    {<p><strong>شناسه درخواست :</strong> <code>@Model.RequestId</code></p><hr />}
+                    <p class="lead text-center">
+                        <a class="btn btn-outline-primary btn-lg" href="/Home">
+                            <i class="fa fa-home align-middle"></i>
+                            صفحه اصلی
+                        </a>
+                        <a class="btn btn-outline-primary btn-lg" href="/Home/Contact">
+                            <i class="fa fa-file-signature align-middle"></i>
+                            ارسال بازخورد خطا
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
