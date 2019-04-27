@@ -16,57 +16,7 @@ namespace DigiMovie.Controllers
         }
         public IActionResult Index()
         {
-            var list = _context.Products.ToList();
-            //var list = from p in _context.Products
-            //           select p;
-
-
-
-            //1-Linq Extension Methods (Filter Records)
-            //var list = _context
-            //    .Products
-            //    .Where(p => p.NumberInStock > 600 && p.IsExists == true)
-            //    .ToList();
-
-            //1-Linq Query (Filter Records)
-            //var list = from p in _context.Products
-            //           where p.NumberInStock > 600 && p.IsExists==true
-            //           select p;
-
-
-            //2-Linq Extension Methods (Filter Columns)
-            //2-1- Single Column
-            //var list = _context
-            //    .Products
-            //    .Select(p => p.Title)
-            //    .ToList();
-
-            //2-2- Multiple Columns
-            //var list = _context
-            //    .Products
-            //    .Select(p => new { p.Id , p.Title , p.Price })
-            //    .ToList();
-
-            //2-Linq Query (Filter Columns)
-            //2-1- Single Column
-            //var list = from p in _context.Products
-            //           select p.Title;
-
-            //2-2- Multiple Columns
-            //var list = from p in _context.Products
-            //           select new { p.Id, p.Title, p.Price };
-
-
-
-            //3-
-            //var list = _context
-            //    .Products
-            //    .OrderByDescending(p => p.Price)
-            //    .ThenBy(p=>p.Title)
-            //    .Take(20)
-            //    .ToList();
-
-            return View(list);
+            return View(_context.Products.ToList());
         }
         public IActionResult Details(int? id)
         {
@@ -91,6 +41,7 @@ namespace DigiMovie.Controllers
             return View(product);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteDone(int id)
         {
             var product = _context.Products.FirstOrDefault(p => p.Id == id);
@@ -116,21 +67,26 @@ namespace DigiMovie.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Product product)
         {
-            try
+            if (ModelState.IsValid)
             {
-                _context.Add(product);
-                _context.SaveChanges();
-                //Create Successful
-                TempData["ProductCreateStatus"] = true;
+                try
+                {
+                    _context.Add(product);
+                    _context.SaveChanges();
+                    //Create Successful
+                    TempData["ProductCreateStatus"] = true;
+                }
+                catch (Exception e)
+                {
+                    //Create Failed
+                    TempData["ProductCreateStatus"] = false;
+                }
+                return RedirectToAction("Index");
             }
-            catch (Exception e)
-            {
-                //Create Failed
-                TempData["ProductCreateStatus"] = false;
-            }
-            return RedirectToAction("Index");
+            return View(product);
         }
         public IActionResult Edit(int? id)
         {
@@ -144,25 +100,30 @@ namespace DigiMovie.Controllers
             return View(product);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Product product)
         {
             if (id != product.Id)
                 return NotFound();
 
-            try
+            if (ModelState.IsValid)
             {
-                _context.Update(product);
-                _context.SaveChanges();
-                //Edit Successful
-                TempData["ProductEditStatus"] = true;
-            }
-            catch (Exception e)
-            {
-                //Edit Failed
-                TempData["ProductEditStatus"] = false;
-            }
+                try
+                {
+                    _context.Update(product);
+                    _context.SaveChanges();
+                    //Edit Successful
+                    TempData["ProductEditStatus"] = true;
+                }
+                catch (Exception e)
+                {
+                    //Edit Failed
+                    TempData["ProductEditStatus"] = false;
+                }
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            return View(product);
         }
 
         public IEnumerable<Product> Search(string q)

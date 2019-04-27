@@ -8,15 +8,17 @@
 <hr />
 <form asp-action="Edit">
     <input asp-for="Id" type="hidden" />
-    
+
     <div class="form-group form-row">
         <div class="col-md-6 text-right">
             <label asp-for="Title" class="form-label">عنوان محصول :</label>
             <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
         </div>
         <div class="col-md-6 text-right">
             <label asp-for="Price" class="form-label">قیمت (ریال) : </label>
             <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group form-row">
@@ -27,12 +29,14 @@
         <div class="col-md-6 text-right">
             <label asp-for="NumberInStock" class="form-label">تعداد موجود : </label>
             <input asp-for="NumberInStock" class="form-control" />
+            <span asp-validation-for="NumberInStock" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group form-row">
         <div class="col-md text-right">
             <label asp-for="Specification" class="form-label">مشخصات محصول : </label>
             <textarea asp-for="Specification" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Specification" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group form-row">
@@ -49,6 +53,9 @@
     </div>
 </form>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 
 
 
