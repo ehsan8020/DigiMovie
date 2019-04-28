@@ -38,13 +38,13 @@ namespace DigiMovie
             //    options.UseSqlServer(
             //        Configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("DGMCS")));
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DGMCSServer")));
+                    Configuration.GetConnectionString("DGMCS")));
+
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("DGMCSServer")));
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();

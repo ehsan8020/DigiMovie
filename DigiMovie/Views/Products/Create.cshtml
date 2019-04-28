@@ -11,12 +11,12 @@
     <div class="form-group form-row">
         
         <div class="col-md-6 text-right">
-            <label asp-for="Title" class="form-label">عنوان محصول :</label>
+            <label asp-for="Title" class="form-label">@Html.DisplayNameFor(p => p.Title) :</label>
             <input asp-for="Title" class="form-control" />
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
         <div class="col-md-6 text-right">
-            <label asp-for="Price" class="form-label">قیمت (ریال) : </label>
+            <label asp-for="Price" class="form-label">@Html.DisplayNameFor(p => p.Price) : </label>
             <input asp-for="Price" class="form-control" />
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
@@ -24,17 +24,17 @@
     <div class="form-group form-row">
         <div class="col-md-6 text-right my-auto">
             <input asp-for="IsExists" class="form-check-input" />
-            <label asp-for="IsExists" class="form-check-label pr-3">کالا موجود است.</label>
+            <label asp-for="IsExists" class="form-check-label pr-3">@Html.DisplayNameFor(p => p.IsExists)</label>
         </div>
         <div class="col-md-6 text-right">
-            <label asp-for="NumberInStock" class="form-label">تعداد موجود : </label>
+            <label asp-for="NumberInStock" class="form-label">@Html.DisplayNameFor(p => p.NumberInStock) : </label>
             <input asp-for="NumberInStock" class="form-control" />
             <span asp-validation-for="NumberInStock" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group form-row">
         <div class="col-md text-right">
-            <label asp-for="Specification" class="form-label">مشخصات محصول : </label>
+            <label asp-for="Specification" class="form-label">@Html.DisplayNameFor(p => p.Specification) : </label>
             <textarea asp-for="Specification" class="form-control" rows="5"></textarea>
             <span asp-validation-for="Specification" class="text-danger"></span>
         </div>

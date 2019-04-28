@@ -1,9 +1,11 @@
 ﻿using DigiMovie.Data;
 using DigiMovie.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DigiMovie.Controllers
 {
@@ -14,86 +16,52 @@ namespace DigiMovie.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_context.Products.ToList());
+            return View(await _context.Products.ToListAsync());
         }
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
                 return NotFound();
 
-            var product = _context.Products.FirstOrDefault(p => p.Id == id);
+            var product = await _context.Products.FindAsync(id);
             if (product == null)
                 return NotFound();
 
             return View(product);
         }
-        public IActionResult Delete(int? id)
-        {
-            if (id == null)
-                return NotFound();
-
-            var product = _context.Products.FirstOrDefault(p => p.Id == id);
-            if (product == null)
-                return NotFound();
-
-            return View(product);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteDone(int id)
-        {
-            var product = _context.Products.FirstOrDefault(p => p.Id == id);
-
-            try
-            {
-                _context.Remove(product);
-                _context.SaveChanges();
-                //Delete Successful
-                TempData["ProductDeleteStatus"] = true;
-            }
-            catch (Exception e)
-            {
-                //Delete Failed
-                TempData["ProductDeleteStatus"] = false;
-            }
-
-
-            return RedirectToAction("Index");
-        }
+        
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Product product)
+        public async Task<IActionResult> Create(Product product)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     _context.Add(product);
-                    _context.SaveChanges();
-                    //Create Successful
+                    await _context.SaveChangesAsync();
                     TempData["ProductCreateStatus"] = true;
                 }
                 catch (Exception e)
                 {
-                    //Create Failed
                     TempData["ProductCreateStatus"] = false;
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View(product);
         }
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
                 return NotFound();
 
-            var product = _context.Products.FirstOrDefault(p => p.Id == id);
+            var product = await _context.Products.FindAsync(id);
             if (product == null)
                 return NotFound();
 
@@ -101,7 +69,7 @@ namespace DigiMovie.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Product product)
+        public async Task<IActionResult> Edit(int id, Product product)
         {
             if (id != product.Id)
                 return NotFound();
@@ -111,21 +79,48 @@ namespace DigiMovie.Controllers
                 try
                 {
                     _context.Update(product);
-                    _context.SaveChanges();
-                    //Edit Successful
+                    await _context.SaveChangesAsync();
                     TempData["ProductEditStatus"] = true;
                 }
                 catch (Exception e)
                 {
-                    //Edit Failed
                     TempData["ProductEditStatus"] = false;
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View(product);
         }
 
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+                return NotFound();
+
+            return View(product);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteDone(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+
+            try
+            {
+                _context.Remove(product);
+                await _context.SaveChangesAsync();
+                TempData["ProductDeleteStatus"] = true;
+            }
+            catch (Exception e)
+            {
+                TempData["ProductDeleteStatus"] = false;
+            }
+            return RedirectToAction(nameof(Index));
+        }
         public IEnumerable<Product> Search(string q)
         {
             return _context

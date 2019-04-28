@@ -31,10 +31,10 @@ else
         <thead class="table-dark text-danger" style="font-size:large">
             <tr>
                 <td>ردیف</td>
-                <td>عنوان</td>
-                <td>موجود</td>
-                <td>تعداد موجود</td>
-                <td>قیمت (ریال)</td>
+                <td>@Html.DisplayNameFor(p => p.Title)</td>
+                <td>@Html.DisplayNameFor(p => p.IsExists)</td>
+                <td>@Html.DisplayNameFor(p => p.NumberInStock)</td>
+                <td>@Html.DisplayNameFor(p => p.Price)</td>
                 <td>جزییات</td>
                 <td>ویرایش</td>
                 <td>حذف</td>

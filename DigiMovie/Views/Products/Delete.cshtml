@@ -15,11 +15,11 @@
     </thead>
     <tbody>
         <tr>
-            <td>عنوان</td>
+            <td>@Html.DisplayNameFor(p => p.Title)</td>
             <td>@Model.Title</td>
         </tr>
         <tr>
-            <td>آیا موجود است ؟</td>
+            <td>@Html.DisplayNameFor(p => p.IsExists)</td>
             <td>
                 @if (Model.IsExists)
                 {
@@ -32,15 +32,15 @@
             </td>
         </tr>
         <tr>
-            <td>تعداد موجود</td>
+            <td>@Html.DisplayNameFor(p => p.NumberInStock)</td>
             <td>@Model.NumberInStock</td>
         </tr>
         <tr>
-            <td>قیمت</td>
-            <td>@Model.Price ریال</td>
+            <td>@Html.DisplayNameFor(p => p.Price)</td>
+            <td>@Model.Price </td>
         </tr>
         <tr>
-            <td>توضیحات</td>
+            <td>@Html.DisplayNameFor(p => p.Specification)</td>
             <td>@Model.Specification </td>
         </tr>
 
