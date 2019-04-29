@@ -10,7 +10,11 @@
 <table class="table table-bordered table-hover table-striped table-info text-center table-sm">
     <tbody>
         <tr>
-            <td>@Html.DisplayNameFor(p=>p.Title)</td>
+            <td>عکس</td>
+            <td><img src="@Model.ImagePath" alt="سایت دیجی مووی - @Model.Title" title="سایت دیجی مووی - @Model.Title" /></td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(p => p.Title)</td>
             <td>@Model.Title</td>
         </tr>
         <tr>

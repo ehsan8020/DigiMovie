@@ -31,7 +31,9 @@ else
         <thead class="table-dark text-danger" style="font-size:large">
             <tr>
                 <td>ردیف</td>
+                <td>عکس</td>
                 <td>@Html.DisplayNameFor(p => p.Title)</td>
+
                 <td>@Html.DisplayNameFor(p => p.IsExists)</td>
                 <td>@Html.DisplayNameFor(p => p.NumberInStock)</td>
                 <td>@Html.DisplayNameFor(p => p.Price)</td>
@@ -46,7 +48,9 @@ else
             {
                 <tr>
                     <td class="align-middle">@i</td>
+                    <td class="align-middle"><img src="@product.ImagePath" alt="سایت دیجی مووی - @product.Title" title="سایت دیجی مووی - @product.Title" width="100" /></td>
                     <td class="align-middle">@product.Title</td>
+
                     <td class="align-middle">
                         @if (product.IsExists)
                         {

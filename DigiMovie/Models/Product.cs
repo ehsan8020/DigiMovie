@@ -32,5 +32,8 @@ namespace DigiMovie.Models
         [Display(Name ="قیمت (ریال)")]
         [Range(0, 2000000000, ErrorMessage = "{0} می بایست حداکثر 2000000000 ریال باشد.")]
         public int Price { get; set; }
+
+        [StringLength(150)]
+        public string ImagePath { get; set; }
     }
 }
