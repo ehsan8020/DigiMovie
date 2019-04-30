@@ -34,6 +34,7 @@ namespace DigiMovie.Models
         public int Price { get; set; }
 
         [StringLength(150)]
+        [Display(Name ="عکس")]
         public string ImagePath { get; set; }
     }
 }

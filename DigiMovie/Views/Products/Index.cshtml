@@ -31,9 +31,8 @@ else
         <thead class="table-dark text-danger" style="font-size:large">
             <tr>
                 <td>ردیف</td>
-                <td>عکس</td>
+                <td>@Html.DisplayNameFor(p => p.ImagePath)</td>
                 <td>@Html.DisplayNameFor(p => p.Title)</td>
-
                 <td>@Html.DisplayNameFor(p => p.IsExists)</td>
                 <td>@Html.DisplayNameFor(p => p.NumberInStock)</td>
                 <td>@Html.DisplayNameFor(p => p.Price)</td>
@@ -48,7 +47,9 @@ else
             {
                 <tr>
                     <td class="align-middle">@i</td>
-                    <td class="align-middle"><img src="@product.ImagePath" alt="سایت دیجی مووی - @product.Title" title="سایت دیجی مووی - @product.Title" width="100" /></td>
+                    <td class="align-middle">
+                        <img src="@product.ImagePath" alt="سایت دیجی مووی - @product.Title" title="سایت دیجی مووی - @product.Title" width="100" />
+                    </td>
                     <td class="align-middle">@product.Title</td>
 
                     <td class="align-middle">
@@ -138,29 +139,31 @@ else
     </script>
     @if (TempData["ProductDeleteStatus"] != null)
     {
-        @if ((bool)TempData["ProductDeleteStatus"] == true)
+        @if ((string)TempData["ProductDeleteStatus"] == "OK")
         {
             <script>toastr["success"]("حذف محصول مورد نظر با موفقیت انجام گردید.", "دیجی مووی");</script>}
         else
         {
-            <script>toastr["error"]("حذف محصول مورد نظر انجام نگردید، لطفاً مجدداً تلاش نمایید.", "دیجی مووی");</script>}
+            <script>
+                toastr["error"]("حذف محصول مورد نظر انجام نگردید، لطفاً مجدداً تلاش نمایید. <br> @TempData["ProductDeleteStatus"].ToString()", "دیجی مووی");
+            </script>}
     }
     @if (TempData["ProductCreateStatus"] != null)
     {
-        @if ((bool)TempData["ProductCreateStatus"] == true)
+        @if ((string)TempData["ProductCreateStatus"] == "OK")
         {
             <script>toastr["success"]("افزودن محصول مورد نظر با موفقیت انجام گردید.", "دیجی مووی");</script>}
         else
         {
-            <script>toastr["error"]("افزودن محصول مورد نظر انجام نگردید، لطفاً مجدداً تلاش نمایید.", "دیجی مووی");</script>}
+            <script>toastr["error"]("افزودن محصول مورد نظر انجام نگردید، لطفاً مجدداً تلاش نمایید. <br> @TempData["ProductCreateStatus"].ToString()", "دیجی مووی");</script>}
     }
     @if (TempData["ProductEditStatus"] != null)
     {
-        @if ((bool)TempData["ProductEditStatus"] == true)
+        @if ((string)TempData["ProductEditStatus"] == "OK")
         {
             <script>toastr["success"]("ویرایش محصول مورد نظر با موفقیت انجام گردید.", "دیجی مووی");</script>}
         else
         {
-            <script>toastr["error"]("ویرایش محصول مورد نظر انجام نگردید، لطفاً مجدداً تلاش نمایید.", "دیجی مووی");</script>}
+            <script>toastr["error"]("ویرایش محصول مورد نظر انجام نگردید، لطفاً مجدداً تلاش نمایید. <br> @TempData["ProductEditStatus"].ToString()", "دیجی مووی");</script>}
     }
 }
