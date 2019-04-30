@@ -103,7 +103,9 @@ else
                             var suggestElement = $('.search-bar #suggest');
                             for (var i in d) {
                                 suggestElement
-                                    .append('<div class="suggest-item"><a href="/Products/Details/' + d[i].id + '">' + d[i].title + '</a></div>');
+                                    .append('<div class="suggest-item"><a href="/Products/Details/' + d[i].id + '">'
+                                        + '<img width="40" height="40" src="' + d[i].imagePath + '"> '
+                                        + d[i].title + '</a></div>');
                             }
                         }
                     });
