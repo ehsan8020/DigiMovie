@@ -21,10 +21,12 @@ namespace DigiMovie.Controllers
             _context = context;
             _env = env;
         }
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.Products.ToListAsync());
         }
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -99,6 +101,7 @@ namespace DigiMovie.Controllers
 
             return View(product);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, IFormFile image, Product product)
@@ -186,6 +189,7 @@ namespace DigiMovie.Controllers
 
             return View(product);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteDone(int id)
@@ -210,6 +214,7 @@ namespace DigiMovie.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
         public IEnumerable<Product> Search(string q)
         {
             return _context
@@ -217,6 +222,26 @@ namespace DigiMovie.Controllers
                 .Where(p => p.Title.Contains(q))
                 .Take(10)//Maximun records goes here
                 .ToList();
+        }
+
+        public IActionResult Temp()
+        {
+            var r = new Random();
+            int i =1;
+            while (i <= 10)
+            {
+                var product = new Product();
+                product.Title = "محصول نمونه " + i;
+                product.IsExists = true;
+                product.NumberInStock = Convert.ToInt16(r.Next(1, 1000)); ;
+                product.Price = r.Next(1000, 9000) * 10000;
+                product.Specification = "توضیحات مربوط به محصول نمونه " + i;
+                product.ImagePath = "/UserUploads/Products/" + DateTime.Now.ToString("yyyyMMddhhmmssffff") + ".jpg";
+                _context.Add(product);
+                _context.SaveChanges();
+                ++i;
+            }
+            return NotFound();
         }
     }
 }
