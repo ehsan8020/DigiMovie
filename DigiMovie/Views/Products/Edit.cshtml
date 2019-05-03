@@ -6,7 +6,7 @@
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
 <hr />
-<form asp-action="Edit" enctype="multipart/form-data">
+<form asp-action="Edit" enctype="multipart/form-data" id="productForm">
     <input asp-for="Id" type="hidden" />
 
     <div class="form-group form-row">
@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="form-group form-row">
-        
+
         <div class="col-md text-right">
             <label asp-for="Specification" class="form-label">@Html.DisplayNameFor(p => p.Specification) : </label>
             <textarea asp-for="Specification" class="form-control" rows="5"></textarea>
@@ -45,6 +45,7 @@
             <img src="@Model.ImagePath" alt="سایت دیجی مووی - @Model.Title" title="سایت دیجی مووی - @Model.Title" width="300" />
             <hr />
             <input type="file" class="form-control-file" name="image" id="image" />
+            <span id="imageValidationMessage" class="text-danger d-none"></span>
             <ul class="text-muted text-right mt-2">
                 <li>اگر قصد ندارید @Html.DisplayNameFor(p => p.ImagePath) را تغییر دهید، فیلد بالا را خالی بگذارید.</li>
                 <li>@Html.DisplayNameFor(p => p.ImagePath) می بایست حداکثر 1 مگابایت باشد.</li>
@@ -70,6 +71,36 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+
+        //Client Side Validation For Product Image
+        $('#productForm').submit(function (e) {
+
+            var image = $('#image').prop('files')[0];
+            if (image) {
+                if (image.size < 1048576) {
+                    if (image.type == 'image/png' || image.type == 'image/gif' || image.type == 'image/jpeg' || image.type == 'image/jpg') {
+                        return true;
+                    }
+                    else {
+                        $('#imageValidationMessage')
+                            .removeClass('d-none')
+                            .text('عکس انتخاب شده برای محصول در قالب مجاز نمی باشد.');
+                        e.preventDefault();
+                    }
+                }
+                else {
+                    $('#imageValidationMessage')
+                        .removeClass('d-none')
+                        .text('عکس انتخاب شده برای محصول بزرگتر از 1 مگابایت می باشد.');
+                    e.preventDefault();
+                }
+            }
+            return true;
+
+        });
+    </script>
+}
 }
 
 

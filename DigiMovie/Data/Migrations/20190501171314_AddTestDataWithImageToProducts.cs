@@ -19,7 +19,7 @@ namespace DigiMovie.Data.Migrations
                 INSERT INTO[Products] ( [Title], [IsExists], [NumberInStock], [Specification], [Price], [ImagePath]) VALUES(N'محصول نمونه 7', 1, 298, N'توضیحات مربوط به محصول نمونه 7', 20770000, N'/UserUploads/Products/201905010810592555.jpg')
                 INSERT INTO[Products] ( [Title], [IsExists], [NumberInStock], [Specification], [Price], [ImagePath]) VALUES(N'محصول نمونه 8', 1, 628, N'توضیحات مربوط به محصول نمونه 8', 10970000, N'/UserUploads/Products/201905010810592579.jpg')
                 INSERT INTO[Products] ( [Title], [IsExists], [NumberInStock], [Specification], [Price], [ImagePath]) VALUES(N'محصول نمونه 9', 1, 530, N'توضیحات مربوط به محصول نمونه 9', 13440000, N'/UserUploads/Products/201905010810592602.jpg')
-                INSERT INTO[Products] ( [Title], [IsExists], [NumberInStock], [Specification], [Price], [ImagePath]) VALUES(N'محصول نمونه 10', 0, 776, N'توضیحات مربوط به محصول نمونه 10', 47650000, N'/UserUploads/Products/201905010810592627.jpg')");
+                INSERT INTO[Products] ( [Title], [IsExists], [NumberInStock], [Specification], [Price], [ImagePath]) VALUES(N'محصول نمونه 10', 0, 776, N'توضیحات مربوط به محصول نمونه 10', 47650000, N'/UserUploads/Products/201905031238557220.jpg')");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
