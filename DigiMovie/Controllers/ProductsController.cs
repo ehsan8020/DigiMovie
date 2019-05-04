@@ -1,4 +1,5 @@
 ﻿using DigiMovie.Data;
+using DigiMovie.Extensions;
 using DigiMovie.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -53,25 +54,44 @@ namespace DigiMovie.Controllers
                 try
                 {
                     //Step 1- Check Validation Of Image
-                    if (image == null || image.Length == 0)
-                        throw new Exception("عکسی برای محصول انتخاب نشده است.");
+                    //if (image == null || image.Length == 0)
+                    //    throw new Exception("عکسی برای محصول انتخاب نشده است.");
 
-                    if (image.Length > 1048576)
-                        throw new Exception("عکس انتخاب شده برای محصول بزرگتر از 1 مگابایت می باشد.");
+                    //if (image.Length > 1048576)
+                    //    throw new Exception("عکس انتخاب شده برای محصول بزرگتر از 1 مگابایت می باشد.");
 
-                    if (image.ContentType != "image/jpg" && image.ContentType != "image/jpeg" && image.ContentType != "image/png" && image.ContentType != "image/gif")
-                        throw new Exception("عکس انتخاب شده برای محصول در قالب مجاز نمی باشد.");
+                    //if (image.ContentType != "image/jpg" && image.ContentType != "image/jpeg" && image.ContentType != "image/png" && image.ContentType != "image/gif")
+                    //    throw new Exception("عکس انتخاب شده برای محصول در قالب مجاز نمی باشد.");
+
+                    //Helpers.FileChecker fc = new Helpers.FileChecker();
+                    //fc.Check(image, 1048576, new string[] { "image/jpg", "image/jpeg", "image/png", "image/gif" });
+
+                    //Helpers.FileChecker.Check(image, 1048576, new string[] { "image/jpg", "image/jpeg", "image/png", "image/gif" });
+
+
+                    //Step 1- Check Validation Of Image
+                    image.Check(1048576, new string[] { "image/jpg", "image/jpeg", "image/png", "image/gif" });
+
+
+
+
+                    ////Step 2- Generate Name & Path Of File
+                    //var imageName = DateTime.Now.ToString("yyyyMMddhhmmssffff") + Path.GetExtension(image.FileName);
+                    //var imagePath = Path.Combine("UserUploads/Products", imageName);
+                    //var imageAbsolutePath = Path.Combine(_env.WebRootPath, imagePath);
+
+                    ////Step 3- Store File In File System
+                    //using (var fileStream = new FileStream(imageAbsolutePath, FileMode.Create))
+                    //{
+                    //    image.CopyTo(fileStream);
+                    //}
 
                     //Step 2- Generate Name & Path Of File
                     var imageName = DateTime.Now.ToString("yyyyMMddhhmmssffff") + Path.GetExtension(image.FileName);
                     var imagePath = Path.Combine("UserUploads/Products", imageName);
-                    var imageAbsolutePath = Path.Combine(_env.WebRootPath, imagePath);
 
                     //Step 3- Store File In File System
-                    using (var fileStream = new FileStream(imageAbsolutePath, FileMode.Create))
-                    {
-                        image.CopyTo(fileStream);
-                    }
+                    //new Helpers.FileManager().SaveFile(image, imagePath);
 
                     //Step 4- Add Image Path To Model
                     product.ImagePath = "/UserUploads/Products/" + imageName;
@@ -131,30 +151,43 @@ namespace DigiMovie.Controllers
                     try
                     {
                         //Step 1- Check Validation Of Image
-                        if (image.Length == 0)
-                            throw new Exception("عکسی برای محصول انتخاب نشده است.");
+                        //if (image.Length == 0)
+                        //    throw new Exception("عکسی برای محصول انتخاب نشده است.");
 
-                        if (image.Length > 1048576)
-                            throw new Exception("عکس انتخاب شده برای محصول بزرگتر از 1 مگابایت می باشد.");
+                        //if (image.Length > 1048576)
+                        //    throw new Exception("عکس انتخاب شده برای محصول بزرگتر از 1 مگابایت می باشد.");
 
-                        if (image.ContentType != "image/jpg" && image.ContentType != "image/jpeg" && image.ContentType != "image/png" && image.ContentType != "image/gif")
-                            throw new Exception("عکس انتخاب شده برای محصول در قالب مجاز نمی باشد.");
+                        //if (image.ContentType != "image/jpg" && image.ContentType != "image/jpeg" && image.ContentType != "image/png" && image.ContentType != "image/gif")
+                        //    throw new Exception("عکس انتخاب شده برای محصول در قالب مجاز نمی باشد.");
+
+                        //Step 1- Check Validation Of Image
+                        image.Check(1048576, new string[] { "image/jpg", "image/jpeg", "image/png", "image/gif" });
+
+                        ////Step 2- Generate Name & Path Of File
+                        //var imageName = DateTime.Now.ToString("yyyyMMddhhmmssffff") + Path.GetExtension(image.FileName);
+                        //var imagePath = Path.Combine("UserUploads/Products", imageName);
+                        //var imageAbsolutePath = Path.Combine(_env.WebRootPath, imagePath);
+
+                        ////Step 3- Store File In File System
+                        //using (var fs = new FileStream(imageAbsolutePath, FileMode.Create))
+                        //{
+                        //    image.CopyTo(fs);
+                        //}
 
                         //Step 2- Generate Name & Path Of File
                         var imageName = DateTime.Now.ToString("yyyyMMddhhmmssffff") + Path.GetExtension(image.FileName);
                         var imagePath = Path.Combine("UserUploads/Products", imageName);
-                        var imageAbsolutePath = Path.Combine(_env.WebRootPath, imagePath);
 
                         //Step 3- Store File In File System
-                        using (var fs = new FileStream(imageAbsolutePath, FileMode.Create))
-                        {
-                            image.CopyTo(fs);
-                        }
+                        //new Helpers.FileManager().SaveFile(image, imagePath);
 
                         //Step 4- Delete Old Image
-                        var imageToDeleteAbsolutePath = _env.WebRootPath + product.ImagePath;
-                        if (System.IO.File.Exists(imageToDeleteAbsolutePath))
-                            System.IO.File.Delete(imageToDeleteAbsolutePath);
+                        //var imageToDeleteAbsolutePath = _env.WebRootPath + product.ImagePath;
+                        //if (System.IO.File.Exists(imageToDeleteAbsolutePath))
+                        //    System.IO.File.Delete(imageToDeleteAbsolutePath);
+
+                        //Step 4- Delete Old Image
+                        //new Helpers.FileManager().DeleteFile(product.ImagePath);
 
                         //Step 5- Add Image path to Model
                         product.ImagePath = "/UserUploads/Products/" + imageName;
@@ -199,9 +232,12 @@ namespace DigiMovie.Controllers
             try
             {
                 //Step 1- Delete Image From File System
-                var imageAbsolutePath = _env.WebRootPath + product.ImagePath;
-                if (System.IO.File.Exists(imageAbsolutePath))
-                    System.IO.File.Delete(imageAbsolutePath);
+                //var imageAbsolutePath = _env.WebRootPath + product.ImagePath;
+                //if (System.IO.File.Exists(imageAbsolutePath))
+                //    System.IO.File.Delete(imageAbsolutePath);
+
+                //Step 4- Delete Old Image
+                //new Helpers.FileManager().DeleteFile(product.ImagePath);
 
                 //Step 2- Delete Record
                 _context.Remove(product);
