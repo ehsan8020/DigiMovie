@@ -8,6 +8,12 @@ namespace DigiMovie.Extensions
 {
     public static class IFormFileExtensions
     {
+        /// <summary>
+        /// Check uploaded file 
+        /// </summary>
+        /// <param name="file">uploaded file </param>
+        /// <param name="maxSize">Maximum allowed size to upload</param>
+        /// <param name="allowedTypes">Allowed MIME types to upload </param>
         public static void Check(this IFormFile file, long maxSize, string[] allowedTypes)
         {
             if (file == null || file.Length == 0)

@@ -1,6 +1,8 @@
 ﻿using DigiMovie.Data;
 using DigiMovie.Extensions;
+using DigiMovie.Helpers;
 using DigiMovie.Models;
+using DigiMovie.Models.ViewModels.Products;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,14 +15,16 @@ using System.Threading.Tasks;
 
 namespace DigiMovie.Controllers
 {
+    //[RequestSizeLimit(40000000)]
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IHostingEnvironment _env;
-        public ProductsController(ApplicationDbContext context, IHostingEnvironment env)
+        private readonly IFileManager _ifileManager;
+
+        public ProductsController(ApplicationDbContext context , IFileManager ifileManager)
         {
             _context = context;
-            _env = env;
+            _ifileManager = ifileManager;
         }
 
         public async Task<IActionResult> Index()
@@ -47,57 +51,29 @@ namespace DigiMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(IFormFile image, Product product)
+        //[RequestSizeLimit(40000000)]
+        public async Task<IActionResult> Create(CreateEditVM createEditVM)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     //Step 1- Check Validation Of Image
-                    //if (image == null || image.Length == 0)
-                    //    throw new Exception("عکسی برای محصول انتخاب نشده است.");
-
-                    //if (image.Length > 1048576)
-                    //    throw new Exception("عکس انتخاب شده برای محصول بزرگتر از 1 مگابایت می باشد.");
-
-                    //if (image.ContentType != "image/jpg" && image.ContentType != "image/jpeg" && image.ContentType != "image/png" && image.ContentType != "image/gif")
-                    //    throw new Exception("عکس انتخاب شده برای محصول در قالب مجاز نمی باشد.");
-
-                    //Helpers.FileChecker fc = new Helpers.FileChecker();
-                    //fc.Check(image, 1048576, new string[] { "image/jpg", "image/jpeg", "image/png", "image/gif" });
-
-                    //Helpers.FileChecker.Check(image, 1048576, new string[] { "image/jpg", "image/jpeg", "image/png", "image/gif" });
-
-
-                    //Step 1- Check Validation Of Image
-                    image.Check(1048576, new string[] { "image/jpg", "image/jpeg", "image/png", "image/gif" });
-
-
-
-
-                    ////Step 2- Generate Name & Path Of File
-                    //var imageName = DateTime.Now.ToString("yyyyMMddhhmmssffff") + Path.GetExtension(image.FileName);
-                    //var imagePath = Path.Combine("UserUploads/Products", imageName);
-                    //var imageAbsolutePath = Path.Combine(_env.WebRootPath, imagePath);
-
-                    ////Step 3- Store File In File System
-                    //using (var fileStream = new FileStream(imageAbsolutePath, FileMode.Create))
-                    //{
-                    //    image.CopyTo(fileStream);
-                    //}
+                    createEditVM.Image.Check(1048576, new string[] { "image/jpg", "image/jpeg", "image/png", "image/gif" });
 
                     //Step 2- Generate Name & Path Of File
-                    var imageName = DateTime.Now.ToString("yyyyMMddhhmmssffff") + Path.GetExtension(image.FileName);
+                    var imageName = DateTime.Now.ToString("yyyyMMddhhmmssffff") + Path.GetExtension(createEditVM.Image.FileName);
                     var imagePath = Path.Combine("UserUploads/Products", imageName);
 
                     //Step 3- Store File In File System
                     //new Helpers.FileManager().SaveFile(image, imagePath);
+                    _ifileManager.SaveFile(createEditVM.Image, imagePath);
 
                     //Step 4- Add Image Path To Model
-                    product.ImagePath = "/UserUploads/Products/" + imageName;
+                    createEditVM.Product.ImagePath = "/UserUploads/Products/" + imageName;
 
                     //Step 5- Add Record To Database
-                    _context.Add(product);
+                    _context.Add(createEditVM.Product);
                     await _context.SaveChangesAsync();
                     TempData["ProductCreateStatus"] = "OK";
                 }
@@ -107,7 +83,7 @@ namespace DigiMovie.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(createEditVM.Product);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -119,24 +95,28 @@ namespace DigiMovie.Controllers
             if (product == null)
                 return NotFound();
 
-            return View(product);
+            return View(new CreateEditVM
+            {
+                Product = product
+            });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, IFormFile image, Product product)
+        //[RequestSizeLimit(40000000)]
+        public async Task<IActionResult> Edit(int id, CreateEditVM createEditVM)
         {
-            if (id != product.Id)
+            if (id != createEditVM.Product.Id)
                 return NotFound();
 
             if (ModelState.IsValid)
             {
-                if (image == null)
+                if (createEditVM.Image == null)
                 {
                     //User doesn't want to change product image
                     try
                     {
-                        _context.Update(product);
+                        _context.Update(createEditVM.Product);
                         await _context.SaveChangesAsync();
                         TempData["ProductEditStatus"] = "OK";
                     }
@@ -151,49 +131,27 @@ namespace DigiMovie.Controllers
                     try
                     {
                         //Step 1- Check Validation Of Image
-                        //if (image.Length == 0)
-                        //    throw new Exception("عکسی برای محصول انتخاب نشده است.");
-
-                        //if (image.Length > 1048576)
-                        //    throw new Exception("عکس انتخاب شده برای محصول بزرگتر از 1 مگابایت می باشد.");
-
-                        //if (image.ContentType != "image/jpg" && image.ContentType != "image/jpeg" && image.ContentType != "image/png" && image.ContentType != "image/gif")
-                        //    throw new Exception("عکس انتخاب شده برای محصول در قالب مجاز نمی باشد.");
-
-                        //Step 1- Check Validation Of Image
-                        image.Check(1048576, new string[] { "image/jpg", "image/jpeg", "image/png", "image/gif" });
-
-                        ////Step 2- Generate Name & Path Of File
-                        //var imageName = DateTime.Now.ToString("yyyyMMddhhmmssffff") + Path.GetExtension(image.FileName);
-                        //var imagePath = Path.Combine("UserUploads/Products", imageName);
-                        //var imageAbsolutePath = Path.Combine(_env.WebRootPath, imagePath);
-
-                        ////Step 3- Store File In File System
-                        //using (var fs = new FileStream(imageAbsolutePath, FileMode.Create))
-                        //{
-                        //    image.CopyTo(fs);
-                        //}
+                        createEditVM.Image.Check(1048576, new string[] { "image/jpg", "image/jpeg", "image/png", "image/gif" });
 
                         //Step 2- Generate Name & Path Of File
-                        var imageName = DateTime.Now.ToString("yyyyMMddhhmmssffff") + Path.GetExtension(image.FileName);
+                        var imageName = DateTime.Now.ToString("yyyyMMddhhmmssffff") + Path.GetExtension(createEditVM.Image.FileName);
                         var imagePath = Path.Combine("UserUploads/Products", imageName);
 
                         //Step 3- Store File In File System
                         //new Helpers.FileManager().SaveFile(image, imagePath);
+                        _ifileManager.SaveFile(createEditVM.Image,imagePath);
 
-                        //Step 4- Delete Old Image
-                        //var imageToDeleteAbsolutePath = _env.WebRootPath + product.ImagePath;
-                        //if (System.IO.File.Exists(imageToDeleteAbsolutePath))
-                        //    System.IO.File.Delete(imageToDeleteAbsolutePath);
+
 
                         //Step 4- Delete Old Image
                         //new Helpers.FileManager().DeleteFile(product.ImagePath);
+                        _ifileManager.DeleteFile(createEditVM.Product.ImagePath);
 
                         //Step 5- Add Image path to Model
-                        product.ImagePath = "/UserUploads/Products/" + imageName;
+                        createEditVM.Product.ImagePath = "/UserUploads/Products/" + imageName;
 
                         //Step 6- Update Record To Database
-                        _context.Update(product);
+                        _context.Update(createEditVM.Product);
                         await _context.SaveChangesAsync();
                         TempData["ProductEditStatus"] = "OK";
                     }
@@ -208,7 +166,7 @@ namespace DigiMovie.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-            return View(product);
+            return View(createEditVM.Product);
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -231,13 +189,9 @@ namespace DigiMovie.Controllers
 
             try
             {
-                //Step 1- Delete Image From File System
-                //var imageAbsolutePath = _env.WebRootPath + product.ImagePath;
-                //if (System.IO.File.Exists(imageAbsolutePath))
-                //    System.IO.File.Delete(imageAbsolutePath);
-
-                //Step 4- Delete Old Image
+                //Step 1- Delete Old Image
                 //new Helpers.FileManager().DeleteFile(product.ImagePath);
+                _ifileManager.DeleteFile(product.ImagePath);
 
                 //Step 2- Delete Record
                 _context.Remove(product);
@@ -259,25 +213,5 @@ namespace DigiMovie.Controllers
                 .Take(10)//Maximun records goes here
                 .ToList();
         }
-
-        //public IActionResult Temp()
-        //{
-        //    var r = new Random();
-        //    int i =1;
-        //    while (i <= 10)
-        //    {
-        //        var product = new Product();
-        //        product.Title = "محصول نمونه " + i;
-        //        product.IsExists = true;
-        //        product.NumberInStock = Convert.ToInt16(r.Next(1, 1000)); ;
-        //        product.Price = r.Next(1000, 9000) * 10000;
-        //        product.Specification = "توضیحات مربوط به محصول نمونه " + i;
-        //        product.ImagePath = "/UserUploads/Products/" + DateTime.Now.ToString("yyyyMMddhhmmssffff") + ".jpg";
-        //        _context.Add(product);
-        //        _context.SaveChanges();
-        //        ++i;
-        //    }
-        //    return NotFound();
-        //}
     }
 }

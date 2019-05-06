@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DigiMovie.Helpers
 {
-    public class FileManager
+    public class FileManager : IFileManager
     {
         private readonly IHostingEnvironment _env;
         public FileManager( IHostingEnvironment env)
@@ -16,8 +16,14 @@ namespace DigiMovie.Helpers
             _env = env;
         }
 
+        public void DeleteFile(string path)
+        {
+            var absolutePath = _env.WebRootPath + path;
+            if (File.Exists(absolutePath))
+                File.Delete(absolutePath);
+        }
 
-        public void SaveFile(IFormFile file , string path)
+        public void SaveFile(IFormFile file, string path)
         {
             var absolutePath = Path.Combine(_env.WebRootPath, path);
 
@@ -25,13 +31,6 @@ namespace DigiMovie.Helpers
             {
                 file.CopyTo(fileStream);
             }
-        }
-
-        public void DeleteFile(string path)
-        {
-            var absolutePath = _env.WebRootPath + path;
-            if (File.Exists(absolutePath))
-                File.Delete(absolutePath);
         }
     }
 }

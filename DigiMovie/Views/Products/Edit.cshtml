@@ -1,4 +1,4 @@
-﻿@model DigiMovie.Models.Product
+﻿@model DigiMovie.Models.ViewModels.Products.CreateEditVM
 
 @{
     ViewData["Title"] = "ویرایش محصول";
@@ -7,56 +7,57 @@
 <h2 class="text-right">@ViewData["Title"] </h2>
 <hr />
 <form asp-action="Edit" enctype="multipart/form-data" id="productForm">
-    <input asp-for="Id" type="hidden" />
+    
 
     <div class="form-group form-row">
         <div class="col-md-6 text-right">
-            <label asp-for="Title" class="form-label">@Html.DisplayNameFor(p => p.Title) :</label>
-            <input asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
+            <label asp-for="Product.Title" class="form-label">@Html.DisplayNameFor(p => p.Product.Title) :</label>
+            <input asp-for="Product.Title" class="form-control" />
+            <span asp-validation-for="Product.Title" class="text-danger"></span>
         </div>
         <div class="col-md-6 text-right">
-            <label asp-for="Price" class="form-label">@Html.DisplayNameFor(p => p.Price) : </label>
-            <input asp-for="Price" class="form-control" />
-            <span asp-validation-for="Price" class="text-danger"></span>
+            <label asp-for="Product.Price" class="form-label">@Html.DisplayNameFor(p => p.Product.Price) : </label>
+            <input asp-for="Product.Price" class="form-control" />
+            <span asp-validation-for="Product.Price" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group form-row">
         <div class="col-md-6 text-right my-auto">
-            <input asp-for="IsExists" class="form-check-input" />
-            <label asp-for="IsExists" class="form-check-label pr-3">@Html.DisplayNameFor(p => p.IsExists)</label>
+            <input asp-for="Product.IsExists" class="form-check-input" />
+            <label asp-for="Product.IsExists" class="form-check-label pr-3">@Html.DisplayNameFor(p => p.Product.IsExists)</label>
         </div>
         <div class="col-md-6 text-right">
-            <label asp-for="NumberInStock" class="form-label">@Html.DisplayNameFor(p => p.NumberInStock) : </label>
-            <input asp-for="NumberInStock" class="form-control" />
-            <span asp-validation-for="NumberInStock" class="text-danger"></span>
+            <label asp-for="Product.NumberInStock" class="form-label">@Html.DisplayNameFor(p => p.Product.NumberInStock) : </label>
+            <input asp-for="Product.NumberInStock" class="form-control" />
+            <span asp-validation-for="Product.NumberInStock" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group form-row">
 
         <div class="col-md text-right">
-            <label asp-for="Specification" class="form-label">@Html.DisplayNameFor(p => p.Specification) : </label>
-            <textarea asp-for="Specification" class="form-control" rows="5"></textarea>
-            <span asp-validation-for="Specification" class="text-danger"></span>
+            <label asp-for="Product.Specification" class="form-label">@Html.DisplayNameFor(p => p.Product.Specification) : </label>
+            <textarea asp-for="Product.Specification" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Product.Specification" class="text-danger"></span>
         </div>
         <div class="col-md text-right">
             <label for="image" class="form-label">عکس : </label>
             <br />
-            <img src="@Model.ImagePath" alt="سایت دیجی مووی - @Model.Title" title="سایت دیجی مووی - @Model.Title" width="300" />
+            <img src="@Model.Product.ImagePath" alt="سایت دیجی مووی - @Model.Product.Title" title="سایت دیجی مووی - @Model.Product.Title" width="300" />
             <hr />
             <input type="file" class="form-control-file" name="image" id="image" />
             <span id="imageValidationMessage" class="text-danger d-none"></span>
             <ul class="text-muted text-right mt-2">
-                <li>اگر قصد ندارید @Html.DisplayNameFor(p => p.ImagePath) را تغییر دهید، فیلد بالا را خالی بگذارید.</li>
-                <li>@Html.DisplayNameFor(p => p.ImagePath) می بایست حداکثر 1 مگابایت باشد.</li>
-                <li>@Html.DisplayNameFor(p => p.ImagePath) می بایست یکی از از فرمت های jpg یا gif یا png باشد.</li>
+                <li>اگر قصد ندارید @Html.DisplayNameFor(p => p.Product.ImagePath) را تغییر دهید، فیلد بالا را خالی بگذارید.</li>
+                <li>@Html.DisplayNameFor(p => p.Product.ImagePath) می بایست حداکثر 1 مگابایت باشد.</li>
+                <li>@Html.DisplayNameFor(p => p.Product.ImagePath) می بایست یکی از از فرمت های jpg یا gif یا png باشد.</li>
             </ul>
         </div>
 
     </div>
     <div class="form-group form-row">
         <div class="col-md text-right">
-            <input asp-for="ImagePath" type="hidden" />
+            <input asp-for="Product.Id" type="hidden" />
+            <input asp-for="Product.ImagePath" type="hidden" />
             <button type="submit" class="btn btn-warning">
                 <i class="fas fa-edit align-middle"></i>
                 ویرایش محصول
