@@ -3,8 +3,6 @@ using DigiMovie.Extensions;
 using DigiMovie.Helpers;
 using DigiMovie.Models;
 using DigiMovie.Models.ViewModels.Products;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,13 +13,12 @@ using System.Threading.Tasks;
 
 namespace DigiMovie.Controllers
 {
-    //[RequestSizeLimit(40000000)]
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IFileManager _ifileManager;
 
-        public ProductsController(ApplicationDbContext context , IFileManager ifileManager)
+        public ProductsController(ApplicationDbContext context, IFileManager ifileManager)
         {
             _context = context;
             _ifileManager = ifileManager;
@@ -51,7 +48,6 @@ namespace DigiMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[RequestSizeLimit(40000000)]
         public async Task<IActionResult> Create(CreateEditVM createEditVM)
         {
             if (ModelState.IsValid)
@@ -66,7 +62,6 @@ namespace DigiMovie.Controllers
                     var imagePath = Path.Combine("UserUploads/Products", imageName);
 
                     //Step 3- Store File In File System
-                    //new Helpers.FileManager().SaveFile(image, imagePath);
                     _ifileManager.SaveFile(createEditVM.Image, imagePath);
 
                     //Step 4- Add Image Path To Model
@@ -103,7 +98,6 @@ namespace DigiMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[RequestSizeLimit(40000000)]
         public async Task<IActionResult> Edit(int id, CreateEditVM createEditVM)
         {
             if (id != createEditVM.Product.Id)
@@ -128,6 +122,7 @@ namespace DigiMovie.Controllers
                 }
                 else
                 {
+                    //User wants to change product image
                     try
                     {
                         //Step 1- Check Validation Of Image
@@ -138,13 +133,9 @@ namespace DigiMovie.Controllers
                         var imagePath = Path.Combine("UserUploads/Products", imageName);
 
                         //Step 3- Store File In File System
-                        //new Helpers.FileManager().SaveFile(image, imagePath);
-                        _ifileManager.SaveFile(createEditVM.Image,imagePath);
-
-
+                        _ifileManager.SaveFile(createEditVM.Image, imagePath);
 
                         //Step 4- Delete Old Image
-                        //new Helpers.FileManager().DeleteFile(product.ImagePath);
                         _ifileManager.DeleteFile(createEditVM.Product.ImagePath);
 
                         //Step 5- Add Image path to Model
@@ -190,7 +181,6 @@ namespace DigiMovie.Controllers
             try
             {
                 //Step 1- Delete Old Image
-                //new Helpers.FileManager().DeleteFile(product.ImagePath);
                 _ifileManager.DeleteFile(product.ImagePath);
 
                 //Step 2- Delete Record

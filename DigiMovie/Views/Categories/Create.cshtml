@@ -1,38 +1,79 @@
-﻿@model DigiMovie.Models.Category
+﻿@model DigiMovie.Models.ViewModels.Categories.CreateEditVM
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "افزودن دسته بندی";
 }
-
-<h2>Create</h2>
-
-<h4>Category</h4>
+<br class="my-3" />
+<h2 class="text-right">@ViewData["Title"] </h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+<form asp-action="Create" enctype="multipart/form-data" id="mainForm">
+    <div class="form-group form-row">
+        <div class="col-md-6 text-right">
+            <label asp-for="Category.Title" class="form-label">@Html.DisplayNameFor(m => m.Category.Title) :</label>
+            <input asp-for="Category.Title" class="form-control" />
+            <span asp-validation-for="Category.Title" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 text-right">
+            <label for="image" class="form-label">@Html.DisplayNameFor(m => m.Category.ImagePath) : </label>
+            <input type="file" class="form-control-file" name="image" id="image" />
+            <span id="imageValidationMessage" class="text-danger d-none"></span>
+            <ul class="text-muted text-right mt-2">
+                <li>@Html.DisplayNameFor(m => m.Category.ImagePath) می بایست حداکثر 1 مگابایت باشد.</li>
+                <li>@Html.DisplayNameFor(m => m.Category.ImagePath) می بایست یکی از از فرمت های jpg یا gif یا png باشد.</li>
+            </ul>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+    <div class="form-group form-row">
+        <div class="col-md text-right">
+            <label asp-for="Category.Description" class="form-label">@Html.DisplayNameFor(m => m.Category.Description) : </label>
+            <textarea asp-for="Category.Description" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Category.Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col-md text-right">
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-plus align-middle"></i>
+                افزودن
+            </button>
+            <a asp-action="Index" class="btn btn-outline-dark">
+                <i class="fas fa-share align-middle"></i>
+                بازگشت به لیست دسته بندی ها
+            </a>
+        </div>
+    </div>
+</form>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        //Client Side Validation For Category Image
+        $('#mainForm').submit(function (e) {
+            var image = $('#image').prop('files')[0];
+            if (image) {
+                if (image.size < 1048576) {
+                    if (image.type == 'image/png' || image.type == 'image/gif' || image.type == 'image/jpeg' || image.type == 'image/jpg') {
+                        return true;
+                    }
+                    else {
+                        $('#imageValidationMessage')
+                            .removeClass('d-none')
+                            .text('عکس انتخاب شده در قالب مجاز نمی باشد.');
+                        e.preventDefault();
+                    }
+                }
+                else {
+                    $('#imageValidationMessage')
+                        .removeClass('d-none')
+                        .text('عکس انتخاب شده بزرگتر از 1 مگابایت می باشد.');
+                    e.preventDefault();
+                }
+            }
+            else {
+                $('#imageValidationMessage')
+                    .removeClass('d-none')
+                    .text('عکسی انتخاب نشده است.');
+                e.preventDefault();
+            }
+        });
+    </script>
 }

@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\UserUploads\NewFolder\**" />
+    <Content Remove="wwwroot\UserUploads\NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot\UserUploads\NewFolder\**" />
+    <None Remove="wwwroot\UserUploads\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="bundleconfig.json" />
   </ItemGroup>
 

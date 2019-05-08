@@ -6,15 +6,15 @@
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
 <hr />
-<form asp-action="Create" enctype="multipart/form-data" id="productForm">
+<form asp-action="Create" enctype="multipart/form-data" id="mainForm">
     <div class="form-group form-row">
         <div class="col-md-6 text-right">
-            <label asp-for="Product.Title" class="form-label">@Html.DisplayNameFor(p => p.Product.Title) :</label>
+            <label asp-for="Product.Title" class="form-label">@Html.DisplayNameFor(m => m.Product.Title) :</label>
             <input asp-for="Product.Title" class="form-control" />
             <span asp-validation-for="Product.Title" class="text-danger"></span>
         </div>
         <div class="col-md-6 text-right">
-            <label asp-for="Product.Price" class="form-label">@Html.DisplayNameFor(p => p.Product.Price) : </label>
+            <label asp-for="Product.Price" class="form-label">@Html.DisplayNameFor(m => m.Product.Price) : </label>
             <input asp-for="Product.Price" class="form-control" />
             <span asp-validation-for="Product.Price" class="text-danger"></span>
         </div>
@@ -22,27 +22,27 @@
     <div class="form-group form-row">
         <div class="col-md-6 text-right my-auto">
             <input asp-for="Product.IsExists" class="form-check-input" />
-            <label asp-for="Product.IsExists" class="form-check-label pr-3">@Html.DisplayNameFor(p => p.Product.IsExists)</label>
+            <label asp-for="Product.IsExists" class="form-check-label pr-3">@Html.DisplayNameFor(m => m.Product.IsExists)</label>
         </div>
         <div class="col-md-6 text-right">
-            <label asp-for="Product.NumberInStock" class="form-label">@Html.DisplayNameFor(p => p.Product.NumberInStock) : </label>
+            <label asp-for="Product.NumberInStock" class="form-label">@Html.DisplayNameFor(m => m.Product.NumberInStock) : </label>
             <input asp-for="Product.NumberInStock" class="form-control" />
             <span asp-validation-for="Product.NumberInStock" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group form-row">
         <div class="col-md text-right">
-            <label asp-for="Product.Specification" class="form-label">@Html.DisplayNameFor(p => p.Product.Specification) : </label>
+            <label asp-for="Product.Specification" class="form-label">@Html.DisplayNameFor(m => m.Product.Specification) : </label>
             <textarea asp-for="Product.Specification" class="form-control" rows="5"></textarea>
             <span asp-validation-for="Product.Specification" class="text-danger"></span>
         </div>
         <div class="col-md text-right">
-            <label for="image" class="form-label">@Html.DisplayNameFor(p => p.Product.ImagePath) : </label>
+            <label for="image" class="form-label">@Html.DisplayNameFor(m => m.Product.ImagePath) : </label>
             <input type="file" class="form-control-file" name="image" id="image" />
             <span id="imageValidationMessage" class="text-danger d-none"></span>
             <ul class="text-muted text-right mt-2">
-                <li>@Html.DisplayNameFor(p => p.Product.ImagePath) می بایست حداکثر 1 مگابایت باشد.</li>
-                <li>@Html.DisplayNameFor(p => p.Product.ImagePath) می بایست یکی از از فرمت های jpg یا gif یا png باشد.</li>
+                <li>@Html.DisplayNameFor(m => m.Product.ImagePath) می بایست حداکثر 1 مگابایت باشد.</li>
+                <li>@Html.DisplayNameFor(m => m.Product.ImagePath) می بایست یکی از از فرمت های jpg یا gif یا png باشد.</li>
             </ul>
         </div>
 
@@ -63,10 +63,8 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
-
         //Client Side Validation For Product Image
-        $('#productForm').submit(function (e) {
-
+        $('#mainForm').submit(function (e) {
             var image = $('#image').prop('files')[0];
             if (image) {
                 if (image.size < 1048576) {
@@ -76,24 +74,23 @@
                     else {
                         $('#imageValidationMessage')
                             .removeClass('d-none')
-                            .text('عکس انتخاب شده برای محصول در قالب مجاز نمی باشد.');
+                            .text('عکس انتخاب شده در قالب مجاز نمی باشد.');
                         e.preventDefault();
                     }
                 }
                 else {
                     $('#imageValidationMessage')
                         .removeClass('d-none')
-                        .text('عکس انتخاب شده برای محصول بزرگتر از 1 مگابایت می باشد.');
+                        .text('عکس انتخاب شده بزرگتر از 1 مگابایت می باشد.');
                     e.preventDefault();
                 }
             }
             else {
                 $('#imageValidationMessage')
                     .removeClass('d-none')
-                    .text('عکسی برای محصول انتخاب نشده است.');
+                    .text('عکسی انتخاب نشده است.');
                 e.preventDefault();
             }
-
         });
     </script>
 }

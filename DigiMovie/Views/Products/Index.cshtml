@@ -31,11 +31,11 @@ else
         <thead class="table-dark text-danger" style="font-size:large">
             <tr>
                 <td>ردیف</td>
-                <td>@Html.DisplayNameFor(p => p.ImagePath)</td>
-                <td>@Html.DisplayNameFor(p => p.Title)</td>
-                <td>@Html.DisplayNameFor(p => p.IsExists)</td>
-                <td>@Html.DisplayNameFor(p => p.NumberInStock)</td>
-                <td>@Html.DisplayNameFor(p => p.Price)</td>
+                <td>@Html.DisplayNameFor(m => m.ImagePath)</td>
+                <td>@Html.DisplayNameFor(m => m.Title)</td>
+                <td>@Html.DisplayNameFor(m => m.IsExists)</td>
+                <td>@Html.DisplayNameFor(m => m.NumberInStock)</td>
+                <td>@Html.DisplayNameFor(m => m.Price)</td>
                 <td>جزییات</td>
                 <td>ویرایش</td>
                 <td>حذف</td>
@@ -43,17 +43,17 @@ else
         </thead>
         <tbody>
             @{ var i = 1;}
-            @foreach (var product in Model)
+            @foreach (var item in Model)
             {
                 <tr>
                     <td class="align-middle">@i</td>
                     <td class="align-middle">
-                        <img src="@product.ImagePath" alt="سایت دیجی مووی - @product.Title" title="سایت دیجی مووی - @product.Title" width="100" />
+                        <img src="@item.ImagePath" alt="سایت دیجی مووی - @item.Title" title="سایت دیجی مووی - @item.Title" width="100" />
                     </td>
-                    <td class="align-middle">@product.Title</td>
+                    <td class="align-middle">@item.Title</td>
 
                     <td class="align-middle">
-                        @if (product.IsExists)
+                        @if (item.IsExists)
                         {
                             <text>بلی</text>
                         }
@@ -62,20 +62,20 @@ else
                             <text>خیر</text>
                         }
                     </td>
-                    <td class="align-middle">@product.NumberInStock</td>
-                    <td class="align-middle">@product.Price</td>
+                    <td class="align-middle">@item.NumberInStock</td>
+                    <td class="align-middle">@item.Price</td>
                     <td class="align-middle">
-                        <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="nav-link text-info">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="nav-link text-info">
                             <i class="fas fa-2x fa-info-circle"></i>
                         </a>
                     </td>
                     <td class="align-middle">
-                        <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id" class="nav-link text-warning">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="nav-link text-warning">
                             <i class="fas fa-2x fa-edit"></i>
                         </a>
                     </td>
                     <td class="align-middle">
-                        <a asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id" class="nav-link text-danger">
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="nav-link text-danger">
                             <i class="fas fa-2x fa-trash"></i>
                         </a>
                     </td>
@@ -92,7 +92,7 @@ else
     <script>
         $(document).ready(function () {
             $('#search').on({
-                'keyup': function (e) {
+                'keyup': function () {
                     //check for minimum required length for search goes here
                     $.ajax({
                         method: 'get',
