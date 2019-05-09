@@ -6,9 +6,7 @@
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
 <hr />
-<form asp-action="Edit" enctype="multipart/form-data" id="productForm">
-    
-
+<form asp-action="Edit" enctype="multipart/form-data" id="mainForm">
     <div class="form-group form-row">
         <div class="col-md-6 text-right">
             <label asp-for="Product.Title" class="form-label">@Html.DisplayNameFor(p => p.Product.Title) :</label>
@@ -40,7 +38,7 @@
             <span asp-validation-for="Product.Specification" class="text-danger"></span>
         </div>
         <div class="col-md text-right">
-            <label for="image" class="form-label">عکس : </label>
+            <label for="image" class="form-label">@Html.DisplayNameFor(m => m.Product.ImagePath) : </label>
             <br />
             <img src="@Model.Product.ImagePath" alt="سایت دیجی مووی - @Model.Product.Title" title="سایت دیجی مووی - @Model.Product.Title" width="300" />
             <hr />
@@ -75,7 +73,7 @@
     <script>
 
         //Client Side Validation For Product Image
-        $('#productForm').submit(function (e) {
+        $('#mainForm').submit(function (e) {
 
             var image = $('#image').prop('files')[0];
             if (image) {
