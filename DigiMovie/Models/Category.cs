@@ -11,7 +11,7 @@ namespace DigiMovie.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
-        [StringLength(100, ErrorMessage = "عنوان دسته بندی می بایست حداکثر 100 کاراکتر باشد.")]
+        [StringLength(100, ErrorMessage = "{0} می بایست حداکثر {1} کاراکتر باشد.")]
         [Display(Name = "عنوان")]
         public string Title { get; set; }
 

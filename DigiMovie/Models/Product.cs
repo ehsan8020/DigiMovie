@@ -12,7 +12,7 @@ namespace DigiMovie.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
-        [StringLength(100, ErrorMessage = "عنوان محصول می بایست حداکثر 100 کاراکتر باشد.")]
+        [StringLength(100, ErrorMessage = "{0} می بایست حداکثر {1} کاراکتر باشد.")]
         [Display(Name = "عنوان")]
         public string Title { get; set; }
 
@@ -24,13 +24,13 @@ namespace DigiMovie.Models
         public bool IsExists { get; set; }
 
         [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
-        [Range(0,32000,ErrorMessage = "{0} می بایست حداکثر 32000 باشد.")]
+        [Range(0,32000,ErrorMessage = "{0} می بایست بین {1} و {2} باشد.")]
         [Display(Name = "تعداد موجود")]
         public short NumberInStock { get; set; }
 
         [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
         [Display(Name ="قیمت (ریال)")]
-        [Range(0, 2000000000, ErrorMessage = "{0} می بایست حداکثر 2000000000 ریال باشد.")]
+        [Range(0, 2000000000, ErrorMessage = "{0} می بایست بین {1} و {2} باشد.")]
         public int Price { get; set; }
 
         [StringLength(150)]
