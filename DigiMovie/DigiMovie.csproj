@@ -13,6 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20190511140620_AddRelBetCatAndPro.cs" />
+    <Compile Remove="Data\Migrations\20190511140620_AddRelBetCatAndPro.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="bundleconfig.json" />
   </ItemGroup>
 

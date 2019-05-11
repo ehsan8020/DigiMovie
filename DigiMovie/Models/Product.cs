@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -36,5 +37,14 @@ namespace DigiMovie.Models
         [StringLength(150)]
         [Display(Name ="عکس")]
         public string ImagePath { get; set; }
+
+        #region Relationships
+        [ForeignKey("CatId")]
+        public Category Category { get; set; }
+
+        [Display(Name ="دسته بندی")]
+        [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+        public int CatId { get; set; }
+        #endregion
     }
 }

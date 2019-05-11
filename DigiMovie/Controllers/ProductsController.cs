@@ -34,7 +34,7 @@ namespace DigiMovie.Controllers
             if (id == null)
                 return NotFound();
 
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.Include(m => m.Category).SingleOrDefaultAsync(m=>m.Id == id);
             if (product == null)
                 return NotFound();
 
@@ -43,7 +43,14 @@ namespace DigiMovie.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            return View(new CreateEditVM()
+            {
+                Categories = _context.Categories.Select(m => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem()
+                {
+                    Value = m.Id.ToString(),
+                    Text = m.Title
+                })
+            });
         }
 
         [HttpPost]
@@ -92,7 +99,12 @@ namespace DigiMovie.Controllers
 
             return View(new CreateEditVM
             {
-                Product = product
+                Product = product,
+                Categories = _context.Categories.Select(m => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem()
+                {
+                    Value = m.Id.ToString(),
+                    Text = m.Title
+                })
             });
         }
 
@@ -165,7 +177,7 @@ namespace DigiMovie.Controllers
             if (id == null)
                 return NotFound();
 
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.Include(m => m.Category).SingleOrDefaultAsync(m => m.Id == id);
             if (product == null)
                 return NotFound();
 

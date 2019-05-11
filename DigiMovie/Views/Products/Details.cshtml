@@ -18,6 +18,10 @@
             <td>@Model.Title</td>
         </tr>
         <tr>
+            <td>@Html.DisplayNameFor(m => m.CatId)</td>
+            <td>@Model.Category.Title</td>
+        </tr>
+        <tr>
             <td>@Html.DisplayNameFor(m => m.IsExists)</td>
             <td>
                 @if (Model.IsExists)

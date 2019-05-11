@@ -22,5 +22,9 @@ namespace DigiMovie.Models
         [Display(Name = "عکس")]
         public string ImagePath { get; set; }
 
+
+        #region Relationships
+        public ICollection<Product> Products { get; set; }
+        #endregion
     }
 }

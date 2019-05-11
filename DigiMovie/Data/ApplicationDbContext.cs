@@ -19,11 +19,12 @@ namespace DigiMovie.Data
             base.OnModelCreating(builder);
             //builder
             //    .Entity<Product>()
-            //    .Property(p => p.NumberInStock)
-            //    .HasDefaultValue(50);
+            //    .Property(p => p.CatId)
+            //    .HasDefaultValue(1);
         }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Message> Messages { get; set; }
     }
 }
