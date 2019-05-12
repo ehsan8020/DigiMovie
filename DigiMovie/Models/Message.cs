@@ -38,7 +38,7 @@ namespace DigiMovie.Models
         public bool IsRead { get; set; }
 
         [Display(Name = "ستاره دار")]
-        public bool IsStared { get; set; }
+        public bool IsStarred { get; set; }
 
     }
 }
