@@ -1,0 +1,50 @@
+﻿@model DigiMovie.Models.Message
+
+@{
+    ViewData["Title"] = "حذف پیام";
+}
+<br class="my-3" />
+<h2 class="text-right">@ViewData["Title"] </h2>
+<hr />
+
+<table class="table table-bordered table-hover table-striped table-info text-center table-sm">
+    <thead>
+        <tr>
+            <td colspan="2">آیا از حذف پیام زیر اطمینان دارید ؟</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="align-middle">@Html.DisplayNameFor(m => m.Name)</td>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <td class="align-middle">@Html.DisplayNameFor(m => m.Email)</td>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <td class="align-middle">@Html.DisplayNameFor(m => m.Subject)</td>
+            <td>@Model.Subject</td>
+        </tr>
+        <tr>
+            <td class="align-middle">@Html.DisplayNameFor(m => m.Body)</td>
+            <td>@Model.Body</td>
+        </tr>
+        <tr>
+            <td class="align-middle">@Html.DisplayNameFor(m => m.RegisteredTime)</td>
+            <td>@Model.RegisteredTime.ToPersianDateTimeString()</td>
+        </tr>
+    </tbody>
+</table>
+<form asp-action="DeleteDone">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">
+        <i class="fas fa-trash align-middle"></i>
+        حذف نهایی
+    </button>
+    <a asp-action="Index" class="btn btn-outline-dark">
+        <i class="fas fa-share align-middle"></i>
+        بازگشت به لیست پیام ها
+    </a>
+</form>
+

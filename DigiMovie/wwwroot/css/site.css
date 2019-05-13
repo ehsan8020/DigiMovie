@@ -42,7 +42,7 @@ body {
             background-color: #ffc397;
         }
 
-    .search-bar .suggest-item a {
-        text-decoration: none;
-        display: block;
-    }
+        .search-bar .suggest-item a {
+            text-decoration: none;
+            display: block;
+        }
