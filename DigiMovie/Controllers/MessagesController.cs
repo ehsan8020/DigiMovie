@@ -1,4 +1,5 @@
 ﻿using DigiMovie.Data;
+using DigiMovie.Helpers.Enums;
 using DigiMovie.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -93,20 +94,19 @@ namespace DigiMovie.Controllers
 
         public void ChangeStatus(int id, byte changeCode)
         {
-            //unstar = 0 , star = 1 , unread = 2 , read = 3
             var message = _context.Messages.Find(id);
             switch (changeCode)
             {
-                case 0:
+                case (byte)MessageChangeStatus.UnStar:
                     message.IsStarred = false;
                     break;
-                case 1:
+                case (byte)MessageChangeStatus.Star:
                     message.IsStarred = true;
                     break;
-                case 2:
+                case (byte)MessageChangeStatus.UnRead:
                     message.IsRead = false;
                     break;
-                case 3:
+                case (byte)MessageChangeStatus.Read:
                     message.IsRead = true;
                     break;
             }
