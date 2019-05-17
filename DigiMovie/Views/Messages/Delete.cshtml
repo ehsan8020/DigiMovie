@@ -20,7 +20,9 @@
         </tr>
         <tr>
             <td class="align-middle">@Html.DisplayNameFor(m => m.Email)</td>
-            <td>@Model.Email</td>
+            <td>
+                <a href="mailto:@Model.Email" title="پاسخ به این پیام">@Model.Email</a>
+            </td>
         </tr>
         <tr>
             <td class="align-middle">@Html.DisplayNameFor(m => m.Subject)</td>

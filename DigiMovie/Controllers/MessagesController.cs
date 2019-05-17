@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DigiMovie.Data;
+﻿using DigiMovie.Data;
 using DigiMovie.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
 
 namespace DigiMovie.Controllers
 {
@@ -41,7 +39,6 @@ namespace DigiMovie.Controllers
                 {
                     TempData["MessageCreateStatus"] = e.Message;
                 }
-
             }
             return RedirectToAction("Contact", "Home");
         }
@@ -59,7 +56,7 @@ namespace DigiMovie.Controllers
             //Make Message As Read
             message.IsRead = true;
             _context.Update(message);
-           await  _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return View(message);
         }
@@ -94,71 +91,27 @@ namespace DigiMovie.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="eventType">true = star /// false = read</param>
-        /// <param name="status">star , read = true /// unstar , unread = false </param>
-        public void ChangeStatus(bool eventType , bool status , int id)
+        public void ChangeStatus(int id, byte changeCode)
         {
-            var message =  _context.Messages.Find(id);
-            
-
-            if (eventType)
+            //unstar = 0 , star = 1 , unread = 2 , read = 3
+            var message = _context.Messages.Find(id);
+            switch (changeCode)
             {
-                //Staring
-                if(status)
-                {
-                    //star
-                    message.IsStarred = true;
-                }
-                else
-                {
-                    //unstar
+                case 0:
                     message.IsStarred = false;
-                }
-            }
-            else
-            {
-                //Reading
-                if (status)
-                {
-                    //read
-                    message.IsRead = true;
-                }
-                else
-                {
-                    //unread
+                    break;
+                case 1:
+                    message.IsStarred = true;
+                    break;
+                case 2:
                     message.IsRead = false;
-                }
+                    break;
+                case 3:
+                    message.IsRead = true;
+                    break;
             }
-
-
             _context.Update(message);
             _context.SaveChanges();
         }
-
-
-
-        //public  IActionResult Temp()
-        //{
-        //    int i = 1;
-        //    while(i<=80)
-        //    {
-        //        var message = new Message() {
-        //            Name = "پیام نمونه "  + i,
-        //            Email = "email" + i + "@gmail.com" ,
-        //            Subject = "موضوع " + i,
-        //            Body= "متن پیام " + i,
-        //            RegisteredTime = DateTime.Now.AddDays(-i)
-
-        //        };
-        //        _context.Add(message);
-        //        _context.SaveChanges();
-        //        i++;
-        //    }
-        //    return Content(string.Empty);
-        //}
-
     }
 }

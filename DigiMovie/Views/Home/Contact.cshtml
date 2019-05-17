@@ -17,13 +17,13 @@
     <div class="form-group row">
         <div class="col-md-6 text-right">
             <label asp-for="Name" class="form-label">@Html.DisplayNameFor(m => m.Name) :</label>
-            <input asp-for="Name" class="form-control" placeholder="نام خود را وارد نمایید" />
+            <input asp-for="Name" class="form-control"  />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="col-md-6 text-right">
             <label asp-for="Email" class="form-label">@Html.DisplayNameFor(m => m.Email) :</label>
-            <input asp-for="Email" class="form-control" placeholder="پست الکترونیکی خود را وارد نمایید" />
+            <input asp-for="Email" class="form-control" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
     </div>
@@ -31,13 +31,13 @@
     <div class="form-group row">
         <div class="col-md-6 text-right">
             <label asp-for="Subject" class="form-label">@Html.DisplayNameFor(m => m.Subject) :</label>
-            <input asp-for="Subject" class="form-control" placeholder="موضوع خود را وارد نمایید" />
+            <input asp-for="Subject" class="form-control"  />
             <span asp-validation-for="Subject" class="text-danger"></span>
         </div>
 
         <div class="col-md-6 text-right">
             <label asp-for="Body" class="form-label">@Html.DisplayNameFor(m => m.Body) :</label>
-            <textarea asp-for="Body" class="form-control" rows="5" placeholder="متن پیام خود را وارد نمایید"></textarea>
+            <textarea asp-for="Body" class="form-control" rows="5" ></textarea>
             <span asp-validation-for="Body" class="text-danger"></span>
         </div>
     </div>

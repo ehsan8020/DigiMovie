@@ -7,7 +7,7 @@ namespace DigiMovie.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"
-INSERT INTO [Messages] ([Name], [Email], [Subject], [Body], [RegisteredTime], [IsRead], [IsStarred]) VALUES ( N'پیام نمونه 1', N'email1@gmail.com', N'موضوع 1', N'متن پیام 1', N'2019-05-12 19:22:56', 1, 0)
+INSERT INTO [Messages] ([Name], [Email], [Subject], [Body], [RegisteredTime], [IsRead], [IsStarred]) VALUES ( N'پیام نمونه 1', N'email1@gmail.com', N'موضوع 1', N'متن پیام 1', N'2019-05-12 19:22:56', 0, 0)
 INSERT INTO [Messages] ([Name], [Email], [Subject], [Body], [RegisteredTime], [IsRead], [IsStarred]) VALUES ( N'پیام نمونه 2', N'email2@gmail.com', N'موضوع 2', N'متن پیام 2', N'2019-05-11 19:22:56', 0, 0)
 INSERT INTO [Messages] ([Name], [Email], [Subject], [Body], [RegisteredTime], [IsRead], [IsStarred]) VALUES ( N'پیام نمونه 3', N'email3@gmail.com', N'موضوع 3', N'متن پیام 3', N'2019-05-10 19:22:56', 0, 0)
 INSERT INTO [Messages] ([Name], [Email], [Subject], [Body], [RegisteredTime], [IsRead], [IsStarred]) VALUES ( N'پیام نمونه 4', N'email4@gmail.com', N'موضوع 4', N'متن پیام 4', N'2019-05-09 19:22:56', 0, 0)
