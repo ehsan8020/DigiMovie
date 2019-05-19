@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "نمایش محصولات مرتبط " + ViewData["cat"].ToString();
+}
+<br class="my-3" />
+<h2 class="text-right">@ViewData["Title"] </h2>
+<hr />
+@if (!Model.Any())
+{
+    <div class="alert alert-warning text-center">هیچ محصولی در این دسته بندی در فروشگاه ثبت نشده است.</div>
+}
+else
+{
+    <div class="row justify-content-start mt-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-sm-6 mb-2">
+                <div class="card bg-dark text-light text-center">
+                    <img class="card-img-top" src="@item.ImagePath">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">@item.Title</a>
+                        </h5>
+                        <p>@Html.DisplayNameFor(m=>m.Price) : @item.Price</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

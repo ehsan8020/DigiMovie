@@ -1,18 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DigiMovie.Data;
+using DigiMovie.Models;
+using DigiMovie.Models.ViewModels.Home;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using DigiMovie.Models;
 
 namespace DigiMovie.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context;
+        public HomeController(ApplicationDbContext context)
         {
-            return View();
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            return View(new IndexVM()
+            {
+                Categories = await _context.Categories.ToListAsync(),//All Categories
+                Products = await _context.Products.OrderByDescending(m => m.Id).Take(5).ToListAsync()//Last 5 Products
+            });
         }
 
         public IActionResult About()

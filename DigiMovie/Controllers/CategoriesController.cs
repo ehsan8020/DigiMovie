@@ -203,5 +203,14 @@ namespace DigiMovie.Controllers
                 .Take(10)//Maximun records goes here
                 .ToList();
         }
+
+        public async Task<IActionResult> RelatingProducts(int? id,string cat)
+        {
+            if (id == null)
+                return NotFound();
+
+            ViewData["cat"] = cat;
+            return View(await _context.Products.Where(m => m.CatId == id).ToListAsync());
+        }
     }
 }
