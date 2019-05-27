@@ -1,37 +1,48 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
-for details on configuring this project to bundle and minify static web assets. */
+﻿@font-face {
+    font-family: "dgm-koodak";
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/koodak/koodak.eot");
+    src: url("../fonts/koodak/koodak.eot?#iefix") format("embedded-opentype") /* IE6-8 */
+    ,url("../fonts/koodak/koodak.woff2") format("woff2") /* Chrome36+, Opera24+*/
+    ,url("../fonts/koodak/koodak.woff") format("woff") /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    ,url("../fonts/koodak/koodak.ttf") format("truetype");
+}
+
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    direction: rtl !important;
+    font-family: dgm-koodak, Tahoma;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+/*Search Textbox*/
+.search-bar {
+    position: relative;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
-}
-
-/* QR code generator */
-#qrCode {
-    margin: 15px;
-}
-
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
+    .search-bar #suggest {
+        width: 100%;
+        background-color: #eee;
+        position: absolute;
+        top: 100%;
+        border-radius: .25rem;
+        border: 1px solid #aaa;
+        margin-top: .1rem;
         display: none;
     }
-}
+
+    .search-bar .suggest-item {
+        text-align: right;
+        background-color: #fff8b1;
+        padding: .5rem;
+        margin: .1rem;
+        border-bottom: 1px solid;
+    }
+
+        .search-bar .suggest-item:hover {
+            background-color: #ffc397;
+        }
+
+        .search-bar .suggest-item a {
+            text-decoration: none;
+            display: block;
+        }
