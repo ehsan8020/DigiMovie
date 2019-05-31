@@ -1,4 +1,5 @@
-﻿using DigiMovie.Data;
+﻿using DigiMovie.Areas.Identity.Helpers;
+using DigiMovie.Data;
 using DigiMovie.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace DigiMovie
 {
@@ -43,10 +45,26 @@ namespace DigiMovie
             //        Configuration.GetConnectionString("DGMCSServer")));
 
             services.AddDefaultIdentity<IdentityUser>()
+                .AddErrorDescriber<PersianIdentityErrorDescriber>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.Configure<IdentityOptions>(options => {
+                //options.User.AllowedUserNameCharacters = "";
 
-            //DI
+                //options.Password.RequireDigit = false;
+            });
+
+            services.ConfigureApplicationCookie(options => {
+
+                //options.ExpireTimeSpan = TimeSpan.FromDays(7);
+                //options.SlidingExpiration = true;
+                //options.LoginPath = "";
+                //options.LogoutPath = "";
+                //options.AccessDeniedPath = "";
+
+            });
+
+            //DI Services
             services.AddTransient<IFileManager, FileManager>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
