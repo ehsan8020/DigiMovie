@@ -17,9 +17,12 @@ namespace DigiMovie.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+
+        public LoginModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
         {
+            _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -92,6 +95,14 @@ namespace DigiMovie.Areas.Identity.Pages.Account
                 }
                 else
                 {
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+
+                    if(user!=null && await _userManager.IsEmailConfirmedAsync(user) == false)
+                    {
+                        //*** bro email active kon hesabet ro
+                        return RedirectToPage("./UnconfirmedUser");
+                    }
+
                     ModelState.AddModelError(string.Empty, "ورود نامعتبر می باشد.");
                     return Page();
                 }

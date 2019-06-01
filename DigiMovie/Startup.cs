@@ -1,10 +1,12 @@
 ﻿using DigiMovie.Areas.Identity.Helpers;
+using DigiMovie.Areas.Identity.Services;
 using DigiMovie.Data;
 using DigiMovie.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -52,6 +54,10 @@ namespace DigiMovie
                 //options.User.AllowedUserNameCharacters = "";
 
                 //options.Password.RequireDigit = false;
+
+                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(1);
+
+                options.SignIn.RequireConfirmedEmail = true;
             });
 
             services.ConfigureApplicationCookie(options => {
@@ -66,6 +72,7 @@ namespace DigiMovie
 
             //DI Services
             services.AddTransient<IFileManager, FileManager>();
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
