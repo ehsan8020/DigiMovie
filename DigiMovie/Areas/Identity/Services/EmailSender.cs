@@ -12,13 +12,13 @@ namespace DigiMovie.Areas.Identity.Services
     {
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            //1-Set Email Message
+            //1- Set Email Message
             var mailMessage = new MailMessage();
             mailMessage.From = new MailAddress("mftaspnet@gmail.com", "DigiMovie");
-            mailMessage.Sender = new MailAddress("mftaspnet@gmail.com", "DigiMovie");
             mailMessage.To.Add(email);
             mailMessage.Subject = subject;
             mailMessage.IsBodyHtml = true;
+            mailMessage.Body = htmlMessage;
             //mailMessage.Bcc.Add("");
 
             //2- Set SmtpClient
@@ -31,11 +31,8 @@ namespace DigiMovie.Areas.Identity.Services
                 Credentials = new NetworkCredential() { UserName = "mftaspnet@gmail.com", Password = "qwQW12!@" }
             };
 
-
-
             //3- Send Email
             await smtp.SendMailAsync(mailMessage);
-
         }
     }
 }
