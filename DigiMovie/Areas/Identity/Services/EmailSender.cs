@@ -14,7 +14,7 @@ namespace DigiMovie.Areas.Identity.Services
         {
             //1- Set Email Message
             var mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("mftaspnet@gmail.com", "DigiMovie");
+            mailMessage.From = new MailAddress("mftaspnet@gmail.com", "دیجی مووی");
             mailMessage.To.Add(email);
             mailMessage.Subject = subject;
             mailMessage.IsBodyHtml = true;

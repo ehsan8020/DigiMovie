@@ -1,10 +1,14 @@
 ﻿@page
 @model LogoutModel
 @{
-    ViewData["Title"] = "Log out";
+    ViewData["Title"] = "خروج";
 }
 
-<header>
-    <h1>@ViewData["Title"]</h1>
-    <p>You have successfully logged out of the application.</p>
+<header class="text-right mt-5">
+    <div class="alert alert-danger">
+        <h5>
+            <i class="fa fa-3x fa-sign-out-alt align-middle"></i>
+            شما از برنامه خارج شدید.
+        </h5>
+    </div>
 </header>

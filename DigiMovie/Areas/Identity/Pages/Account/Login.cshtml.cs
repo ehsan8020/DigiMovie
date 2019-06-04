@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DigiMovie.Areas.Identity.Pages.Account
 {
@@ -95,13 +94,10 @@ namespace DigiMovie.Areas.Identity.Pages.Account
                 }
                 else
                 {
+                    //If user is exists and didn't confirm it's account then have to go check his/her email
                     var user = await _userManager.FindByEmailAsync(Input.Email);
-
-                    if(user!=null && await _userManager.IsEmailConfirmedAsync(user) == false)
-                    {
-                        //*** bro email active kon hesabet ro
+                    if (user != null && await _userManager.IsEmailConfirmedAsync(user) == false)
                         return RedirectToPage("./UnconfirmedUser");
-                    }
 
                     ModelState.AddModelError(string.Empty, "ورود نامعتبر می باشد.");
                     return Page();

@@ -79,12 +79,12 @@ namespace DigiMovie.Areas.Identity.Pages.Account
                         values: new { userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, "تایید حساب کاربری",
+                        $"لطفاً حساب کاربری خود را با کلیک بر روی  <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>این لینک</a> فعال نمایید.");
 
                     //await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    //*** bro email active kon hesabet ro
+                    //User have to go check his/her email
                     return RedirectToPage("./UnconfirmedUser");
 
 
