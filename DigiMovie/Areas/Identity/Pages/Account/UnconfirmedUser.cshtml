@@ -11,5 +11,22 @@
             <br />
             با تشکر از عضویت شما، خواهشمند است جهت تایید و فعالسازی حساب کاربری خود ، ابتدا به ایمیل خود مراجعه نموده و سپس بر روی لینک موجود در آن کلیک نمایید.
         </h5>
+        <hr />
+
+        <form method="post">
+            <button type="submit" class="btn btn-info">
+                ارسال مجدد ایمیل فعال سازی
+            </button>
+        </form>
     </div>
+
+    @if (ViewData["EmailStatus"] != null)
+    {
+        <hr />
+        <div class="alert alert-info">
+            <h5>@ViewData["EmailStatus"]</h5>
+        </div>
+    }
+
+
 </header>

@@ -97,7 +97,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account
                     //If user is exists and didn't confirm it's account then have to go check his/her email
                     var user = await _userManager.FindByEmailAsync(Input.Email);
                     if (user != null && await _userManager.IsEmailConfirmedAsync(user) == false)
-                        return RedirectToPage("./UnconfirmedUser");
+                        return RedirectToPage("./UnconfirmedUser", new { userId = user.Id });
 
                     ModelState.AddModelError(string.Empty, "ورود نامعتبر می باشد.");
                     return Page();

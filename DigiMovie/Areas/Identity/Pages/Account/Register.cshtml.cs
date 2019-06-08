@@ -85,7 +85,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account
                     //await _signInManager.SignInAsync(user, isPersistent: false);
 
                     //User have to go check his/her email
-                    return RedirectToPage("./UnconfirmedUser");
+                    return RedirectToPage("./UnconfirmedUser", new { userId = user.Id });
 
 
                 }

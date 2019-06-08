@@ -50,6 +50,15 @@ namespace DigiMovie
                 .AddErrorDescriber<PersianIdentityErrorDescriber>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services
+                .AddAuthentication()
+                .AddGoogle(googleConfig =>
+                {
+                    googleConfig.ClientId = "412203041073-ua084neeengg1frs7oslgrc76irmaibk.apps.googleusercontent.com";
+                    googleConfig.ClientSecret = "SHOVDbqacELs8k9DAH-yICDS";
+                });
+                
+
             services.Configure<IdentityOptions>(options => {
                 //options.User.AllowedUserNameCharacters = "";
 

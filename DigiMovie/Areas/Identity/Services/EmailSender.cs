@@ -14,7 +14,7 @@ namespace DigiMovie.Areas.Identity.Services
         {
             //1- Set Email Message
             var mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("mftaspnet@gmail.com", "دیجی مووی");
+            mailMessage.From = DigiMovie.Helpers.EmailSettings.GetMailAddress(DigiMovie.Helpers.EmailTypes.Info);
             mailMessage.To.Add(email);
             mailMessage.Subject = subject;
             mailMessage.IsBodyHtml = true;
@@ -22,14 +22,7 @@ namespace DigiMovie.Areas.Identity.Services
             //mailMessage.Bcc.Add("");
 
             //2- Set SmtpClient
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential() { UserName = "mftaspnet@gmail.com", Password = "qwQW12!@" }
-            };
+            var smtp =  DigiMovie.Helpers.EmailSettings.GetSmtpClient(DigiMovie.Helpers.EmailTypes.Info);
 
             //3- Send Email
             await smtp.SendMailAsync(mailMessage);
