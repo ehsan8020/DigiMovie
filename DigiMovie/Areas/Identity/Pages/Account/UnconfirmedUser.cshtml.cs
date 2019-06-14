@@ -32,7 +32,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account
 
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
-                return NotFound($"Unable to load user with ID '{userId}'.");
+                return NotFound($"کاربر با شناسه '{userId}' یافت نشد.");
 
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var callbackUrl = Url.Page(
@@ -44,7 +44,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account
             await _emailSender.SendEmailAsync(user.Email, "تایید حساب کاربری",
                 $"لطفاً حساب کاربری خود را با کلیک بر روی  <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>این لینک</a> فعال نمایید.");
 
-            ViewData["EmailStatus"] = "ایمیل فعالسازی مجددا ارسال گردید.";
+            ViewData["EmailStatus"] = "ایمیل فعالسازی حساب کاربری مجدداْ ارسال گردید.";
             return Page();
         }
     }

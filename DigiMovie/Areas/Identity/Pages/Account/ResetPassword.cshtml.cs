@@ -25,18 +25,20 @@ namespace DigiMovie.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [EmailAddress(ErrorMessage = "لطفاً در قالب {0} وارد نمایید.")]
+            [Display(Name = "پست الکترونیکی")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [StringLength(100, ErrorMessage = "{0} می بایست بین {2} و {1} کاراکتر باشد.", MinimumLength = 6)]
             [DataType(DataType.Password)]
+            [Display(Name = "کلمه عبور")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "تکرار کلمه عبور")]
+            [Compare("Password", ErrorMessage = "کلمه عبور و تکرار کلمه عبور می بایست با هم برابر باشند.")]
             public string ConfirmPassword { get; set; }
 
             public string Code { get; set; }
@@ -46,7 +48,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account
         {
             if (code == null)
             {
-                return BadRequest("A code must be supplied for password reset.");
+                return BadRequest("برای بازیابی کلمه عبور می بایست یک کدی تامین گردد.");
             }
             else
             {

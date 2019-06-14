@@ -15,6 +15,7 @@
 
         <form method="post">
             <button type="submit" class="btn btn-info">
+                <i class="fa fa-paper-plane"></i>
                 ارسال مجدد ایمیل فعال سازی
             </button>
         </form>
@@ -23,8 +24,11 @@
     @if (ViewData["EmailStatus"] != null)
     {
         <hr />
-        <div class="alert alert-info">
-            <h5>@ViewData["EmailStatus"]</h5>
+        <div class="alert alert-warning">
+            <h5>
+                <i class="fas fa-check align-middle"></i>
+                @ViewData["EmailStatus"]
+            </h5>
         </div>
     }
 

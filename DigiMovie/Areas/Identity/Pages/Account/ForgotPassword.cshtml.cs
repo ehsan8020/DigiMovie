@@ -28,8 +28,9 @@ namespace DigiMovie.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [EmailAddress(ErrorMessage = "لطفاً در قالب {0} وارد نمایید.")]
+            [Display(Name = "پست الکترونیکی")]
             public string Email { get; set; }
         }
 
@@ -55,8 +56,8 @@ namespace DigiMovie.Areas.Identity.Pages.Account
 
                 await _emailSender.SendEmailAsync(
                     Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    "بازنشانی کلمه عبور",
+                    $"لطفاْ کلمه عبور خود را از <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>اینجا</a> تغییر دهید.");
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

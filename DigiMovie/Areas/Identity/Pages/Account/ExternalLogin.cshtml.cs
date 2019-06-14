@@ -41,8 +41,9 @@ namespace DigiMovie.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [EmailAddress(ErrorMessage = "لطفاً در قالب {0} وارد نمایید.")]
+            [Display(Name = "پست الکترونیکی")]
             public string Email { get; set; }
         }
 
@@ -64,13 +65,13 @@ namespace DigiMovie.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (remoteError != null)
             {
-                ErrorMessage = $"Error from external provider: {remoteError}";
+                ErrorMessage = $"خطا از سمت سایت ورود خارجی : {remoteError}";
                 return RedirectToPage("./Login", new {ReturnUrl = returnUrl });
             }
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                ErrorMessage = "Error loading external login information.";
+                ErrorMessage = "خطا در بارگیری اطلاعات ورود سایت ورود خارجی";
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
@@ -108,7 +109,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                ErrorMessage = "Error loading external login information during confirmation.";
+                ErrorMessage = "خطا در بارگیری اطلاعات ورود سایت ورود خارجی در حین تایید";
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
