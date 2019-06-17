@@ -33,7 +33,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
     <Folder Include="wwwroot\UserUploads\Products\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Products\ReadOnlyIndex.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

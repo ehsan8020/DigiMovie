@@ -8,11 +8,13 @@ using DigiMovie.Extensions;
 using DigiMovie.Helpers;
 using DigiMovie.Models;
 using DigiMovie.Models.ViewModels.Categories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DigiMovie.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,11 +26,13 @@ namespace DigiMovie.Controllers
             _ifileManager = ifileManager;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Categories.ToListAsync());
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -195,6 +199,7 @@ namespace DigiMovie.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [AllowAnonymous]
         public IEnumerable<Category> Search(string q)
         {
             return _context
@@ -204,6 +209,7 @@ namespace DigiMovie.Controllers
                 .ToList();
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> RelatingProducts(int? id,string cat)
         {
             if (id == null)

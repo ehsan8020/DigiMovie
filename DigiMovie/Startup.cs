@@ -1,7 +1,7 @@
 ﻿using DigiMovie.Areas.Identity.Helpers;
-using DigiMovie.Areas.Identity.Services;
 using DigiMovie.Data;
 using DigiMovie.Helpers;
+using DigiMovie.Services.Email;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -81,7 +81,10 @@ namespace DigiMovie
 
             //DI Services
             services.AddTransient<IFileManager, FileManager>();
-            services.AddTransient<IEmailSender, EmailSender>();
+
+            //services.AddTransient<IEmailSender, EmailSender>();
+
+            services.AddTransient<ISiteEmailSender, SiteEmailSender>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

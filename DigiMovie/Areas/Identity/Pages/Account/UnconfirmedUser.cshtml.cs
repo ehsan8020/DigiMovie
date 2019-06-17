@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using DigiMovie.Services.Email;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +14,9 @@ namespace DigiMovie.Areas.Identity.Pages.Account
     public class UnconfirmedUserModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IEmailSender _emailSender;
+        private readonly ISiteEmailSender _emailSender;
 
-        public UnconfirmedUserModel(UserManager<IdentityUser> userManager,IEmailSender emailSender)
+        public UnconfirmedUserModel(UserManager<IdentityUser> userManager, ISiteEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;
@@ -41,8 +42,13 @@ namespace DigiMovie.Areas.Identity.Pages.Account
                 values: new { userId = user.Id, code = code },
                 protocol: Request.Scheme);
 
-            await _emailSender.SendEmailAsync(user.Email, "تایید حساب کاربری",
-                $"لطفاً حساب کاربری خود را با کلیک بر روی  <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>این لینک</a> فعال نمایید.");
+            //await _emailSender.SendEmailAsync(user.Email, "تایید حساب کاربری",
+            //    $"لطفاً حساب کاربری خود را با کلیک بر روی  <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>این لینک</a> فعال نمایید.");
+
+            await _emailSender.SendAsync(DigiMovie.Helpers.EmailTypes.Info,
+                       user.Email,
+                       "تایید حساب کاربری",
+                       $"لطفاً حساب کاربری خود را با کلیک بر روی  <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>این لینک</a> فعال نمایید.");
 
             ViewData["EmailStatus"] = "ایمیل فعالسازی حساب کاربری مجدداْ ارسال گردید.";
             return Page();

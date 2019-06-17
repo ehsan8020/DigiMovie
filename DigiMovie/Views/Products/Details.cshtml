@@ -1,5 +1,5 @@
 ﻿@model DigiMovie.Models.Product
-
+@inject Microsoft.AspNetCore.Identity.SignInManager<Microsoft.AspNetCore.Identity.IdentityUser> SignInManager
 @{
     ViewData["Title"] = "نمایش جزییات محصول";
 }
@@ -49,14 +49,18 @@
     </tbody>
 </table>
 <br class="my-2" />
-<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning">
-    <i class="fas fa-edit align-middle"></i>
-    ویرایش این محصول
-</a>
-<a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">
-    <i class="fas fa-trash align-middle"></i>
-    حذف این محصول
-</a>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning">
+        <i class="fas fa-edit align-middle"></i>
+        ویرایش این محصول
+    </a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">
+        <i class="fas fa-trash align-middle"></i>
+        حذف این محصول
+    </a>
+}
 <a asp-action="Index" class="btn btn-outline-dark">
     <i class="fas fa-share align-middle"></i>
     بازگشت به لیست محصولات

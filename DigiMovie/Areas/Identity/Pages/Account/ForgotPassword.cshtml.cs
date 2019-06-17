@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using DigiMovie.Services.Email;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -15,9 +16,9 @@ namespace DigiMovie.Areas.Identity.Pages.Account
     public class ForgotPasswordModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IEmailSender _emailSender;
+        private readonly ISiteEmailSender _emailSender;
 
-        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<IdentityUser> userManager, ISiteEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;
@@ -54,10 +55,15 @@ namespace DigiMovie.Areas.Identity.Pages.Account
                     values: new { code },
                     protocol: Request.Scheme);
 
-                await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    "بازنشانی کلمه عبور",
-                    $"لطفاْ کلمه عبور خود را از <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>اینجا</a> تغییر دهید.");
+                //await _emailSender.SendEmailAsync(
+                //    Input.Email,
+                //    "بازنشانی کلمه عبور",
+                //    $"لطفاْ کلمه عبور خود را از <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>اینجا</a> تغییر دهید.");
+
+                await _emailSender.SendAsync(DigiMovie.Helpers.EmailTypes.Info,
+                       Input.Email,
+                       "بازنشانی کلمه عبور",
+                       $"لطفاْ کلمه عبور خود را از <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>اینجا</a> تغییر دهید.");
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

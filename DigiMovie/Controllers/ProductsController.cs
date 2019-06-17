@@ -3,6 +3,8 @@ using DigiMovie.Extensions;
 using DigiMovie.Helpers;
 using DigiMovie.Models;
 using DigiMovie.Models.ViewModels.Products;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,33 +15,42 @@ using System.Threading.Tasks;
 
 namespace DigiMovie.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IFileManager _ifileManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public ProductsController(ApplicationDbContext context, IFileManager ifileManager)
+        public ProductsController(ApplicationDbContext context, IFileManager ifileManager, SignInManager<IdentityUser> signInManager)
         {
             _context = context;
             _ifileManager = ifileManager;
+            _signInManager = signInManager;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Products.ToListAsync());
+            if (_signInManager.IsSignedIn(User))
+                return View(await _context.Products.ToListAsync());
+            else
+                return View("ReadOnlyIndex",await _context.Products.ToListAsync());
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
                 return NotFound();
 
-            var product = await _context.Products.Include(m => m.Category).SingleOrDefaultAsync(m=>m.Id == id);
+            var product = await _context.Products.Include(m => m.Category).SingleOrDefaultAsync(m => m.Id == id);
             if (product == null)
                 return NotFound();
 
             return View(product);
         }
+
 
         public IActionResult Create()
         {
@@ -55,6 +66,7 @@ namespace DigiMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Create(CreateEditVM createEditVM)
         {
             if (ModelState.IsValid)
@@ -88,6 +100,7 @@ namespace DigiMovie.Controllers
             return View(createEditVM.Product);
         }
 
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -110,6 +123,7 @@ namespace DigiMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Edit(int id, CreateEditVM createEditVM)
         {
             if (id != createEditVM.Product.Id)
@@ -172,6 +186,7 @@ namespace DigiMovie.Controllers
             return View(createEditVM.Product);
         }
 
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -186,6 +201,7 @@ namespace DigiMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> DeleteDone(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -207,6 +223,7 @@ namespace DigiMovie.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [AllowAnonymous]
         public IEnumerable<Product> Search(string q)
         {
             return _context

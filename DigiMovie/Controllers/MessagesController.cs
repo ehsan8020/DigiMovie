@@ -1,6 +1,8 @@
 ﻿using DigiMovie.Data;
 using DigiMovie.Helpers.Enums;
 using DigiMovie.Models;
+using DigiMovie.Services.Email;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,13 +10,16 @@ using System.Threading.Tasks;
 
 namespace DigiMovie.Controllers
 {
+    [Authorize]
     public class MessagesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ISiteEmailSender _emailSender;
 
-        public MessagesController(ApplicationDbContext context)
+        public MessagesController(ApplicationDbContext context , ISiteEmailSender emailSender)
         {
             _context = context;
+            _emailSender = emailSender;
         }
 
         public async Task<IActionResult> Index()
@@ -35,6 +40,14 @@ namespace DigiMovie.Controllers
                     _context.Add(message);
                     await _context.SaveChangesAsync();
                     TempData["MessageCreateStatus"] = "OK";
+
+                    //TODO: Send Email To Helpdesk
+                    await _emailSender.SendAsync(Helpers.EmailTypes.Info,
+                        "ehsan8020@gmail.com",
+                        "پیامی از صفحه ارتباط با ما",
+                        message.Body,
+                        cc: "ne3mer@gmail.com"
+                        );
                 }
                 catch (Exception e)
                 {
