@@ -28,6 +28,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             _emailSender = emailSender;
         }
 
+        [Display(Name ="نام کاربری")]
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
@@ -40,12 +41,13 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [EmailAddress(ErrorMessage = "لطفاً در قالب {0} وارد نمایید.")]
+            [Display(Name = "پست الکترونیکی")]
             public string Email { get; set; }
 
-            [Phone]
-            [Display(Name = "Phone number")]
+            [Phone(ErrorMessage = "لطفاً در قالب {0} وارد نمایید.")]
+            [Display(Name = "شماره تلفن")]
             public string PhoneNumber { get; set; }
         }
 
@@ -54,7 +56,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"کاربر با شناسه '{_userManager.GetUserId(User)}' یافت نشد.");
             }
 
             var userName = await _userManager.GetUserNameAsync(user);
@@ -84,7 +86,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"کاربر با شناسه '{_userManager.GetUserId(User)}' یافت نشد.");
             }
 
             var email = await _userManager.GetEmailAsync(user);
@@ -94,7 +96,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
                 if (!setEmailResult.Succeeded)
                 {
                     var userId = await _userManager.GetUserIdAsync(user);
-                    throw new InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
+                    throw new InvalidOperationException($"خطای غیر منتظره در هنگام تنظیم پست الکترونیکی کاربر با شناسه '{userId}'.");
                 }
             }
 
@@ -105,12 +107,12 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
                 if (!setPhoneResult.Succeeded)
                 {
                     var userId = await _userManager.GetUserIdAsync(user);
-                    throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
+                    throw new InvalidOperationException($"خطای غیر منتظره در هنگام تنظیم شماره تلفن کاربر با شناسه '{userId}'.");
                 }
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "نمایه شخصی شما بروزرسانی گردید.";
             return RedirectToPage();
         }
 
@@ -124,7 +126,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"کاربر با شناسه '{_userManager.GetUserId(User)}' یافت نشد.");
             }
 
 
@@ -148,7 +150,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
                        "تایید حساب کاربری",
                        $"لطفاً حساب کاربری خود را با کلیک بر روی  <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>این لینک</a> فعال نمایید.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "ایمیل فعالسازی ارسال گردید. لطفاً ایمیل خود را بررسی فرمائید.";
             return RedirectToPage();
         }
     }

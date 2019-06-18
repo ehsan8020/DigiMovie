@@ -51,7 +51,6 @@ namespace DigiMovie.Controllers
             return View(product);
         }
 
-
         public IActionResult Create()
         {
             return View(new CreateEditVM()
@@ -66,7 +65,6 @@ namespace DigiMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public async Task<IActionResult> Create(CreateEditVM createEditVM)
         {
             if (ModelState.IsValid)
@@ -100,7 +98,6 @@ namespace DigiMovie.Controllers
             return View(createEditVM.Product);
         }
 
-
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -123,7 +120,6 @@ namespace DigiMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public async Task<IActionResult> Edit(int id, CreateEditVM createEditVM)
         {
             if (id != createEditVM.Product.Id)
@@ -186,7 +182,6 @@ namespace DigiMovie.Controllers
             return View(createEditVM.Product);
         }
 
-
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -201,7 +196,6 @@ namespace DigiMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public async Task<IActionResult> DeleteDone(int id)
         {
             var product = await _context.Products.FindAsync(id);

@@ -9,6 +9,7 @@ using DigiMovie.Helpers;
 using DigiMovie.Models;
 using DigiMovie.Models.ViewModels.Categories;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,17 +20,22 @@ namespace DigiMovie.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IFileManager _ifileManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public CategoriesController(ApplicationDbContext context, IFileManager ifileManager)
+        public CategoriesController(ApplicationDbContext context, IFileManager ifileManager, SignInManager<IdentityUser> signInManager)
         {
             _context = context;
             _ifileManager = ifileManager;
+            _signInManager = signInManager;
         }
 
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categories.ToListAsync());
+            if (_signInManager.IsSignedIn(User))
+                return View(await _context.Categories.ToListAsync());
+            else
+                return View("ReadOnlyIndex", await _context.Categories.ToListAsync());
         }
 
         [AllowAnonymous]

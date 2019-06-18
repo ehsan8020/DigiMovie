@@ -5,14 +5,39 @@
 
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
+<h5 class="text-right"> کاربر محترم « 
+    <span class="text-success">@User.Identity.Name</span> 
+    » خوش آمدید.</h5>
 <hr />
 
 <div>
     <div class="row">
         <div class="col-md-3">
-            <partial name="_ManageNav" />
+            @*<partial name="_ManageNav" />*@
+            <div class="list-group text-right">
+                <a asp-page="./Index" class="list-group-item list-group-item-action list-group-item-info">
+                    <i class="fa fa-user-tie align-middle fa-2x"></i>
+                    نمایه شخصی
+                </a>
+                <a asp-page="./ChangePassword" class="list-group-item list-group-item-action list-group-item-info">
+                    <i class="fa fa-user-lock align-middle fa-2x"></i>
+                    کلمه عبور
+                </a>
+                <a asp-page="./ExternalLogins" class="list-group-item list-group-item-action list-group-item-info">
+                    <i class="fa fa-exchange-alt align-middle fa-2x"></i>
+                    ورود های خارجی
+                </a>
+                <a asp-page="./TwoFactorAuthentication" class="list-group-item list-group-item-action list-group-item-info">
+                    <i class="fa fa-user-clock align-middle fa-2x"></i>
+                    احراز هویت دو مرحله ای
+                </a>
+                <a asp-page="./PersonalData" class="list-group-item list-group-item-action list-group-item-info">
+                    <i class="fa fa-database align-middle fa-2x"></i>
+                    اطلاعات شخصی
+                </a>
+            </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 text-right bg-light p-3 border border-danger rounded">
             @RenderBody()
         </div>
     </div>

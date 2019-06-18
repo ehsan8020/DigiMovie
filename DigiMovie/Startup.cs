@@ -34,10 +34,6 @@ namespace DigiMovie
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DGMCS")));
@@ -60,30 +56,13 @@ namespace DigiMovie
                 
 
             services.Configure<IdentityOptions>(options => {
-                //options.User.AllowedUserNameCharacters = "";
-
-                //options.Password.RequireDigit = false;
-
-                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(1);
-
                 options.SignIn.RequireConfirmedEmail = true;
             });
 
-            services.ConfigureApplicationCookie(options => {
+            services.ConfigureApplicationCookie(options => {});
 
-                //options.ExpireTimeSpan = TimeSpan.FromDays(7);
-                //options.SlidingExpiration = true;
-                //options.LoginPath = "";
-                //options.LogoutPath = "";
-                //options.AccessDeniedPath = "";
-
-            });
-
-            //DI Services
+            //My DI Services
             services.AddTransient<IFileManager, FileManager>();
-
-            //services.AddTransient<IEmailSender, EmailSender>();
-
             services.AddTransient<ISiteEmailSender, SiteEmailSender>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

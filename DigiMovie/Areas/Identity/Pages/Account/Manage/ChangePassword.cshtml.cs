@@ -33,20 +33,22 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "کلمه عبور قدیم")]
             public string OldPassword { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [StringLength(100, ErrorMessage = "{0} می بایست بین {2} و {1} کاراکتر باشد.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "کلمه عبور جدید")]
             public string NewPassword { get; set; }
 
+
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "تکرار کلمه عبور")]
+            [Compare("NewPassword", ErrorMessage = "کلمه عبور و تکرار کلمه عبور می بایست با هم برابر باشند.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -55,7 +57,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"کاربر با شناسه '{_userManager.GetUserId(User)}' یافت نشد.");
             }
 
             var hasPassword = await _userManager.HasPasswordAsync(user);
@@ -77,7 +79,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"کاربر با شناسه '{_userManager.GetUserId(User)}' یافت نشد.");
             }
 
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
@@ -92,7 +94,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
 
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            StatusMessage = "کلمه عبور شما تغییر یافت.";
 
             return RedirectToPage();
         }

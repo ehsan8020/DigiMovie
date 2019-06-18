@@ -13,11 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Identity\Pages\Account\Manage\ManageNavPages.cs" />
     <Compile Remove="Data\Migrations\20190511140620_AddRelBetCatAndPro.cs" />
     <Compile Remove="Data\Migrations\20190511140620_AddRelBetCatAndPro.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
     <Content Remove="bundleconfig.json" />
   </ItemGroup>
 
@@ -38,6 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Categories\ReadOnlyIndex.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Products\ReadOnlyIndex.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
