@@ -43,6 +43,7 @@ namespace DigiMovie
             //        Configuration.GetConnectionString("DGMCSServer")));
 
             services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
                 .AddErrorDescriber<PersianIdentityErrorDescriber>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

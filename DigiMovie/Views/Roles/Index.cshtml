@@ -1,0 +1,155 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    ViewData["Title"] = "نمایش نقش ها";
+}
+
+@section Head{
+    @*<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />*@
+}
+<br class="my-3" />
+<h2 class="text-right">@ViewData["Title"] </h2>
+<hr />
+<div class="text-right">
+    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#create">
+        <i class="fas fa-plus align-middle"></i>
+        افزودن نقش جدید
+    </button>
+</div>
+
+<hr />
+@if (!Model.Any())
+{
+    <div class="alert alert-warning text-center">هیچ نقشی در سیستم ثبت نشده است.</div>
+}
+else
+{
+    <table class="table table-bordered table-hover table-striped table-info text-center table-sm">
+        <thead class="table-dark text-danger" style="font-size:large">
+            <tr>
+                <td>ردیف</td>
+                <td>نام</td>
+                <td>ویرایش</td>
+                <td>حذف</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var i = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="align-middle">@i</td>
+                    <td class="align-middle">@item.Name</td>
+                    <td class="align-middle">
+                        <a class="nav-link text-warning" data-toggle="modal" href="#edit" data-name="@item.Name">
+                            <i class="fas fa-2x fa-edit"></i>
+                        </a>
+                    </td>
+                    <td class="align-middle">
+                        <a class="nav-link text-danger" data-toggle="modal" href="#delete" data-name="@item.Name">
+                            <i class="fas fa-2x fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+
+}
+<br class="my-3" />
+
+<div class="modal text-right" id="create" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="Create">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">افزودن نقش جدید</h5>
+                    <button type="button" class="close ml-0 text-danger" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">نام نقش : </label>
+                        <input id="name" name="name" required class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-success">افزودن</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal text-right" id="delete" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="Delete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">حذف نقش</h5>
+                    <button type="button" class="close ml-0 text-danger" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    آیا از حذف نقش <mark class="text-danger p-2"></mark> اطمینان دارید ؟
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-danger">حذف</button>
+                </div>
+                <input type="hidden" name="name" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal text-right" id="edit" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="Edit">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ویرایش نقش <mark class="text-danger p-2"></mark></h5>
+                    <button type="button" class="close ml-0 text-danger" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">نام نقش : </label>
+                        <input id="name" name="newName" required class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-warning">ویرایش</button>
+                </div>
+                <input type="hidden" name="name" />
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+
+        $("#edit").on("show.bs.modal", function (e) {
+            var roleName = $(e.relatedTarget).data('name');
+            $(this).find('mark').text(roleName);
+            $(this).find('input[name=name],input[name=newName]').val(roleName);
+        });
+        $("#delete").on("show.bs.modal", function (e) {
+            var roleName = $(e.relatedTarget).data('name');
+            $(this).find('mark').text(roleName);
+            $(this).find('input[name=name]').val(roleName);
+        });
+
+    </script>
+
+}

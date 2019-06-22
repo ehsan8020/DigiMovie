@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item dropdown pl-5">
+        <a class="nav-link dropdown-toggle text-info" data-toggle="dropdown" href="#">
+            <i class="fas fa-tasks align-middle"></i>
+            پنل مدیریتی
+        </a>
+        <div class="dropdown-menu text-right">
+            <a class="dropdown-item text-info" asp-controller="Categories" asp-action="Index">دسته بندی ها</a>
+            <a class="dropdown-item text-info" asp-controller="Products" asp-action="Index">محصولات</a>
+            <a class="dropdown-item text-info" asp-controller="Messages" asp-action="Index">پیام ها</a>
+            <a class="dropdown-item text-info" asp-controller="Roles" asp-action="Index">نقش ها</a>
+        </div>
+    </li>
+    <li><hr class="my-0 bg-light" /></li>
+}
