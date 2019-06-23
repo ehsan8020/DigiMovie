@@ -29,8 +29,9 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
             [DataType(DataType.Password)]
+            [Display(Name = "کلمه عبور")]
             public string Password { get; set; }
         }
 
@@ -41,7 +42,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"کاربر با شناسه '{_userManager.GetUserId(User)}' یافت نشد.");
             }
 
             RequirePassword = await _userManager.HasPasswordAsync(user);
@@ -53,7 +54,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"کاربر با شناسه '{_userManager.GetUserId(User)}' یافت نشد.");
             }
 
             RequirePassword = await _userManager.HasPasswordAsync(user);
@@ -61,7 +62,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             {
                 if (!await _userManager.CheckPasswordAsync(user, Input.Password))
                 {
-                    ModelState.AddModelError(string.Empty, "Password not correct.");
+                    ModelState.AddModelError(string.Empty, "کلمه عبور صحیح نمی باشد.");
                     return Page();
                 }
             }
@@ -70,7 +71,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             var userId = await _userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
             {
-                throw new InvalidOperationException($"Unexpected error occurred deleteing user with ID '{userId}'.");
+                throw new InvalidOperationException($"خطای غیر منتظره در هنگام حذف کاربر با شناسه  '{userId}'.");
             }
 
             await _signInManager.SignOutAsync();

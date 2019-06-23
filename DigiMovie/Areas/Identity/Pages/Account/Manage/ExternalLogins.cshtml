@@ -7,7 +7,7 @@
 @Html.Partial("_StatusMessage", Model.StatusMessage)
 @if (Model.CurrentLogins?.Count > 0)
 {
-    <h4>Registered Logins</h4>
+    <h4>ورودهای ثبت شده</h4>
     <table class="table">
         <tbody>
             @foreach (var login in Model.CurrentLogins)
@@ -17,17 +17,21 @@
                     <td>
                         @if (Model.ShowRemoveButton)
                         {
-                        <form id="remove-login" asp-page-handler="RemoveLogin" method="post">
-                            <div>
-                                <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden" />
-                                <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden" />
-                                <button type="submit" class="btn btn-default" title="Remove this @login.LoginProvider login from your account">Remove</button>
-                            </div>
-                        </form>
+                            <form id="remove-login" asp-page-handler="RemoveLogin" method="post">
+                                <div>
+                                    <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden" />
+                                    <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden" />
+                                    <button type="submit" class="btn btn-danger" title="حذف ورود @login.LoginProvider از حساب کاربری شما">
+                                        <i class="fas fa-trash"></i>
+                                        حذف
+                                    </button>
+
+                                </div>
+                            </form>
                         }
                         else
                         {
-                        @: &nbsp;
+                            @: &nbsp;
                         }
                     </td>
                 </tr>
@@ -37,15 +41,18 @@
 }
 @if (Model.OtherLogins?.Count > 0)
 {
-    <h4>Add another service to log in.</h4>
+    <h4>افزودن سرویس دیگر جهت ورود</h4>
     <hr />
     <form id="link-login-form" asp-page-handler="LinkLogin" method="post" class="form-horizontal">
         <div id="socialLoginList">
             <p>
                 @foreach (var provider in Model.OtherLogins)
                 {
-                    <button id="link-login-button" type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                }
+                    <button id="link-login-button" type="submit" class="btn btn-outline-info" name="provider" value="@provider.Name"
+                            title="ورود از طریق حساب کاربری @provider.DisplayName ">
+                        @provider.DisplayName
+                        </button>
+                    }
             </p>
         </div>
     </form>

@@ -36,7 +36,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"کاربر با شناسه '{_userManager.GetUserId(User)}' یافت نشد.");
             }
 
             CurrentLogins = await _userManager.GetLoginsAsync(user);
@@ -52,18 +52,18 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"کاربر با شناسه '{_userManager.GetUserId(User)}' یافت نشد.");
             }
 
             var result = await _userManager.RemoveLoginAsync(user, loginProvider, providerKey);
             if (!result.Succeeded)
             {
                 var userId = await _userManager.GetUserIdAsync(user);
-                throw new InvalidOperationException($"Unexpected error occurred removing external login for user with ID '{userId}'.");
+                throw new InvalidOperationException($"خطای غیر منتظره در هنگام حذف ورود خارجی کاربر با شناسه '{userId}'.");
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "The external login was removed.";
+            StatusMessage = "ورود خارجی حذف گردید.";
             return RedirectToPage();
         }
 
@@ -83,25 +83,25 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"کاربر با شناسه '{_userManager.GetUserId(User)}' یافت نشد.");
             }
 
             var info = await _signInManager.GetExternalLoginInfoAsync(await _userManager.GetUserIdAsync(user));
             if (info == null)
             {
-                throw new InvalidOperationException($"Unexpected error occurred loading external login info for user with ID '{user.Id}'.");
+                throw new InvalidOperationException($"خطای غیر منتظره در هنگام بارگذاری ورود خارجی کاربر با شناسه '{user.Id}'.");
             }
 
             var result = await _userManager.AddLoginAsync(user, info);
             if (!result.Succeeded)
             {
-                throw new InvalidOperationException($"Unexpected error occurred adding external login for user with ID '{user.Id}'.");
+                throw new InvalidOperationException($"خطای غیر منتظره در هنگام افزودن ورود خارجی کاربر با شناسه '{user.Id}'.");
             }
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            StatusMessage = "The external login was added.";
+            StatusMessage = "ورود خارجی اضافه گردید.";
             return RedirectToPage();
         }
     }

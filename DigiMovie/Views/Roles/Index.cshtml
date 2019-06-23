@@ -1,12 +1,9 @@
 ﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
 
 @{
-    ViewData["Title"] = "نمایش نقش ها";
+    ViewData["Title"] = "مدیریت نقش ها";
 }
 
-@section Head{
-    @*<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />*@
-}
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
 <hr />
@@ -59,7 +56,7 @@ else
 }
 <br class="my-3" />
 
-<div class="modal text-right" id="create" tabindex="-1">
+<div class="modal fade text-right" id="create" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <form asp-action="Create">
@@ -85,7 +82,7 @@ else
     </div>
 </div>
 
-<div class="modal text-right" id="delete" tabindex="-1">
+<div class="modal fade text-right" id="delete" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <form asp-action="Delete">
@@ -109,7 +106,7 @@ else
     </div>
 </div>
 
-<div class="modal text-right" id="edit" tabindex="-1">
+<div class="modal fade text-right" id="edit" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <form asp-action="Edit">
