@@ -16,40 +16,24 @@
 }
 else
 {
-    <table class="table table-bordered table-hover table-striped table-info text-center table-sm">
-        <thead class="table-dark text-danger" style="font-size:large">
-            <tr>
-                <td>ردیف</td>
-                <td>@Html.DisplayNameFor(m => m.ImagePath)</td>
-                <td>@Html.DisplayNameFor(m => m.Title)</td>
-                <td>جزییات</td>
-            </tr>
-        </thead>
-        <tbody>
-            @{ var i = 1;}
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td class="align-middle">@i</td>
-                    <td class="align-middle">
-                        <img src="@item.ImagePath" alt="سایت دیجی مووی - @item.Title" title="سایت دیجی مووی - @item.Title" width="100" />
-                    </td>
-                    <td class="align-middle">@item.Title</td>
-                    <td class="align-middle">
-                        <a asp-action="Details" asp-route-id="@item.Id" class="nav-link text-info">
-                            <i class="fas fa-2x fa-info-circle"></i>
-                        </a>
-                    </td>
-                </tr>
-                i++;
-            }
-        </tbody>
-    </table>
-
+    <div class="row justify-content-start mt-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-sm-6 mb-2">
+                <div class="card bg-dark text-light text-center">
+                    <img class="card-img-top" src="@item.ImagePath">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a asp-controller="Categories" asp-action="RelatingProducts" asp-route-id="@item.Id" asp-route-cat="@item.Title">@item.Title</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 }
 <br class="my-3" />
 @section Scripts{
-
     <script>
         $(document).ready(function () {
             $('#search').on({

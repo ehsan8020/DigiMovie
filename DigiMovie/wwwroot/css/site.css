@@ -28,6 +28,7 @@ body {
         border: 1px solid #aaa;
         margin-top: .1rem;
         display: none;
+        z-index:999;
     }
 
     .search-bar .suggest-item {

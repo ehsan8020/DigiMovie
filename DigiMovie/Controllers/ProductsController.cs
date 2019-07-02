@@ -35,7 +35,7 @@ namespace DigiMovie.Controllers
             if (_signInManager.IsSignedIn(User))
                 return View(await _context.Products.ToListAsync());
             else
-                return View("ReadOnlyIndex",await _context.Products.ToListAsync());
+                return View("ReadOnlyIndex", await _context.Products.Include(m => m.Category).OrderByDescending(m => m.Id).ToListAsync());
         }
 
         [AllowAnonymous]
