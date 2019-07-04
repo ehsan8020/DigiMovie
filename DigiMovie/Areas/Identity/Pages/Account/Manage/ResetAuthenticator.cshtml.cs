@@ -11,13 +11,13 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
 {
     public class ResetAuthenticatorModel : PageModel
     {
-        UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _userManager;
+        private readonly SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _signInManager;
         ILogger<ResetAuthenticatorModel> _logger;
 
         public ResetAuthenticatorModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> userManager,
+            SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> signInManager,
             ILogger<ResetAuthenticatorModel> logger)
         {
             _userManager = userManager;

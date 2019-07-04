@@ -13,10 +13,10 @@ namespace DigiMovie.Areas.Identity.Pages.Account
 {
     public class UnconfirmedUserModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _userManager;
         private readonly ISiteEmailSender _emailSender;
 
-        public UnconfirmedUserModel(UserManager<IdentityUser> userManager, ISiteEmailSender emailSender)
+        public UnconfirmedUserModel(UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> userManager, ISiteEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;

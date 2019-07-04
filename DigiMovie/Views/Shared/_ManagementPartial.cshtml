@@ -1,14 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-
+@inject SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> SignInManager
+@inject UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> UserManager
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item dropdown pl-5">
         <a class="nav-link dropdown-toggle text-info" data-toggle="dropdown" href="#">
             <i class="fas fa-tasks align-middle"></i>
-            پنل مدیریتی
+            پنل مدیریتی 
         </a>
         <div class="dropdown-menu text-right">
             <a class="dropdown-item text-info" asp-controller="Categories" asp-action="Index">
@@ -31,3 +30,5 @@
     </li>
     <li><hr class="my-0 bg-light" /></li>
 }
+
+

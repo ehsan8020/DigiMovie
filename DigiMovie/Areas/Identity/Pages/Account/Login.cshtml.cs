@@ -14,12 +14,12 @@ namespace DigiMovie.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _userManager;
 
 
-        public LoginModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> userManager, SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> signInManager, ILogger<LoginModel> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;

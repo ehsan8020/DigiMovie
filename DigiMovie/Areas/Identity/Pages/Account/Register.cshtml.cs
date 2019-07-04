@@ -16,16 +16,16 @@ namespace DigiMovie.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<Data.ApplicationUser> _signInManager;
+        private readonly UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         //private readonly IEmailSender _emailSender;
 
         private readonly ISiteEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> userManager,
+            SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             ISiteEmailSender emailSender)
         {
@@ -57,6 +57,26 @@ namespace DigiMovie.Areas.Identity.Pages.Account
             [Display(Name = "تکرار کلمه عبور")]
             [Compare("Password", ErrorMessage = "کلمه عبور و تکرار کلمه عبور می بایست با هم برابر باشند.")]
             public string ConfirmPassword { get; set; }
+
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [StringLength(100, ErrorMessage = "{0} می بایست حداکثر {1} کاراکتر باشد.")]
+            [Display(Name = "نام")]
+            public string FirstName { get; set; }
+
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [StringLength(100, ErrorMessage = "{0} می بایست حداکثر {1} کاراکتر باشد.")]
+            [Display(Name = "نام خانوادگی")]
+            public string LastName { get; set; }
+
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [Display(Name = "تاریخ تولد")]
+            [DataType(DataType.Date)]
+            public DateTime BirthDate { get; set; }
+
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [Display(Name = "جنسیت")]
+            public bool IsMale { get; set; }
+
         }
 
         public void OnGet()
@@ -69,7 +89,14 @@ namespace DigiMovie.Areas.Identity.Pages.Account
             //returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new DigiMovie.Areas.Identity.Data.ApplicationUser {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    FirstName = Input.FirstName ,
+                    LastName = Input.LastName , 
+                    BirthDate = Input.BirthDate,
+                    IsMale = Input.IsMale
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

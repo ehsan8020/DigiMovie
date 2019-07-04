@@ -12,9 +12,9 @@ namespace DigiMovie.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ConfirmEmailModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _userManager;
 
-        public ConfirmEmailModel(UserManager<IdentityUser> userManager)
+        public ConfirmEmailModel(UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> userManager)
         {
             _userManager = userManager;
         }

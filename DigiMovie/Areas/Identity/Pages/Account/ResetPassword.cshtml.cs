@@ -13,9 +13,9 @@ namespace DigiMovie.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ResetPasswordModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _userManager;
 
-        public ResetPasswordModel(UserManager<IdentityUser> userManager)
+        public ResetPasswordModel(UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> userManager)
         {
             _userManager = userManager;
         }

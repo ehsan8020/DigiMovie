@@ -20,9 +20,9 @@ namespace DigiMovie.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IFileManager _ifileManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _signInManager;
 
-        public CategoriesController(ApplicationDbContext context, IFileManager ifileManager, SignInManager<IdentityUser> signInManager)
+        public CategoriesController(ApplicationDbContext context, IFileManager ifileManager, SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> signInManager)
         {
             _context = context;
             _ifileManager = ifileManager;

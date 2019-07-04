@@ -14,13 +14,13 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _userManager;
+        private readonly SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _signInManager;
         private readonly ISiteEmailSender _emailSender;
 
         public IndexModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> userManager,
+            SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> signInManager,
             ISiteEmailSender emailSender)
         {
             _userManager = userManager;
@@ -49,6 +49,27 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             [Phone(ErrorMessage = "لطفاً در قالب {0} وارد نمایید.")]
             [Display(Name = "شماره تلفن")]
             public string PhoneNumber { get; set; }
+
+
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [StringLength(100, ErrorMessage = "{0} می بایست حداکثر {1} کاراکتر باشد.")]
+            [Display(Name = "نام")]
+            public string FirstName { get; set; }
+
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [StringLength(100, ErrorMessage = "{0} می بایست حداکثر {1} کاراکتر باشد.")]
+            [Display(Name = "نام خانوادگی")]
+            public string LastName { get; set; }
+
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [Display(Name = "تاریخ تولد")]
+            [DataType(DataType.Date)]
+            public DateTime BirthDate { get; set; }
+
+            [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
+            [Display(Name = "جنسیت")]
+            public bool IsMale { get; set; }
+
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -68,7 +89,11 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 Email = email,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                FirstName = user.FirstName ,
+                LastName = user.LastName ,
+                BirthDate = user.BirthDate ,
+                IsMale = user.IsMale
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -110,6 +135,31 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
                     throw new InvalidOperationException($"خطای غیر منتظره در هنگام تنظیم شماره تلفن کاربر با شناسه '{userId}'.");
                 }
             }
+
+
+            if (user.FirstName != Input.FirstName)
+            {
+                user.FirstName = Input.FirstName;
+            }
+
+            if (user.LastName != Input.LastName)
+            {
+                user.LastName = Input.LastName;
+            }
+
+            if (user.BirthDate != Input.BirthDate)
+            {
+                user.BirthDate = Input.BirthDate;
+            }
+
+            if (user.IsMale != Input.IsMale)
+            {
+                user.IsMale = Input.IsMale;
+            }
+
+
+            await _userManager.UpdateAsync(user);
+
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "نمایه شخصی شما بروزرسانی گردید.";

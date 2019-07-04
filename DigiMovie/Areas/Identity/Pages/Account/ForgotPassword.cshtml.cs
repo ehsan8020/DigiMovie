@@ -15,10 +15,10 @@ namespace DigiMovie.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ForgotPasswordModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _userManager;
         private readonly ISiteEmailSender _emailSender;
 
-        public ForgotPasswordModel(UserManager<IdentityUser> userManager, ISiteEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> userManager, ISiteEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;

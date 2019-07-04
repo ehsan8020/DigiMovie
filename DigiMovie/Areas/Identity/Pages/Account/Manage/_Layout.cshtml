@@ -2,12 +2,26 @@
     Layout = "/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "پنل کاربری";
 }
+@inject UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> UserManager
+@{var user = await UserManager.GetUserAsync(User);}
 
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
-<h5 class="text-right"> کاربر محترم « 
-    <span class="text-info">@User.Identity.Name</span> 
-    » خوش آمدید.</h5>
+<h5 class="text-right">
+    کاربر محترم «
+    @*<span class="text-info">@User.Identity.Name</span>*@
+
+    @if (user.IsMale)
+    {
+        <text>جناب آقای</text>
+    }
+    else
+    {
+        <text>سرکار خانم</text>
+    }
+    @user.FirstName @user.LastName
+    » خوش آمدید.
+</h5>
 <hr />
 
 <div>

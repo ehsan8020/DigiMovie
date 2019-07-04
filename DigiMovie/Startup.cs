@@ -42,7 +42,8 @@ namespace DigiMovie
             //    options.UseSqlServer(
             //        Configuration.GetConnectionString("DGMCSServer")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services                
+                .AddDefaultIdentity<DigiMovie.Areas.Identity.Data.ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddErrorDescriber<PersianIdentityErrorDescriber>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
