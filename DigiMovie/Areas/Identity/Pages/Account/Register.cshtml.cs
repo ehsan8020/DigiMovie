@@ -95,7 +95,8 @@ namespace DigiMovie.Areas.Identity.Pages.Account
                     FirstName = Input.FirstName ,
                     LastName = Input.LastName , 
                     BirthDate = Input.BirthDate,
-                    IsMale = Input.IsMale
+                    IsMale = Input.IsMale,
+                    RegisteredDateTime = DateTime.Now
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

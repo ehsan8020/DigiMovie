@@ -28,7 +28,7 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             _emailSender = emailSender;
         }
 
-        [Display(Name ="نام کاربری")]
+        [Display(Name = "نام کاربری")]
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
@@ -70,6 +70,8 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             [Display(Name = "جنسیت")]
             public bool IsMale { get; set; }
 
+            [Display(Name = "زمان عضویت")]
+            public DateTime RegisteredDateTime { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -90,10 +92,11 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             {
                 Email = email,
                 PhoneNumber = phoneNumber,
-                FirstName = user.FirstName ,
-                LastName = user.LastName ,
-                BirthDate = user.BirthDate ,
-                IsMale = user.IsMale
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                BirthDate = user.BirthDate,
+                IsMale = user.IsMale,
+                RegisteredDateTime = user.RegisteredDateTime
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -136,30 +139,19 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-
             if (user.FirstName != Input.FirstName)
-            {
                 user.FirstName = Input.FirstName;
-            }
 
             if (user.LastName != Input.LastName)
-            {
                 user.LastName = Input.LastName;
-            }
 
             if (user.BirthDate != Input.BirthDate)
-            {
                 user.BirthDate = Input.BirthDate;
-            }
 
             if (user.IsMale != Input.IsMale)
-            {
                 user.IsMale = Input.IsMale;
-            }
-
 
             await _userManager.UpdateAsync(user);
-
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "نمایه شخصی شما بروزرسانی گردید.";

@@ -37,9 +37,15 @@
                     <span asp-validation-for="Input.IsMale" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Username"></label>
-                <input asp-for="Username" class="form-control text-left" disabled />
+            <div class="form-group form-row">
+                <div class="col-md">
+                    <label asp-for="Username"></label>
+                    <input asp-for="Username" class="form-control text-left" disabled />
+                </div>
+                <div class="col-md">
+                    <label asp-for="Input.RegisteredDateTime"></label>
+                    <input value="@Model.Input.RegisteredDateTime.ToPersianDateTimeString()" class="form-control" disabled />
+                </div>
             </div>
             <div class="form-group form-row">
                 <div class="col-md">

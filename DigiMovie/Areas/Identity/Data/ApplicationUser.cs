@@ -24,5 +24,8 @@ namespace DigiMovie.Areas.Identity.Data
 
         [PersonalData]
         public bool IsMale { get; set; }
+
+        [PersonalData]
+        public DateTime RegisteredDateTime { get; set; }
     }
 }

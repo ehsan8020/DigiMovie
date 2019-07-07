@@ -121,7 +121,8 @@ namespace DigiMovie.Areas.Identity.Pages.Account
                     FirstName = string.Empty,
                     LastName = string.Empty,
                     BirthDate = default(DateTime),
-                    IsMale=default(bool)
+                    IsMale=default(bool),
+                    RegisteredDateTime = DateTime.Now
                 };
 
                 var result = await _userManager.CreateAsync(user);
