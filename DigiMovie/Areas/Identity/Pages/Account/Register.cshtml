@@ -3,75 +3,71 @@
 @{
     ViewData["Title"] = "ثبت نام ";
 }
-
 <br class="my-3" />
-<h2 class="text-right">@ViewData["Title"] </h2>
-<hr />
-
 <div class="row justify-content-center">
-    <div class="col-md-4">
-        <form method="post" class="text-right">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.FirstName"></label>
-                <input asp-for="Input.FirstName" class="form-control" />
-                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+    <div class="col-md-6">
+        <div class="card border-primary">
+            <div class="card-header bg-primary">
+                <h4 class="text-right">ثبت نام</h4>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.LastName"></label>
-                <input asp-for="Input.LastName" class="form-control" />
-                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            <div class="card-body">
+                <form method="post" class="text-right">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group form-row">
+                        <div class="col-md">
+                            <label asp-for="Input.FirstName"></label>
+                            <input asp-for="Input.FirstName" class="form-control" />
+                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md">
+                            <label asp-for="Input.LastName"></label>
+                            <input asp-for="Input.LastName" class="form-control" />
+                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col-md">
+                            <label asp-for="Input.BirthDate"></label>
+                            <input asp-for="Input.BirthDate" class="form-control text-left" />
+                            <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
+                        </div>
+                        <div class="col-md">
+                            <label asp-for="Input.IsMale"></label>
+                            <select asp-for="Input.IsMale" class="form-control">
+                                <option value="true">مرد</option>
+                                <option value="false">زن</option>
+                            </select>
+                            <span asp-validation-for="Input.IsMale" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col-md">
+                            <label asp-for="Input.Email"></label>
+                            <input asp-for="Input.Email" class="form-control text-left" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col-md">
+                            <label asp-for="Input.Password"></label>
+                            <input asp-for="Input.Password" class="form-control text-left" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="col-md">
+                            <label asp-for="Input.ConfirmPassword"></label>
+                            <input asp-for="Input.ConfirmPassword" class="form-control text-left" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-success btn-block">
+                            <i class="fas fa-user-plus align-middle"></i>
+                            ثبت نام
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.BirthDate"></label>
-                <input asp-for="Input.BirthDate" class="form-control text-left" />
-                <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                @Html.DisplayNameFor(m=>m.Input.IsMale)
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" asp-for="Input.IsMale" value="true">
-                        مرد
-                    </label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" asp-for="Input.IsMale" value="false">
-                        زن
-                    </label>
-                </div>
-
-
-                <span asp-validation-for="Input.IsMale" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control text-left" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-
-
-
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control text-left" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control text-left" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-success btn-block">
-                    <i class="fas fa-user-plus align-middle"></i>
-                    ثبت نام
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 

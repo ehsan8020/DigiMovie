@@ -7,45 +7,42 @@
 <h4>@ViewData["Title"]</h4>
 @Html.Partial("_StatusMessage", Model.StatusMessage)
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <form id="profile-form" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.FirstName"></label>
-                <input asp-for="Input.FirstName" class="form-control" />
-                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            <div class="form-group form-row">
+                <div class="col-md">
+                    <label asp-for="Input.FirstName"></label>
+                    <input asp-for="Input.FirstName" class="form-control" />
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-md">
+                    <label asp-for="Input.LastName"></label>
+                    <input asp-for="Input.LastName" class="form-control" />
+                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-row">
+                <div class="col-md">
+                    <label asp-for="Input.BirthDate"></label>
+                    <input asp-for="Input.BirthDate" class="form-control text-left" />
+                    <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
+                </div>
+                <div class="col-md">
+                    <label asp-for="Input.IsMale"></label>
+                    <select asp-for="Input.IsMale" class="form-control">
+                        <option value="true">مرد</option>
+                        <option value="false">زن</option>
+                    </select>
+                    <span asp-validation-for="Input.IsMale" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Input.LastName"></label>
-                <input asp-for="Input.LastName" class="form-control" />
-                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control text-left" disabled />
             </div>
-            <div class="form-group">
-                <label asp-for="Input.BirthDate"></label>
-                <input asp-for="Input.BirthDate" class="form-control text-left" />
-                <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                @Html.DisplayNameFor(m => m.Input.IsMale)
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" asp-for="Input.IsMale" value="true">
-                        مرد
-                    </label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" asp-for="Input.IsMale" value="false">
-                        زن
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Username"></label>
-                    <input asp-for="Username" class="form-control text-left" disabled />
-                </div>
-                <div class="form-group">
+            <div class="form-group form-row">
+                <div class="col-md">
                     <label asp-for="Input.Email"></label>
                     @if (Model.IsEmailConfirmed)
                     {
@@ -61,15 +58,16 @@
                     }
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="col-md">
                     <label asp-for="Input.PhoneNumber"></label>
                     <input asp-for="Input.PhoneNumber" class="form-control text-left" />
                     <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                 </div>
-                <button type="submit" class="btn btn-success">
-                    <i class="fas fa-save align-middle"></i>
-                    ثبت تغییرات
-                </button>
+            </div>
+            <button type="submit" class="btn btn-block btn-success">
+                <i class="fas fa-save align-middle"></i>
+                ثبت تغییرات
+            </button>
         </form>
     </div>
 </div>

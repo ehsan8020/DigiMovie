@@ -8,19 +8,27 @@
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
 <h5 class="text-right">
-    کاربر محترم «
-    @*<span class="text-info">@User.Identity.Name</span>*@
-
-    @if (user.IsMale)
+    @if (user.PasswordHash != null)
     {
-        <text>جناب آقای</text>
+        //Local Account
+        @if (user.IsMale)
+        {
+            <text> آقای&nbsp;</text>
+        }
+        else
+        {
+            <text> خانم&nbsp;</text>
+        }
+        <text>@user.FirstName </text>
+        <text>@user.LastName </text>
     }
     else
     {
-        <text>سرکار خانم</text>
+        //External Login Account
+        <text> کاربر محترم</text>
     }
-    @user.FirstName @user.LastName
-    » خوش آمدید.
+    <a asp-page="./Index" class=" badge badge-dark p-2">@User.Identity.Name</a>
+    خوش آمدید.
 </h5>
 <hr />
 
