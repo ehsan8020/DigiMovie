@@ -122,7 +122,8 @@ namespace DigiMovie.Areas.Identity.Pages.Account
                     LastName = string.Empty,
                     BirthDate = default(DateTime),
                     IsMale=default(bool),
-                    RegisteredDateTime = DateTime.Now
+                    RegisteredDateTime = DateTime.Now,
+                    ProfileImagePath = "/UserUploads/UsersProfile/default.png"
                 };
 
                 var result = await _userManager.CreateAsync(user);
