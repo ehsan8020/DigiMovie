@@ -27,5 +27,8 @@ namespace DigiMovie.Areas.Identity.Data
 
         [PersonalData]
         public DateTime RegisteredDateTime { get; set; }
+
+        [StringLength(150)]
+        public string ProfileImagePath { get; set; }
     }
 }

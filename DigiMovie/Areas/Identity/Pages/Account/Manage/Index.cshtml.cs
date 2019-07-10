@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using DigiMovie.Extensions;
+using DigiMovie.Helpers;
 using DigiMovie.Services.Email;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -17,15 +21,18 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _userManager;
         private readonly SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _signInManager;
         private readonly ISiteEmailSender _emailSender;
+        private readonly IFileManager _ifileManager;
 
         public IndexModel(
             UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> userManager,
             SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> signInManager,
-            ISiteEmailSender emailSender)
+            ISiteEmailSender emailSender,
+            IFileManager ifileManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _ifileManager = ifileManager;
         }
 
         [Display(Name = "نام کاربری")]
@@ -72,6 +79,9 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
 
             [Display(Name = "زمان عضویت")]
             public DateTime RegisteredDateTime { get; set; }
+
+            [Display(Name = "تصویر نمایه")]
+            public string ProfileImagePath { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -96,7 +106,8 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
                 LastName = user.LastName,
                 BirthDate = user.BirthDate,
                 IsMale = user.IsMale,
-                RegisteredDateTime = user.RegisteredDateTime
+                RegisteredDateTime = user.RegisteredDateTime,
+                ProfileImagePath = user.ProfileImagePath
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -193,6 +204,77 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
                        $"لطفاً حساب کاربری خود را با کلیک بر روی  <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>این لینک</a> فعال نمایید.");
 
             StatusMessage = "ایمیل فعالسازی ارسال گردید. لطفاً ایمیل خود را بررسی فرمائید.";
+            return RedirectToPage();
+        }
+
+
+        public async Task<IActionResult> OnPostSetProfileImageAsync(IFormFile image)
+        {
+            //This action is for users that have/have not profile image
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+                return NotFound($"کاربر با شناسه '{_userManager.GetUserId(User)}' یافت نشد.");
+
+            try
+            {
+                //Check Validation Of Image
+                image.Check(1048576, new string[] { "image/jpg", "image/jpeg", "image/png", "image/gif" });
+
+                //Generate Name & Path Of File
+                var imageName = DateTime.Now.ToString("yyyyMMddhhmmssffff") + Path.GetExtension(image.FileName);
+                var imagePath = Path.Combine("UserUploads/UsersProfile", imageName);
+
+                //Store File In File System
+                _ifileManager.SaveFile(image, imagePath);
+
+                if (user.ProfileImagePath.EndsWith("default.png"))
+                {
+                    //user has not profile image
+
+                    //Add Image Path To Model
+                    user.ProfileImagePath = "/UserUploads/UsersProfile/" + imageName;
+                    await _userManager.UpdateAsync(user);
+                }
+                else
+                {
+                    //user has profile image
+
+                    //Delete Old Image
+                    _ifileManager.DeleteFile(user.ProfileImagePath);
+
+                    //Update Record To Database
+                    user.ProfileImagePath = "/UserUploads/UsersProfile/" + imageName;
+                    await _userManager.UpdateAsync(user);
+                }
+                StatusMessage = "عکس نمایه شما تنظیم گردید.";
+            }
+            catch (Exception e)
+            {
+
+            }
+            return RedirectToPage();
+        }
+        public async Task<IActionResult> OnPostDeleteProfileImageAsync()
+        {
+            //This action is only for users that have profile image
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+                return NotFound($"کاربر با شناسه '{_userManager.GetUserId(User)}' یافت نشد.");
+
+            //Server-Side check to ensure user has profile image
+            if (user.ProfileImagePath.EndsWith("default.png"))
+                return Page();
+
+            //Delete Image
+            _ifileManager.DeleteFile(user.ProfileImagePath);
+
+            //Update Record
+            user.ProfileImagePath = "/UserUploads/UsersProfile/default.png";
+            await _userManager.UpdateAsync(user);
+
+            StatusMessage = "عکس نمایه شما حذف گردید.";
             return RedirectToPage();
         }
     }

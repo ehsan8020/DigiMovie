@@ -6,13 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\UserUploads\NewFolder\**" />
-    <Content Remove="wwwroot\UserUploads\NewFolder\**" />
-    <EmbeddedResource Remove="wwwroot\UserUploads\NewFolder\**" />
-    <None Remove="wwwroot\UserUploads\NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Areas\Identity\Pages\Account\Manage\ManageNavPages.cs" />
     <Compile Remove="Data\Migrations\20190511140620_AddRelBetCatAndPro.cs" />
     <Compile Remove="Data\Migrations\20190511140620_AddRelBetCatAndPro.Designer.cs" />

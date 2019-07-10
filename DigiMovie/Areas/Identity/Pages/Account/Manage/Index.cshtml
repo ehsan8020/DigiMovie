@@ -76,8 +76,132 @@
             </button>
         </form>
     </div>
+    <div class="col-md-4">
+        <div class="card border border-info">
+            <div class="card-header bg-info">
+                <h6>تصویر نمایه</h6>
+            </div>
+            <img class="card-img-top" src="@Model.Input.ProfileImagePath" alt="دیجی مووی - @Model.Input.FirstName @Model.Input.LastName"
+                 title="دیجی مووی - @Model.Input.FirstName @Model.Input.LastName" />
+            <div class="card-body">
+                @if (Model.Input.ProfileImagePath.EndsWith("default.png"))
+                {
+                    //User has not profile image
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#set">
+                        <i class="fas fa-plus align-middle"></i>
+                        افزودن
+                    </button>
+                }
+                else
+                {
+                    //User has profile image
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#set">
+                        <i class="fas fa-edit align-middle"></i>
+                        ویرایش
+                    </button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
+                        <i class="fas fa-trash align-middle"></i>
+                        حذف
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade text-right" id="set" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form enctype="multipart/form-data" method="post" asp-page-handler="SetProfileImage">
+                <div class="modal-header">
+                    <h5 class="modal-title text-success" id="exampleModalLabel">تنظیم @Html.DisplayNameFor(m => m.Input.ProfileImagePath)</h5>
+                    <button type="button" class="close ml-0 text-danger" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+
+                        <label for="image" class="form-label">@Html.DisplayNameFor(m => m.Input.ProfileImagePath) : </label>
+                        <input type="file" class="form-control-file" name="image" id="image" required />
+                        <span id="imageValidationMessage" class="text-danger d-none"></span>
+                        <ul class="text-muted text-right mt-2">
+                            <li>@Html.DisplayNameFor(m => m.Input.ProfileImagePath) می بایست حداکثر 1 مگابایت باشد.</li>
+                            <li>@Html.DisplayNameFor(m => m.Input.ProfileImagePath) می بایست یکی از از فرمت های jpg یا gif یا png باشد.</li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-success">تنظیم</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade text-right" id="delete" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="DeleteProfileImage">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="exampleModalLabel">حذف @Html.DisplayNameFor(m => m.Input.ProfileImagePath)</h5>
+                    <button type="button" class="close ml-0 text-danger" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        آیا از حذف @Html.DisplayNameFor(m => m.Input.ProfileImagePath) خود اطمینان دارید؟
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-danger">حذف</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        //Client Side Validation For User Profile Image
+        $('#set').on('submit', 'form', function (e) {
+            var image = $('input#image').prop('files')[0];
+            if (image) {
+                if (image.size < 1048576) {
+                    if (image.type == 'image/png' || image.type == 'image/gif' || image.type == 'image/jpeg' || image.type == 'image/jpg') {
+                        return true;
+                    }
+                    else {
+                        $('#imageValidationMessage')
+                            .removeClass('d-none')
+                            .text('عکس انتخاب شده در قالب مجاز نمی باشد.');
+                        e.preventDefault();
+                    }
+                }
+                else {
+                    $('#imageValidationMessage')
+                        .removeClass('d-none')
+                        .text('عکس انتخاب شده بزرگتر از 1 مگابایت می باشد.');
+                    e.preventDefault();
+                }
+            }
+            else {
+                $('#imageValidationMessage')
+                    .removeClass('d-none')
+                    .text('عکسی انتخاب نشده است.');
+                e.preventDefault();
+            }
+        });
+    </script>
+
+
+
 }

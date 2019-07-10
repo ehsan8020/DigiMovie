@@ -76,7 +76,6 @@ namespace DigiMovie.Areas.Identity.Pages.Account
             [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
             [Display(Name = "جنسیت")]
             public bool IsMale { get; set; }
-
         }
 
         public void OnGet()
@@ -96,8 +95,9 @@ namespace DigiMovie.Areas.Identity.Pages.Account
                     LastName = Input.LastName , 
                     BirthDate = Input.BirthDate,
                     IsMale = Input.IsMale,
-                    RegisteredDateTime = DateTime.Now
-                };
+                    RegisteredDateTime = DateTime.Now ,
+                    ProfileImagePath =  "/UserUploads/UsersProfile/default.png"
+            };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
