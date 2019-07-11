@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "نمایه شخصی";
 }
+@section Head{
+    <link href="~/lib/md-persian-dp/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
+}
 
 <h4>@ViewData["Title"]</h4>
 @Html.Partial("_StatusMessage", Model.StatusMessage)
@@ -23,10 +26,22 @@
                 </div>
             </div>
             <div class="form-group form-row">
-                <div class="col-md">
+                <div class="col-md" dir="ltr">
+                    @*<label asp-for="Input.BirthDate"></label>
+                        <input asp-for="Input.BirthDate" class="form-control text-left" />
+                        <span asp-validation-for="Input.BirthDate" class="text-danger"></span>*@
+
                     <label asp-for="Input.BirthDate"></label>
-                    <input asp-for="Input.BirthDate" class="form-control text-left" />
-                    <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text cursor-pointer" id="dtPickerTrigger" title="انتخاب">
+                                <i class="far fa-calendar-alt align-middle"></i>
+                            </span>
+                        </div>
+                        <input type="text" id="dtPicker" class="form-control">
+                        <input asp-for="Input.BirthDate" type="text" style="width:0;height:0" class="border-0 p-0" />
+                        <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="col-md">
                     <label asp-for="Input.IsMale"></label>
@@ -203,5 +218,14 @@
     </script>
 
 
+    <script src="~/lib/md-persian-dp/jquery.md.bootstrap.datetimepicker.js"></script>
+    <script>
+
+        $('#dtPickerTrigger').MdPersianDateTimePicker({
+            targetTextSelector: '#dtPicker',
+            targetDateSelector: '#Input_BirthDate'
+        });
+
+    </script>
 
 }

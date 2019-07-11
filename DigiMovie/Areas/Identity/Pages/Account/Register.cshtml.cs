@@ -70,7 +70,6 @@ namespace DigiMovie.Areas.Identity.Pages.Account
 
             [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]
             [Display(Name = "تاریخ تولد")]
-            [DataType(DataType.Date)]
             public DateTime BirthDate { get; set; }
 
             [Required(ErrorMessage = "لطفاً {0} را وارد نمایید.")]

@@ -5,6 +5,10 @@
 @inject UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> UserManager
 @{var user = await UserManager.GetUserAsync(User);}
 
+@section Head {
+    @RenderSection("Head", required: false)
+}
+
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
 <h5 class="text-right">
