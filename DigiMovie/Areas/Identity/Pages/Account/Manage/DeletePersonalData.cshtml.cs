@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using DigiMovie.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,15 +14,18 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _userManager;
         private readonly SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _signInManager;
         private readonly ILogger<DeletePersonalDataModel> _logger;
+        private readonly IFileManager _ifileManager;
 
         public DeletePersonalDataModel(
             UserManager<DigiMovie.Areas.Identity.Data.ApplicationUser> userManager,
             SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> signInManager,
-            ILogger<DeletePersonalDataModel> logger)
+            ILogger<DeletePersonalDataModel> logger,
+            IFileManager ifileManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _ifileManager = ifileManager;
         }
 
         [BindProperty]
@@ -73,6 +77,10 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
             {
                 throw new InvalidOperationException($"خطای غیر منتظره در هنگام حذف کاربر با شناسه  '{userId}'.");
             }
+
+            //Delete User's Profile Image
+            if (!user.ProfileImagePath.EndsWith("default.png"))
+                _ifileManager.DeleteFile(user.ProfileImagePath);
 
             await _signInManager.SignOutAsync();
 
