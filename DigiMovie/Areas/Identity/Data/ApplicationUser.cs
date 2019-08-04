@@ -30,5 +30,8 @@ namespace DigiMovie.Areas.Identity.Data
 
         [StringLength(150)]
         public string ProfileImagePath { get; set; }
+
+        //LastVisited
+        //IsActive
     }
 }

@@ -78,6 +78,8 @@ namespace DigiMovie.Areas.Identity.Pages.Account.Manage
                 throw new InvalidOperationException($"خطای غیر منتظره در هنگام حذف کاربر با شناسه  '{userId}'.");
             }
 
+            //TODO: Delete Any Related Records in DB (if exists)
+
             //Delete User's Profile Image
             if (!user.ProfileImagePath.EndsWith("default.png"))
                 _ifileManager.DeleteFile(user.ProfileImagePath);

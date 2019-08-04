@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Identity\Services\**" />
+    <Content Remove="Areas\Identity\Services\**" />
+    <EmbeddedResource Remove="Areas\Identity\Services\**" />
+    <None Remove="Areas\Identity\Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Areas\Identity\Pages\Account\Manage\ManageNavPages.cs" />
     <Compile Remove="Data\Migrations\20190511140620_AddRelBetCatAndPro.cs" />
     <Compile Remove="Data\Migrations\20190511140620_AddRelBetCatAndPro.Designer.cs" />
@@ -28,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Identity\Services\" />
     <Folder Include="wwwroot\UserUploads\Products\" />
   </ItemGroup>
 

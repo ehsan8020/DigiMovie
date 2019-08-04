@@ -3,15 +3,12 @@
 @{
     ViewData["Title"] = "نمایش کاربران";
 }
-
-
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
 <hr />
 <div class="search-bar">
     <input type="text" id="search" placeholder="جستجوی کاربران (قسمتی از نام، نام خانوادگی یا نام کاربری را وارد نمایید)" class="form-control" /><div id="suggest"></div>
 </div>
-
 <hr />
 @if (!Model.Any())
 {
@@ -31,6 +28,7 @@ else
                 <td>نام خانوادگی</td>
                 <td>جزییات</td>
                 <td>حذف</td>
+                <td>مدیریت نقش ها</td>
             </tr>
         </thead>
         <tbody>
@@ -58,12 +56,23 @@ else
                             <i class="fas fa-2x fa-trash"></i>
                         </a>
                     </td>
+                    <td class="align-middle">
+                        @if (item.PasswordHash != null)
+                        {
+                            <a class="nav-link text-success" asp-controller="UserRoles" asp-route-username="@item.UserName" title="مدیریت نقش های این کاربر">
+                                <i class="fas fa-2x fa-user-circle align-middle"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <i class="fas fa-2x fa-user-circle align-middle"></i>
+                        }
+                    </td>
                 </tr>
                 i++;
             }
         </tbody>
     </table>
-
 
     <div class="modal fade text-right" id="delete" tabindex="-1">
         <div class="modal-dialog">

@@ -60,7 +60,9 @@ namespace DigiMovie.Controllers
                 //Delete User's Profile Image
                 if (!user.ProfileImagePath.EndsWith("default.png"))
                     _ifileManager.DeleteFile(user.ProfileImagePath);
-                
+
+                //TODO: Delete Any Related Records in DB (if exists)
+
                 //Check if current user is deleted user then signout him/her
                 if (User.Identity.Name == user.UserName)
                     await _signInManager.SignOutAsync();

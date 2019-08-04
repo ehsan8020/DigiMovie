@@ -42,7 +42,7 @@ namespace DigiMovie
             //    options.UseSqlServer(
             //        Configuration.GetConnectionString("DGMCSServer")));
 
-            services                
+            services
                 .AddDefaultIdentity<DigiMovie.Areas.Identity.Data.ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddErrorDescriber<PersianIdentityErrorDescriber>()
@@ -55,13 +55,22 @@ namespace DigiMovie
                     googleConfig.ClientId = "412203041073-ua084neeengg1frs7oslgrc76irmaibk.apps.googleusercontent.com";
                     googleConfig.ClientSecret = "SHOVDbqacELs8k9DAH-yICDS";
                 });
-                
 
-            services.Configure<IdentityOptions>(options => {
+
+            services.Configure<IdentityOptions>(options =>
+            {
                 options.SignIn.RequireConfirmedEmail = true;
             });
 
-            services.ConfigureApplicationCookie(options => {});
+            services.ConfigureApplicationCookie(options =>
+            {
+
+            });
+
+            services.Configure<SecurityStampValidatorOptions>(options =>
+            {
+
+            });
 
             //My DI Services
             services.AddTransient<IFileManager, FileManager>();
