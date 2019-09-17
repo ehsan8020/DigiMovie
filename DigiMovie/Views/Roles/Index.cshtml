@@ -6,13 +6,13 @@
 
 <br class="my-3" />
 <h2 class="text-right">@ViewData["Title"] </h2>
-<hr />
+@*<hr />
 <div class="text-right">
     <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#create">
         <i class="fas fa-plus align-middle"></i>
         افزودن نقش جدید
     </button>
-</div>
+</div>*@
 
 <hr />
 @if (!Model.Any())
@@ -26,8 +26,8 @@ else
             <tr>
                 <td>ردیف</td>
                 <td>نام</td>
-                <td>ویرایش</td>
-                <td>حذف</td>
+                @*<td>ویرایش</td>
+                <td>حذف</td>*@
                 <td>مدیریت کاربران</td>
             </tr>
         </thead>
@@ -38,7 +38,7 @@ else
                 <tr>
                     <td class="align-middle">@i</td>
                     <td class="align-middle">@item.Name</td>
-                    <td class="align-middle">
+                    @*<td class="align-middle">
                         <a class="nav-link text-warning" data-toggle="modal" href="#edit" data-name="@item.Name">
                             <i class="fas fa-2x fa-edit"></i>
                         </a>
@@ -47,7 +47,7 @@ else
                         <a class="nav-link text-danger" data-toggle="modal" href="#delete" data-name="@item.Name">
                             <i class="fas fa-2x fa-trash"></i>
                         </a>
-                    </td>
+                    </td>*@
                     <td class="align-middle">
                         <a class="nav-link text-info" asp-controller="UserRoles" asp-route-rolename="@item.Name" title="مدیریت کاربران این نقش">
                             <i class="far fa-2x fa-user-circle align-middle"></i>
@@ -62,7 +62,7 @@ else
 }
 <br class="my-3" />
 
-<div class="modal fade text-right" id="create" tabindex="-1">
+@*<div class="modal fade text-right" id="create" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <form asp-action="Create">
@@ -152,4 +152,4 @@ else
             $(this).find('input[name=name]').val(roleName);
         });
     </script>
-}
+}*@
