@@ -43,10 +43,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Categories\ReadOnlyIndex.cshtml">
+    <Content Update="Views\Categories\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Products\ReadOnlyIndex.cshtml">
+    <Content Update="Views\Products\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Shared\_ManagementPartial.cshtml">

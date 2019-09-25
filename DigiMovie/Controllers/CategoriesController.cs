@@ -31,10 +31,11 @@ namespace DigiMovie.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            if (User.IsInRole("مدیر دسته بندی ها")) 
-                return View(await _context.Categories.ToListAsync());
-            else
-                return View("ReadOnlyIndex", await _context.Categories.ToListAsync());
+            return View(await _context.Categories.ToListAsync());
+        }
+        public async Task<IActionResult> AdminIndex()
+        {
+            return View(await _context.Categories.ToListAsync());
         }
 
         [AllowAnonymous]
@@ -215,7 +216,7 @@ namespace DigiMovie.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> RelatingProducts(int? id,string cat)
+        public async Task<IActionResult> RelatingProducts(int? id, string cat)
         {
             if (id == null)
                 return NotFound();

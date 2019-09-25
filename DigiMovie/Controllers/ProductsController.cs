@@ -31,10 +31,12 @@ namespace DigiMovie.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            if (User.IsInRole("مدیر محصولات"))
-                return View(await _context.Products.ToListAsync());
-            else
-                return View("ReadOnlyIndex", await _context.Products.Include(m => m.Category).OrderByDescending(m => m.Id).ToListAsync());
+            return View(await _context.Products.Include(m => m.Category).OrderByDescending(m => m.Id).ToListAsync());
+        }
+
+        public async Task<IActionResult> AdminIndex()
+        {
+            return View(await _context.Products.ToListAsync());
         }
 
         [AllowAnonymous]
