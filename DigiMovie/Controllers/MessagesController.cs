@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DigiMovie.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "مدیر پیام ها ")]
     public class MessagesController : Controller
     {
         private readonly ApplicationDbContext _context;

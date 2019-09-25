@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DigiMovie.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "مدیر عضویت")]
     public class RolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

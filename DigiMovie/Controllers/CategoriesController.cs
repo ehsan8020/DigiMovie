@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using DigiMovie.Areas.Identity.Data;
 using DigiMovie.Data;
 using DigiMovie.Extensions;
 using DigiMovie.Helpers;
@@ -15,24 +16,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DigiMovie.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "مدیر دسته بندی ها")]
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IFileManager _ifileManager;
-        private readonly SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _signInManager;
 
-        public CategoriesController(ApplicationDbContext context, IFileManager ifileManager, SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> signInManager)
+        public CategoriesController(ApplicationDbContext context, IFileManager ifileManager)
         {
             _context = context;
             _ifileManager = ifileManager;
-            _signInManager = signInManager;
         }
 
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            if (_signInManager.IsSignedIn(User))
+            if (User.IsInRole("مدیر دسته بندی ها")) 
                 return View(await _context.Categories.ToListAsync());
             else
                 return View("ReadOnlyIndex", await _context.Categories.ToListAsync());

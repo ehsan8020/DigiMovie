@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DigiMovie.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "مدیر عضویت")]
     public class UserRolesController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

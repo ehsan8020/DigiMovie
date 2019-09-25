@@ -1,4 +1,5 @@
-﻿using DigiMovie.Data;
+﻿using DigiMovie.Areas.Identity.Data;
+using DigiMovie.Data;
 using DigiMovie.Extensions;
 using DigiMovie.Helpers;
 using DigiMovie.Models;
@@ -15,24 +16,22 @@ using System.Threading.Tasks;
 
 namespace DigiMovie.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "مدیر محصولات")]
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IFileManager _ifileManager;
-        private readonly SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> _signInManager;
 
-        public ProductsController(ApplicationDbContext context, IFileManager ifileManager, SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> signInManager)
+        public ProductsController(ApplicationDbContext context, IFileManager ifileManager)
         {
             _context = context;
             _ifileManager = ifileManager;
-            _signInManager = signInManager;
         }
 
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            if (_signInManager.IsSignedIn(User))
+            if (User.IsInRole("مدیر محصولات"))
                 return View(await _context.Products.ToListAsync());
             else
                 return View("ReadOnlyIndex", await _context.Products.Include(m => m.Category).OrderByDescending(m => m.Id).ToListAsync());

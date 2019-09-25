@@ -1,5 +1,5 @@
 ﻿@model DigiMovie.Models.Product
-@inject Microsoft.AspNetCore.Identity.SignInManager<DigiMovie.Areas.Identity.Data.ApplicationUser> SignInManager
+
 @{
     ViewData["Title"] = "نمایش جزییات محصول";
 }
@@ -50,7 +50,7 @@
 </table>
 <br class="my-2" />
 
-@if (SignInManager.IsSignedIn(User))
+@if (User.IsInRole("مدیر محصولات"))
 {
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning">
         <i class="fas fa-edit align-middle"></i>

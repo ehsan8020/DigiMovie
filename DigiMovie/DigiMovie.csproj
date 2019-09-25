@@ -16,6 +16,10 @@
     <Compile Remove="Areas\Identity\Pages\Account\Manage\ManageNavPages.cs" />
     <Compile Remove="Data\Migrations\20190511140620_AddRelBetCatAndPro.cs" />
     <Compile Remove="Data\Migrations\20190511140620_AddRelBetCatAndPro.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190917172914_AddWebsiteRoles.cs" />
+    <Compile Remove="Data\Migrations\20190917172914_AddWebsiteRoles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190917173721_AddUserAndAssignToAdminRole.cs" />
+    <Compile Remove="Data\Migrations\20190917173721_AddUserAndAssignToAdminRole.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

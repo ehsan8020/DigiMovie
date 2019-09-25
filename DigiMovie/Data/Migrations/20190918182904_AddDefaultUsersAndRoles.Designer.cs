@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DigiMovie.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190917172914_AddWebsiteRoles")]
-    partial class AddWebsiteRoles
+    [Migration("20190918182904_AddDefaultUsersAndRoles")]
+    partial class AddDefaultUsersAndRoles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

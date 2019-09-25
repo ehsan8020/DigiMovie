@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DigiMovie.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "مدیر عضویت")]
     public class UsersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
