@@ -1,0 +1,209 @@
+﻿@model HiShop.Models.ViewModels.Products.CreateEditVM
+
+@{
+    ViewData["Title"] = "ویرایش محصول";
+}
+<br class="my-3" />
+<h2 class="text-right">@ViewData["Title"] </h2>
+<hr />
+<form asp-action="Edit" enctype="multipart/form-data" id="mainForm">
+    <div class="form-group form-row">
+        <div class="col-md-6 text-right">
+            <label asp-for="Product.Title" class="form-label">@Html.DisplayNameFor(p => p.Product.Title) :</label>
+            <input asp-for="Product.Title" class="form-control" />
+            <span asp-validation-for="Product.Title" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 text-right">
+            <label asp-for="Product.Price" class="form-label">@Html.DisplayNameFor(p => p.Product.Price) : </label>
+            <input asp-for="Product.Price" class="form-control" />
+            <span asp-validation-for="Product.Price" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col-md-6 text-right my-auto">
+            <input asp-for="Product.IsExists" class="form-check-input" />
+            <label asp-for="Product.IsExists" class="form-check-label pr-3">@Html.DisplayNameFor(p => p.Product.IsExists)</label>
+        </div>
+        <div class="col-md-6 text-right">
+            <label asp-for="Product.NumberInStock" class="form-label">@Html.DisplayNameFor(p => p.Product.NumberInStock) : </label>
+            <input asp-for="Product.NumberInStock" class="form-control" />
+            <span asp-validation-for="Product.NumberInStock" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col-md text-right">
+            <label asp-for="Product.CatId">@Html.DisplayNameFor(m => m.Product.CatId) : </label>
+            <select asp-for="Product.CatId" asp-items="Model.Categories" class="form-control"></select>
+            <span asp-validation-for="Product.CatId" class="text-danger"></span>
+        </div>
+        <div class="col-md text-right">
+            <label for="image" class="form-label">@Html.DisplayNameFor(m => m.Product.ImagePath) : </label>
+            <br />
+            <img src="@Model.Product.ImagePath" alt="سایت های شاپ - @Model.Product.Title" title="سایت های شاپ - @Model.Product.Title" width="300" />
+            <hr />
+            <input type="file" class="form-control-file" name="image" id="image" />
+            <span id="imageValidationMessage" class="text-danger d-none"></span>
+            <ul class="text-muted text-right mt-2">
+                <li>اگر قصد ندارید @Html.DisplayNameFor(p => p.Product.ImagePath) را تغییر دهید، فیلد بالا را خالی بگذارید.</li>
+                <li>@Html.DisplayNameFor(p => p.Product.ImagePath) می بایست حداکثر 1 مگابایت باشد.</li>
+                <li>@Html.DisplayNameFor(p => p.Product.ImagePath) می بایست یکی از از فرمت های jpg یا gif یا png باشد.</li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="form-group form-row">
+        <div class="col-md text-right">
+            <label asp-for="Product.Specification" class="form-label">@Html.DisplayNameFor(p => p.Product.Specification) : </label>
+            <textarea asp-for="Product.Specification" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Product.Specification" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <div class="col-md text-right">
+            <input asp-for="Product.Id" type="hidden" />
+            <input asp-for="Product.ImagePath" type="hidden" />
+            <button type="submit" class="btn btn-warning">
+                <i class="fas fa-edit align-middle"></i>
+                ویرایش محصول
+            </button>
+            <a asp-action="Index" class="btn btn-outline-dark">
+                <i class="fas fa-share align-middle"></i>
+                بازگشت به لیست محصولات
+            </a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+
+        //Client Side Validation For Product Image
+        $('#mainForm').submit(function (e) {
+
+            var image = $('#image').prop('files')[0];
+            if (image) {
+                if (image.size < 1048576) {
+                    if (image.type == 'image/png' || image.type == 'image/gif' || image.type == 'image/jpeg' || image.type == 'image/jpg') {
+                        return true;
+                    }
+                    else {
+                        $('#imageValidationMessage')
+                            .removeClass('d-none')
+                            .text('عکس انتخاب شده برای محصول در قالب مجاز نمی باشد.');
+                        e.preventDefault();
+                    }
+                }
+                else {
+                    $('#imageValidationMessage')
+                        .removeClass('d-none')
+                        .text('عکس انتخاب شده برای محصول بزرگتر از 1 مگابایت می باشد.');
+                    e.preventDefault();
+                }
+            }
+            return true;
+
+        });
+    </script>
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model HiShop.Models.Product
+
+    @{
+        ViewData["Title"] = "Edit";
+    }
+
+    <h2>Edit</h2>
+
+    <h4>Product</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Specification" class="control-label"></label>
+                    <input asp-for="Specification" class="form-control" />
+                    <span asp-validation-for="Specification" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="IsExists" /> @Html.DisplayNameFor(model => model.IsExists)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumberInStock" class="control-label"></label>
+                    <input asp-for="NumberInStock" class="form-control" />
+                    <span asp-validation-for="NumberInStock" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@

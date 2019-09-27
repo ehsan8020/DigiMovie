@@ -1,0 +1,42 @@
+﻿@inject Microsoft.AspNetCore.Identity.UserManager<HiShop.Areas.Identity.Data.ApplicationUser> UserManager
+@model HiShop.Models.Category
+
+@{
+    ViewData["Title"] = "نمایش جزییات دسته بندی";
+}
+<br class="my-3" />
+<h2 class="text-right">@ViewData["Title"] </h2>
+<hr />
+
+<table class="table table-bordered table-hover table-striped table-info text-center table-sm">
+    <tbody>
+        <tr>
+            <td class="align-middle">@Html.DisplayNameFor(m => m.ImagePath)</td>
+            <td><img src="@Model.ImagePath" alt="سایت های شاپ - @Model.Title" title="سایت های شاپ - @Model.Title" class="w-75" /></td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(m => m.Title)</td>
+            <td>@Model.Title</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(m => m.Description)</td>
+            <td>@Model.Description </td>
+        </tr>
+    </tbody>
+</table>
+<br class="my-2" />
+@if (User.IsInRole("مدیر دسته بندی ها"))
+{
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning">
+        <i class="fas fa-edit align-middle"></i>
+        ویرایش این دسته بندی
+    </a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">
+        <i class="fas fa-trash align-middle"></i>
+        حذف این دسته بندی
+    </a>
+}
+<a asp-action="Index" class="btn btn-outline-dark">
+    <i class="fas fa-share align-middle"></i>
+    بازگشت به لیست دسته بندی ها
+</a>

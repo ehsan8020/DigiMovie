@@ -1,0 +1,45 @@
+﻿@model HiShop.Models.Message
+
+@{
+    ViewData["Title"] = "نمایش جزییات پیام";
+}
+<br class="my-3" />
+<h2 class="text-right">@ViewData["Title"] </h2>
+<hr />
+
+<table class="table table-bordered table-hover table-striped table-info text-center table-sm">
+    <tbody>
+        <tr>
+            <td class="align-middle">@Html.DisplayNameFor(m => m.Name)</td>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <td class="align-middle">@Html.DisplayNameFor(m => m.Email)</td>
+            <td>
+                <a href="mailto:@Model.Email" title="پاسخ به این پیام">@Model.Email</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="align-middle">@Html.DisplayNameFor(m => m.Subject)</td>
+            <td>@Model.Subject</td>
+        </tr>
+        <tr>
+            <td class="align-middle">@Html.DisplayNameFor(m => m.Body)</td>
+            <td>@Model.Body</td>
+        </tr>
+        <tr>
+            <td class="align-middle">@Html.DisplayNameFor(m => m.RegisteredTime)</td>
+            <td>@Model.RegisteredTime.ToPersianDateTimeString()</td>
+        </tr>
+
+    </tbody>
+</table>
+<br class="my-2" />
+<a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">
+    <i class="fas fa-trash align-middle"></i>
+    حذف این پیام
+</a>
+<a asp-action="Index" class="btn btn-outline-dark">
+    <i class="fas fa-share align-middle"></i>
+    بازگشت به لیست پیام ها
+</a>

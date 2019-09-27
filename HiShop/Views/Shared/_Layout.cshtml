@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="فیلم,سریال,دانلود,انیمیشن,کارتون" />
+    <title>@ViewData["Title"] - های شاپ</title>
+
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico">
+    <link rel="shortcut icon" href="~/favicon.ico">
+
+    <meta property="og:title" content="های شاپ" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://HiShop.emoh.ir" />
+    <meta property="og:image" content="http://HiShop.emoh.ir/images/Template/logo.png" />
+    <meta property="og:description" content="وب سایت های شاپ برترین وب سایت در زمینه فیلم و سریال" />
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+    @RenderSection("Head", required: false)
+</head>
+<body style="background-color:#ddd">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand text-success" href="/">
+
+            <img src="~/images/Template/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            های شاپ
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-right" id="navContent">
+            <ul class="navbar-nav mx-auto">
+                <li><hr class="my-0 bg-light" /></li>
+                <li class="nav-item active pl-5">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link text-info">
+                        <i class="fa fa-home align-middle"></i>
+                        خانه
+                    </a>
+                </li>
+                <li><hr class="my-0 bg-light" /></li>
+                <li class="nav-item pl-5">
+                    <a asp-area="" asp-controller="Categories" asp-action="Index" class="nav-link text-info">
+                        <i class="fas fa-th-large align-middle"></i>
+                        دسته بندی ها
+                    </a>
+                </li>
+                <li><hr class="my-0 bg-light" /></li>
+                <li class="nav-item pl-5">
+                    <a asp-area="" asp-controller="Products" asp-action="Index" class="nav-link text-info">
+                        <i class="fas fa-box-open align-middle"></i>
+                        محصولات
+                    </a>
+                </li>
+                <li><hr class="my-0 bg-light" /></li>
+
+                <li class="nav-item pl-5">
+                    <a asp-area="" asp-controller="Home" asp-action="About" class="nav-link text-info">
+                        <i class="fas fa-file-signature align-middle"></i>
+                        درباره ما
+                    </a>
+                </li>
+                <li><hr class="my-0 bg-light" /></li>
+
+
+                <partial name="_ManagementPartial" />
+
+                <li class="nav-item pl-5">
+                    <a asp-area="" asp-controller="Home" asp-action="Contact" class="nav-link text-info">
+                        <i class="fas fa-phone align-middle"></i>
+                        تماس با ما
+                    </a>
+                </li>
+                <li><hr class="my-0 bg-light" /></li>
+                <partial name="_LoginPartial" />
+            </ul>
+        </div>
+    </nav>
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container">
+        @RenderBody()
+        <hr />
+        <footer class="text-center">
+            <h3 class="text-center">
+                <a href="http://telegram.me/HiShop" target="_blank" class="text-info"><i class="fab fa-telegram" title="تلگرام "></i></a>&nbsp;&nbsp;
+                <a href="http://instagram.com/HiShop" target="_blank" class="text-warning"><i class="fab fa-instagram" title="اینستاگرام "></i></a>&nbsp;&nbsp;
+                <a href="http://twitter.com/HiShop" target="_blank" class="text-success"><i class="fab fa-twitter" title="توییتر "></i></a>&nbsp;&nbsp;
+                <a href="http://facebook.com/HiShop" target="_blank" class="text-primary"><i class="fab fa-facebook" title="فیسبوک "></i></a>&nbsp;&nbsp;
+                <a href="/Home/Contact" target="_blank" title="ایمیل " class="text-danger"><i class="far fa-envelope"></i></a>&nbsp;&nbsp;
+            </h3>
+            <p>&copy; 2019 - های شاپ</p>
+        </footer>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/jquery.js"></script>
+        <script src="~/lib/bootstrap/bootstrap.bundle.js"></script>
+        <script src="~/lib/font-awesome/all.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" asp-fallback-src="~/lib/jquery/dist/jquery-3.3.1.min.js" asp-fallback-test="window.jQuery" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" asp-fallback-src="~/lib/bootstrap/dist/js/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

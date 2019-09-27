@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<HiShop.Areas.Identity.Data.ApplicationUser> _userManager
+
+@{
+    var currentUser = await _userManager.GetUserAsync(User);
+    if (currentUser != null)
+    {
+        var rolesOfCurrentUser = await _userManager.GetRolesAsync(currentUser);
+
+        if (rolesOfCurrentUser.Count > 0)
+        {
+            <li class="nav-item dropdown pl-5">
+                <a class="nav-link dropdown-toggle text-info" data-toggle="dropdown" href="#">
+                    <i class="fas fa-tasks align-middle"></i>
+                    پنل مدیریتی
+                </a>
+                <div class="dropdown-menu text-right">
+                    @if (User.IsInRole("مدیر دسته بندی ها"))
+                    {
+                        <a class="dropdown-item text-info" asp-controller="Categories" asp-action="AdminIndex">
+                            <i class="fas fa-th-large align-middle"></i>
+                            دسته بندی ها
+                        </a>
+                    }
+                    @if (User.IsInRole("مدیر محصولات"))
+                    {
+                        <a class="dropdown-item text-info" asp-controller="Products" asp-action="AdminIndex">
+                            <i class="fas fa-box-open align-middle"></i>
+                            محصولات
+                        </a>
+                    }
+                    @if (User.IsInRole("مدیر پیام ها"))
+                    {
+                        <a class="dropdown-item text-info" asp-controller="Messages" asp-action="Index">
+                            <i class="fas fa-envelope align-middle"></i>
+                            پیام ها
+                        </a>
+                    }
+                    @if (User.IsInRole("مدیر عضویت"))
+                    {
+                        <a class="dropdown-item text-info" asp-controller="Users" asp-action="Index">
+                            <i class="far fa-user-circle align-middle"></i>
+                            کاربران
+                        </a>
+                        <a class="dropdown-item text-info" asp-controller="Roles" asp-action="Index">
+                            <i class="fas fa-user-circle align-middle"></i>
+                            نقش ها
+                        </a>
+                    }
+                </div>
+            </li>
+            <li><hr class="my-0 bg-light" /></li>
+        }
+    }
+}

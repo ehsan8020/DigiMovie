@@ -1,0 +1,144 @@
+﻿@model IEnumerable<HiShop.Areas.Identity.Data.ApplicationUser>
+
+@{
+    ViewData["Title"] = "نمایش کاربران";
+}
+<br class="my-3" />
+<h2 class="text-right">@ViewData["Title"] </h2>
+<hr />
+<div class="search-bar">
+    <input type="text" id="search" placeholder="جستجوی کاربران (قسمتی از نام، نام خانوادگی یا نام کاربری را وارد نمایید)" class="form-control" /><div id="suggest"></div>
+</div>
+<hr />
+@if (!Model.Any())
+{
+    <div class="alert alert-warning text-center">هیچ کاربری در سیستم ثبت نشده است.</div>
+}
+else
+{
+    <table class="table table-bordered table-hover table-striped table-info text-center table-sm">
+        <thead class="table-dark text-danger" style="font-size:large">
+            <tr>
+                <td>ردیف</td>
+                <td>تصویر نمایه</td>
+                <td>نام کاربری</td>
+                <td>نوع کاربری</td>
+                <td>پست الکترونیکی</td>
+                <td>نام</td>
+                <td>نام خانوادگی</td>
+                <td>جزییات</td>
+                <td>حذف</td>
+                <td>مدیریت نقش ها</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var i = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="align-middle">@i</td>
+                    <td class="align-middle">
+                        <img src="@item.ProfileImagePath" alt="سایت های شاپ - @item.FirstName @item.LastName"
+                             title="سایت های شاپ - @item.FirstName @item.LastName" width="50" height="50" />
+                    </td>
+                    <td class="align-middle">@item.UserName</td>
+                    <td class="align-middle">@(item.PasswordHash != null ? "محلی" : "خارجی")</td>
+                    <td class="align-middle">@item.Email</td>
+                    <td class="align-middle">@item.FirstName</td>
+                    <td class="align-middle">@item.LastName</td>
+                    <td class="align-middle">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="nav-link text-info">
+                            <i class="fas fa-2x fa-info-circle"></i>
+                        </a>
+                    </td>
+                    <td class="align-middle">
+                        <a class="nav-link text-danger" data-toggle="modal" href="#delete" data-id="@item.Id" data-fullname="@item.FirstName @item.LastName [@item.UserName]">
+                            <i class="fas fa-2x fa-trash"></i>
+                        </a>
+                    </td>
+                    <td class="align-middle">
+                        @if (item.PasswordHash != null)
+                        {
+                            <a class="nav-link text-success" asp-controller="UserRoles" asp-route-username="@item.UserName" title="مدیریت نقش های این کاربر">
+                                <i class="fas fa-2x fa-user-circle align-middle"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <i class="fas fa-2x fa-user-circle align-middle"></i>
+                        }
+                    </td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+
+    <div class="modal fade text-right" id="delete" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form asp-action="Delete">
+                    <div class="modal-header">
+                        <h5 class="modal-title">حذف کاربر</h5>
+                        <button type="button" class="close ml-0 text-danger" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        آیا از حذف کاربر <mark class="text-danger p-2"></mark> اطمینان دارید ؟
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                        &nbsp;&nbsp;
+                        <button type="submit" class="btn btn-danger">حذف</button>
+                    </div>
+                    <input type="hidden" name="id" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+}
+<br class="my-3" />
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#search').on({
+                'keyup': function () {
+                    //check for minimum required length for search goes here
+                    $.ajax({
+                        method: 'get',
+                        url: '/Users/Search',
+                        data: { q: $(this).val() },
+                        success: function (d) {
+                            $('.search-bar #suggest').css('display', 'block').empty();
+                            var suggestElement = $('.search-bar #suggest');
+                            for (var i in d) {
+
+                                suggestElement
+                                    .append('<div class="suggest-item"><a href="/Users/Details/' + d[i].id + '">'
+                                        + '<img width="40" height="40" src="' + d[i].profileImagePath + '"> '
+                                        + d[i].firstName + ' ' + d[i].lastName + ' [' + d[i].userName + ']' + '</a></div>');
+                            }
+                        }
+                    });
+                }
+                , 'focusout': function () {
+                    $('.search-bar #suggest').slideUp(function () {
+                        $(this).empty();
+                    });
+                }
+            });
+        });
+
+        $("#delete").on("show.bs.modal", function (e) {
+            var user = $(e.relatedTarget);
+            $(this).find('mark').text(user.data('fullname'));
+            $(this).find('input[name=id]').val(user.data('id'));
+        });
+
+    </script>
+
+
+
+}
