@@ -86,7 +86,7 @@ using HiShop.Models;
             WriteLiteral(" </h2>\r\n<hr />\r\n<div class=\"search-bar\">\r\n    <input type=\"text\" id=\"search\" placeholder=\"جستجوی دسته بندی ها...\" class=\"form-control\" /><div id=\"suggest\"></div>\r\n</div>\r\n<hr />\r\n<div class=\"text-right\">\r\n    ");
             EndContext();
             BeginContext(483, 145, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f5dbca0b59af45ffa31ab9aefa393db3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9cab166bd7f2413597209803a5fd90c9", async() => {
                 BeginContext(537, 87, true);
                 WriteLiteral("\r\n        <i class=\"fas fa-plus align-middle\"></i>\r\n        افزودن دسته بندی جدید\r\n    ");
                 EndContext();
@@ -217,7 +217,7 @@ WriteAttributeValue(" ", 1588, item.Title, 1589, 11, false);
             WriteLiteral("</td>\r\n                    <td class=\"align-middle\">\r\n                        ");
             EndContext();
             BeginContext(1779, 176, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42005f63066342cb97098991c13294c2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f703ebf0fb6d4d68b632459707313d0d", async() => {
                 BeginContext(1855, 96, true);
                 WriteLiteral("\r\n                            <i class=\"fas fa-2x fa-info-circle\"></i>\r\n                        ");
                 EndContext();
@@ -253,7 +253,7 @@ WriteAttributeValue(" ", 1588, item.Title, 1589, 11, false);
             WriteLiteral("\r\n                    </td>\r\n                    <td class=\"align-middle\">\r\n                        ");
             EndContext();
             BeginContext(2055, 168, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aa94e49c96cf48ff92de8bb1af17b226", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "018447b1aaa44161b290fb3d89212871", async() => {
                 BeginContext(2130, 89, true);
                 WriteLiteral("\r\n                            <i class=\"fas fa-2x fa-edit\"></i>\r\n                        ");
                 EndContext();
@@ -289,7 +289,7 @@ WriteAttributeValue(" ", 1588, item.Title, 1589, 11, false);
             WriteLiteral("\r\n                    </td>\r\n                    <td class=\"align-middle\">\r\n                        ");
             EndContext();
             BeginContext(2323, 171, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d55d771396224f7a841f61a4b9847bc8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "27e1e81659a64a299a6c739c082da40b", async() => {
                 BeginContext(2400, 90, true);
                 WriteLiteral("\r\n                            <i class=\"fas fa-2x fa-trash\"></i>\r\n                        ");
                 EndContext();

@@ -99,7 +99,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("                        ");
             EndContext();
             BeginContext(788, 233, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "52bd8912c5244cbe96e8e088f42b82c8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "44766639af1146cfb627ab35361eed4b", async() => {
                 BeginContext(875, 142, true);
                 WriteLiteral("\r\n                            <i class=\"fas fa-th-large align-middle\"></i>\r\n                            دسته بندی ها\r\n                        ");
                 EndContext();
@@ -141,7 +141,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("                        ");
             EndContext();
             BeginContext(1150, 226, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b13007f7492e4f39bdc70d47ddd9c724", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ebc4b73ed43a42a6bbd1d61910b4205f", async() => {
                 BeginContext(1235, 137, true);
                 WriteLiteral("\r\n                            <i class=\"fas fa-box-open align-middle\"></i>\r\n                            محصولات\r\n                        ");
                 EndContext();
@@ -183,7 +183,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("                        ");
             EndContext();
             BeginContext(1505, 221, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e547cf802654220926189d675a25359", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7700e04f7373489c8b7c9b23c09ab7c1", async() => {
                 BeginContext(1585, 137, true);
                 WriteLiteral("\r\n                            <i class=\"fas fa-envelope align-middle\"></i>\r\n                            پیام ها\r\n                        ");
                 EndContext();
@@ -225,7 +225,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("                        ");
             EndContext();
             BeginContext(1853, 221, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "59f24dce4f5a411dadc4f1c9fd1a0c48", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b99f05ca2d724751abed29935678dcf4", async() => {
                 BeginContext(1930, 140, true);
                 WriteLiteral("\r\n                            <i class=\"far fa-user-circle align-middle\"></i>\r\n                            کاربران\r\n                        ");
                 EndContext();
@@ -250,7 +250,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(2100, 220, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4f8de77180c44b7e8d5051a7cae71f90", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0ba4247e095540d2be5fa9bc524bd5ed", async() => {
                 BeginContext(2177, 139, true);
                 WriteLiteral("\r\n                            <i class=\"fas fa-user-circle align-middle\"></i>\r\n                            نقش ها\r\n                        ");
                 EndContext();

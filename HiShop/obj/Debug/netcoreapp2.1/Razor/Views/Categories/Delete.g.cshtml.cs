@@ -172,12 +172,12 @@ WriteAttributeValue(" ", 597, Model.Title, 598, 12, false);
             WriteLiteral(" </td>\r\n        </tr>\r\n\r\n    </tbody>\r\n</table>\r\n");
             EndContext();
             BeginContext(917, 372, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "03353cfcee324424891047d71ba067be", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "194616263319410088347afae021151a", async() => {
                 BeginContext(947, 6, true);
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(953, 36, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "3a22f05091aa41ef8ab5f9377f89f1d3", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "35e911419d68482185b9ac686823104f", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -202,7 +202,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n    <button type=\"submit\" class=\"btn btn-danger\">\r\n        <i class=\"fas fa-trash align-middle\"></i>\r\n        حذف نهایی\r\n    </button>\r\n    ");
                 EndContext();
                 BeginContext(1131, 149, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2011db2a60024b5a9f8b58f1f0c3041c", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "397fdc14811141a18fe628b0577a236c", async() => {
                     BeginContext(1182, 94, true);
                     WriteLiteral("\r\n        <i class=\"fas fa-share align-middle\"></i>\r\n        بازگشت به لیست دسته بندی ها\r\n    ");
                     EndContext();

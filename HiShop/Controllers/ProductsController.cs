@@ -94,7 +94,7 @@ namespace HiShop.Controllers
                 {
                     TempData["ProductCreateStatus"] = e.Message;
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(AdminIndex));
             }
             return View(createEditVM.Product);
         }
@@ -141,7 +141,7 @@ namespace HiShop.Controllers
                     {
                         TempData["ProductEditStatus"] = e.Message;
                     }
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(AdminIndex));
                 }
                 else
                 {
@@ -177,7 +177,7 @@ namespace HiShop.Controllers
                     {
                         TempData["ProductEditStatus"] = e.Message;
                     }
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(AdminIndex));
                 }
             }
             return View(createEditVM.Product);
@@ -215,7 +215,7 @@ namespace HiShop.Controllers
             {
                 TempData["ProductDeleteStatus"] = e.Message;
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(AdminIndex));
         }
 
         [AllowAnonymous]

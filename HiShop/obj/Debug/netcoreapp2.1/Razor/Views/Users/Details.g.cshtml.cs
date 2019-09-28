@@ -314,7 +314,7 @@ WriteAttributeValue(" ", 2186, Model.LastName, 2187, 15, false);
             WriteLiteral("    </tbody>\r\n</table>\r\n<br />\r\n\r\n");
             EndContext();
             BeginContext(2525, 151, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0ea0614069b44cfca5d0a2e8d21c05d1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98bbf7f10aaa464f9b4b286dd132ebb5", async() => {
                 BeginContext(2604, 68, true);
                 WriteLiteral("\r\n    <i class=\"fas fa-trash align-middle\"></i>\r\n    حذف این کاربر\r\n");
                 EndContext();
@@ -350,7 +350,7 @@ WriteAttributeValue(" ", 2186, Model.LastName, 2187, 15, false);
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(2678, 132, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "61038dc563ce4bf9a5eba49754406027", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ea26d01d4ef4459880d3c288b162df8c", async() => {
                 BeginContext(2729, 77, true);
                 WriteLiteral("\r\n    <i class=\"fas fa-share align-middle\"></i>\r\n    بازگشت به لیست کاربران\r\n");
                 EndContext();

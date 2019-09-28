@@ -86,7 +86,7 @@ namespace HiShop.Controllers
                 {
                     TempData["CategoryCreateStatus"] = e.Message;
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(AdminIndex));
             }
             return View(createEditVM.Category);
         }
@@ -128,7 +128,7 @@ namespace HiShop.Controllers
                     {
                         TempData["CategoryEditStatus"] = e.Message;
                     }
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(AdminIndex));
                 }
                 else
                 {
@@ -164,7 +164,7 @@ namespace HiShop.Controllers
                     {
                         TempData["CategoryEditStatus"] = e.Message;
                     }
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(AdminIndex));
                 }
             }
             return View(createEditVM.Category);
@@ -202,7 +202,7 @@ namespace HiShop.Controllers
             {
                 TempData["CategoryDeleteStatus"] = e.Message;
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(AdminIndex));
         }
 
         [AllowAnonymous]

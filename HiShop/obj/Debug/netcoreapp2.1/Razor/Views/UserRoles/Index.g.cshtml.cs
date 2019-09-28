@@ -105,12 +105,12 @@ using HiShop.Models;
             WriteLiteral("</span></h4>\r\n                </div>\r\n                <div class=\"card-body\">\r\n                    <label for=\"roles\" class=\"form-label\">یک یا چند نقش را انتخاب نمایید :</label>\r\n                    ");
             EndContext();
             BeginContext(881, 761, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d83b39c51835433e9efdd99582ba0c3e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bcae1e65962f4398abfe4837e99be21b", async() => {
                 BeginContext(914, 80, true);
                 WriteLiteral("\r\n                        <div class=\"form-group\">\r\n                            ");
                 EndContext();
                 BeginContext(994, 181, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "917ca0ba351b485dadde6806ea482279", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ff120ac846084580a760640890520eb3", async() => {
                     BeginContext(1136, 30, true);
                     WriteLiteral("\r\n                            ");
                     EndContext();
@@ -255,7 +255,7 @@ WriteAttributeValue("", 1588, ViewData["username"], 1588, 21, false);
             WriteLiteral("                </div>\r\n            </div>\r\n        </div>\r\n        <br />\r\n        ");
             EndContext();
             BeginContext(2988, 179, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9d55799e70884059bdd5b5f16c4f8bea", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b0e2eb48f2ef4ddd81bc635a053e35c4", async() => {
                 BeginContext(3062, 101, true);
                 WriteLiteral("\r\n            <i class=\"fas fa-share align-middle\"></i>\r\n            بازگشت به لیست کاربران\r\n        ");
                 EndContext();
@@ -387,7 +387,7 @@ WriteAttributeValue("", 1588, ViewData["username"], 1588, 21, false);
             WriteLiteral("        </div>\r\n    </div>\r\n    <br />\r\n    ");
             EndContext();
             BeginContext(4393, 166, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d1f98a81cfeb46758821440658e2a98c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9e8fdba826924e529598a10664e03169", async() => {
                 BeginContext(4467, 88, true);
                 WriteLiteral("\r\n        <i class=\"fas fa-share align-middle\"></i>\r\n        بازگشت به لیست نقش ها\r\n    ");
                 EndContext();
