@@ -22,6 +22,13 @@ namespace HiShop.Data
             //    .Entity<Product>()
             //    .Property(p => p.CatId)
             //    .HasDefaultValue(1);
+
+            //Edit Relation Between Category And Products (Delete Rule becomes Restrict)
+            //builder
+            //       .Entity<Product>()
+            //       .HasOne(p => p.Category)
+            //       .WithMany(b => b.Products)
+            //       .OnDelete(DeleteBehavior.Restrict);
         }
 
         public DbSet<Product> Products { get; set; }
