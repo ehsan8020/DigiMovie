@@ -169,7 +169,7 @@ WriteAttributeValue(" ", 582, Model.Title, 583, 12, false);
             WriteLiteral("    ");
             EndContext();
             BeginContext(983, 168, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7112ef6995f04b769c65b9019bb16633", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f67c4263bd424bb8bd7ffa001b461a94", async() => {
                 BeginContext(1061, 86, true);
                 WriteLiteral("\r\n        <i class=\"fas fa-edit align-middle\"></i>\r\n        ویرایش این دسته بندی\r\n    ");
                 EndContext();
@@ -205,7 +205,7 @@ WriteAttributeValue(" ", 582, Model.Title, 583, 12, false);
             WriteLiteral("\r\n    ");
             EndContext();
             BeginContext(1157, 167, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e18971edeab24e83b23d0cc0893e0583", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "43d1145bc1fc4fb59b24f181e10717e4", async() => {
                 BeginContext(1236, 84, true);
                 WriteLiteral("\r\n        <i class=\"fas fa-trash align-middle\"></i>\r\n        حذف این دسته بندی\r\n    ");
                 EndContext();
@@ -246,7 +246,7 @@ WriteAttributeValue(" ", 582, Model.Title, 583, 12, false);
 #line default
 #line hidden
             BeginContext(1329, 137, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3cfaf70671a94977a23a522a7fd8e023", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6ae723b0f7bb4a8c811ef18a851d561e", async() => {
                 BeginContext(1380, 82, true);
                 WriteLiteral("\r\n    <i class=\"fas fa-share align-middle\"></i>\r\n    بازگشت به لیست دسته بندی ها\r\n");
                 EndContext();

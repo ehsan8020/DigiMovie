@@ -80,7 +80,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("    <li class=\"nav-item pl-5\">\r\n        ");
             EndContext();
             BeginContext(281, 174, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c1b3d5e3d9e242809ab9a57fb5ad3f43", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f37bd303fc3a4c83a2b4f8c3ee4992b3", async() => {
                 BeginContext(364, 87, true);
                 WriteLiteral("\r\n            <i class=\"fa fa-user align-middle\"></i>\r\n            پنل کاربری\r\n        ");
                 EndContext();
@@ -105,7 +105,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("\r\n    </li>\r\n    <li><hr class=\"my-0 bg-light\" /></li>\r\n    <li class=\"nav-item pl-5\">\r\n        ");
             EndContext();
             BeginContext(551, 352, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "403328ca5b9046029c43395c94b9c0b9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0ab21e3b815241578607d36b8a70efca", async() => {
                 BeginContext(704, 192, true);
                 WriteLiteral("\r\n            <button type=\"submit\" class=\"btn btn-link text-info pr-0\">\r\n                <i class=\"fa fa-sign-out-alt align-middle\"></i>\r\n                خروج\r\n            </button>\r\n        ");
                 EndContext();
@@ -157,7 +157,7 @@ else
             WriteLiteral("    <li class=\"nav-item pl-5\">\r\n        ");
             EndContext();
             BeginContext(968, 173, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9cdad6df20cb4db7912dd836035bc68a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3bc67845c8ab498c86e6ea361551bee1", async() => {
                 BeginContext(1047, 90, true);
                 WriteLiteral("\r\n            <i class=\"fas fa-user-plus align-middle\"></i>\r\n            ثبت نام\r\n        ");
                 EndContext();
@@ -182,7 +182,7 @@ else
             WriteLiteral("\r\n    </li>\r\n    <li><hr class=\"my-0 bg-light\" /></li>\r\n    <li class=\"nav-item pl-5\">\r\n        ");
             EndContext();
             BeginContext(1237, 169, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "521b2f9e63794512ac8bc8f1e6296bad", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fdf4108ea81346eab3f3a48e5474e538", async() => {
                 BeginContext(1313, 89, true);
                 WriteLiteral("\r\n            <i class=\"fas fa-sign-in-alt align-middle\"></i>\r\n            ورود\r\n        ");
                 EndContext();

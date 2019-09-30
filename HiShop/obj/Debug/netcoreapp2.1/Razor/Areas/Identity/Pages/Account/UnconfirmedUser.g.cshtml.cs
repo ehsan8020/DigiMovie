@@ -77,7 +77,7 @@ using HiShop.Areas.Identity.Pages.Account;
         ");
             EndContext();
             BeginContext(432, 212, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8b7c2c9b15944f9883e85936552add52", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "68be4169066b42ad918e4d15ca85cbba", async() => {
                 BeginContext(452, 185, true);
                 WriteLiteral("\r\n            <button type=\"submit\" class=\"btn btn-info\">\r\n                <i class=\"fa fa-paper-plane\"></i>\r\n                ارسال مجدد ایمیل فعال سازی\r\n            </button>\r\n        ");
                 EndContext();

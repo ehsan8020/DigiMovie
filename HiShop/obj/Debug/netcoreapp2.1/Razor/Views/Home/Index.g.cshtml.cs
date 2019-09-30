@@ -150,7 +150,7 @@ WriteAttributeValue("", 1329, item.Title, 1329, 11, false);
             WriteLiteral(">\r\n                            <div class=\"carousel-caption d-none d-md-block\">\r\n                                <h5>\r\n                                    ");
             EndContext();
             BeginContext(1496, 89, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b3568328b9704d5abcaf8796e290fc0e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "79171fffe0c24bdcb91bcdebef76d1c5", async() => {
                 BeginContext(1571, 10, false);
 #line 34 "C:\Users\Ehsan\Desktop\HiShop\HiShop\Views\Home\Index.cshtml"
                                                                                                          Write(item.Title);
@@ -259,7 +259,7 @@ WriteAttributeValue("", 2695, item.ImagePath, 2695, 15, false);
             WriteLiteral(">\r\n                    <div class=\"card-body\">\r\n                        <h5 class=\"card-title\">\r\n                            ");
             EndContext();
             BeginContext(2836, 128, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "577c55ece0ab4f84ad4e1673d7436c7c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6a06dfd8361a4b60ac0c0a6103cfc9f2", async() => {
                 BeginContext(2950, 10, false);
 #line 72 "C:\Users\Ehsan\Desktop\HiShop\HiShop\Views\Home\Index.cshtml"
                                                                                                                                         Write(item.Title);

@@ -81,7 +81,7 @@ using Microsoft.AspNetCore.Http.Features;
             WriteLiteral("    <nav id=\"cookieConsent\" class=\"navbar navbar-dark bg-dark fixed-bottom\">\r\n        <p class=\"navbar-text\">\r\n            این سایت برای ذخیره اطلاعات شما از کوکی ها استفاده می کند.\r\n        </p>\r\n        <div class=\"navbar-right\">\r\n            ");
             EndContext();
             BeginContext(516, 165, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "65d9de60d7e64aac954bca18835374c3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9bdc252977f847beb914cece0499eb93", async() => {
                 BeginContext(590, 87, true);
                 WriteLiteral("\r\n                <i class=\"fab fa-readme align-middle\"></i> بیشتر بدانید\r\n            ");
                 EndContext();

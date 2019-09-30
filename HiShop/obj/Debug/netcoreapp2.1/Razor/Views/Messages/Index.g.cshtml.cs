@@ -330,7 +330,7 @@ WriteAttributeValue("", 2457, item.Email, 2457, 11, false);
             WriteLiteral("</td>\r\n                    <td class=\"align-middle\">\r\n                        ");
             EndContext();
             BeginContext(2767, 175, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8e3455be665646ceb2bce423361949e3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a7b566d500640e2bad957ac5886e9c1", async() => {
                 BeginContext(2842, 96, true);
                 WriteLiteral("\r\n                            <i class=\"fas fa-2x fa-info-circle\"></i>\r\n                        ");
                 EndContext();
@@ -366,7 +366,7 @@ WriteAttributeValue("", 2457, item.Email, 2457, 11, false);
             WriteLiteral("\r\n                    </td>\r\n                    <td class=\"align-middle\">\r\n                        ");
             EndContext();
             BeginContext(3042, 170, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "df7776c68290481e89860ce5a3835822", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2f53c783f06f4469811ead6b3dd27b4f", async() => {
                 BeginContext(3118, 90, true);
                 WriteLiteral("\r\n                            <i class=\"fas fa-2x fa-trash\"></i>\r\n                        ");
                 EndContext();

@@ -77,7 +77,7 @@ using HiShop.Areas.Identity.Pages.Account;
             WriteLiteral(" </h2>\r\n<hr />\r\n<h5 class=\"alert alert-success text-right\">\r\n    <i class=\"fas fa-check align-middle\"></i>\r\n    کلمه عبور شما تغییر یافت. حال می توانید به سایت\r\n    ");
             EndContext();
             BeginContext(333, 138, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c52d3a1c8b324efb9e645d709b3f2abc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ad832c6a3d0f4f669e7618d52ece3c1c", async() => {
                 BeginContext(390, 77, true);
                 WriteLiteral("\r\n        <i class=\"fas fa-sign-in-alt align-middle\"></i>\r\n        ورود\r\n    ");
                 EndContext();

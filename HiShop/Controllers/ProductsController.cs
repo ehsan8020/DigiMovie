@@ -203,12 +203,13 @@ namespace HiShop.Controllers
 
             try
             {
-                //Step 1- Delete Old Image
-                _ifileManager.DeleteFile(product.ImagePath);
-
-                //Step 2- Delete Record
+                //Step 1- Delete Record
                 _context.Remove(product);
                 await _context.SaveChangesAsync();
+
+                //Step 2- Delete Old Image
+                _ifileManager.DeleteFile(product.ImagePath);
+
                 TempData["ProductDeleteStatus"] = "OK";
             }
             catch (Exception e)

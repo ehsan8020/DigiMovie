@@ -190,12 +190,12 @@ namespace HiShop.Controllers
 
             try
             {
-                //Step 1- Delete Old Image
-                _ifileManager.DeleteFile(category.ImagePath);
-
-                //Step 2- Delete Record
+                //Step 1- Delete Record
                 _context.Remove(category);
                 await _context.SaveChangesAsync();
+
+                //Step 2- Delete Old Image
+                _ifileManager.DeleteFile(category.ImagePath);
                 TempData["CategoryDeleteStatus"] = "OK";
             }
             catch (Exception e)

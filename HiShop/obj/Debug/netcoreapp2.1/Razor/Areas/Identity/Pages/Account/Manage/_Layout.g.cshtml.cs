@@ -194,7 +194,7 @@ Write(RenderSection("Head", required: false));
             WriteLiteral("    ");
             EndContext();
             BeginContext(797, 75, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3042a809fab4f508a776b9ff031db39", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9d466a004d6d4ab7829493fe11dae714", async() => {
                 BeginContext(850, 18, false);
 #line 34 "C:\Users\Ehsan\Desktop\HiShop\HiShop\Areas\Identity\Pages\Account\Manage\_Layout.cshtml"
                                                    Write(User.Identity.Name);
@@ -224,7 +224,7 @@ Write(RenderSection("Head", required: false));
             WriteLiteral("            <div class=\"list-group text-right\">\r\n                ");
             EndContext();
             BeginContext(1081, 215, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "35f9ffeadf9345408fc3969494dd0485", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3a9d8c4c0d4245cc94030a9bcc08cb47", async() => {
                 BeginContext(1171, 121, true);
                 WriteLiteral("\r\n                    <i class=\"fa fa-user-tie align-middle fa-2x\"></i>\r\n                    نمایه شخصی\r\n                ");
                 EndContext();
@@ -247,7 +247,7 @@ Write(RenderSection("Head", required: false));
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(1314, 224, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9ea2bd1db22749f3b6f3331abd9b4d1a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9ed44816c40040cfb9dbad09aea8350b", async() => {
                 BeginContext(1413, 121, true);
                 WriteLiteral("\r\n                    <i class=\"fa fa-user-lock align-middle fa-2x\"></i>\r\n                    کلمه عبور\r\n                ");
                 EndContext();
@@ -270,7 +270,7 @@ Write(RenderSection("Head", required: false));
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(1556, 232, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f725d9ceb1aa44ac95f4329c6cc6b397", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba6323d6e6a9476db4c44cb7b2243620", async() => {
                 BeginContext(1655, 129, true);
                 WriteLiteral("\r\n                    <i class=\"fa fa-exchange-alt align-middle fa-2x\"></i>\r\n                    ورود های خارجی\r\n                ");
                 EndContext();
@@ -293,7 +293,7 @@ Write(RenderSection("Head", required: false));
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(1806, 247, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9e15e5e50499417bb1ba2e417644945f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89c84d8415b249c3883e992c9be3069c", async() => {
                 BeginContext(1914, 135, true);
                 WriteLiteral("\r\n                    <i class=\"fa fa-user-clock align-middle fa-2x\"></i>\r\n                    احراز هویت دو مرحله ای\r\n                ");
                 EndContext();
@@ -316,7 +316,7 @@ Write(RenderSection("Head", required: false));
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(2071, 224, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eb44af4665564585884d2e4c6b6534d9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "97859c0266c947b1b4ab8ac770ad1135", async() => {
                 BeginContext(2168, 123, true);
                 WriteLiteral("\r\n                    <i class=\"fa fa-database align-middle fa-2x\"></i>\r\n                    اطلاعات شخصی\r\n                ");
                 EndContext();

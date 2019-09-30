@@ -145,7 +145,7 @@ else
             WriteLiteral("                    <td class=\"align-middle\">\r\n                        ");
             EndContext();
             BeginContext(1861, 233, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "efb8a1e564cf4cf49ea0c32832119436", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d1a777cd587f425b866c12fe0f0c96c4", async() => {
                 BeginContext(1981, 109, true);
                 WriteLiteral("\r\n                            <i class=\"far fa-2x fa-user-circle align-middle\"></i>\r\n                        ");
                 EndContext();

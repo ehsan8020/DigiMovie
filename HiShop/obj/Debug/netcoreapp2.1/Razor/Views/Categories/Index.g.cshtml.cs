@@ -109,7 +109,7 @@ WriteAttributeValue("", 724, item.ImagePath, 724, 15, false);
             WriteLiteral(">\r\n                    <div class=\"card-body\">\r\n                        <h5 class=\"card-title\">\r\n                            ");
             EndContext();
             BeginContext(865, 128, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ddaac4e2cd36461ba83f3eaefc923f35", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82ad3829981b479daf91706a188e8a39", async() => {
                 BeginContext(979, 10, false);
 #line 27 "C:\Users\Ehsan\Desktop\HiShop\HiShop\Views\Categories\Index.cshtml"
                                                                                                                                         Write(item.Title);

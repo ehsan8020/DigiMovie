@@ -270,7 +270,7 @@ WriteAttributeValue(" ", 470, Model.Title, 471, 12, false);
             WriteLiteral("    ");
             EndContext();
             BeginContext(1603, 164, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fbcf305572854d52814659d0ec291a3e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "092e96e9c8554b328cda84cd358e2805", async() => {
                 BeginContext(1681, 82, true);
                 WriteLiteral("\r\n        <i class=\"fas fa-edit align-middle\"></i>\r\n        ویرایش این محصول\r\n    ");
                 EndContext();
@@ -306,7 +306,7 @@ WriteAttributeValue(" ", 470, Model.Title, 471, 12, false);
             WriteLiteral("\r\n    ");
             EndContext();
             BeginContext(1773, 163, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0c570184b76845d195ac4eed2892b905", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fef6f76f452249f3ac4e23d85c92a342", async() => {
                 BeginContext(1852, 80, true);
                 WriteLiteral("\r\n        <i class=\"fas fa-trash align-middle\"></i>\r\n        حذف این محصول\r\n    ");
                 EndContext();
@@ -347,7 +347,7 @@ WriteAttributeValue(" ", 470, Model.Title, 471, 12, false);
 #line default
 #line hidden
             BeginContext(1941, 132, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c712e4836d3446d9a63e7d1180a7a3cd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "48744741f69a4526b4f97e2f6b0740ce", async() => {
                 BeginContext(1992, 77, true);
                 WriteLiteral("\r\n    <i class=\"fas fa-share align-middle\"></i>\r\n    بازگشت به لیست محصولات\r\n");
                 EndContext();

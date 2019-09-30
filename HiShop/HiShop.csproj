@@ -41,6 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\UserUploads\Categories\" />
     <Folder Include="wwwroot\UserUploads\Products\" />
   </ItemGroup>
 
